@@ -31,7 +31,7 @@ Se você deseja contribuir para o desenvolvimento do aplicativo, siga os passos 
 
 ![Integrantes](/images/integrantes.png)
 
-_Figure 4: Integrantes_
+_Figure 1: Integrantes_
 
 ## Slides do Projeto
 
@@ -39,13 +39,13 @@ _Figure 4: Integrantes_
 
 ![Problema](/images/problema.png)
 
-_Figure 1: Problema em 1 slide_
+_Figure 2: Problema em 1 slide_
 
 ### Solução e Proposta de Valor
 
 ![Solução](/images/solucao.png)
 
-_Figure 2: Solução em 1 slide_
+_Figure 3: Solução em 1 slide_
 
 ### Protótipo
 
