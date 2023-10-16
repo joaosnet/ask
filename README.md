@@ -51,4 +51,4 @@ _Figure 3: Solução em 1 slide_
 
 ![Protótipo](/images/prototipo.png)
 
-_Figure 3: Protótipo em 1 slide_
+_Figure 4: Protótipo em 1 slide_
