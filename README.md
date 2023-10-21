@@ -4,6 +4,11 @@
 
 O projeto ASK visa melhorar a mobilidade de pessoas com deficiência visual no meio urbano, proporcionando uma solução inovadora para a locomoção em vias públicas. Com cerca de 250 milhões de pessoas com deficiência visual no mundo, e aproximadamente 45 milhões no Brasil, o aplicativo busca facilitar a vida dessas pessoas, oferecendo informações em tempo real sobre as condições das vias e alertas sobre obstáculos.
 
+## Telas do Aplicativo
+![Telas](/icones/Telas.png)
+
+_Telas_
+
 ## Objetivos
 
 ### Geral
@@ -15,6 +20,13 @@ Melhorar a mobilidade de pessoas com deficiência visual no meio urbano.
 1. Fornecer alertas em tempo real sobre obstáculos nas vias.
 2. Oferecer informações sobre a condição das vias para traçar rotas ideais.
 3. Garantir acessibilidade completa por meio da compatibilidade com leitores de tela.
+
+## Como executar o Protótipo do Aplicativo
+
+1. Faça um clone do repositório e instale o python 3.11.4 se necessário(`https://www.python.org/downloads/`)
+2. Crie seu ambiente virtual (`python -m venv venv`)
+3. Instale os pacotes necessários (`pip install -r requirements.txt`)
+4. Execute o aplicativo (`python hot_reload.py`)
 
 ## Como Contribuir
 
