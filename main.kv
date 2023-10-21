@@ -1,0 +1,37 @@
+#:include kv/homepage.kv
+#:include kv/loginpage.kv
+#:include kv/cadastropage.kv
+#:include kv/loadingpage.kv
+#:include kv/mapage.kv
+#:include kv/perfil.kv
+#:include kv/startpage.kv
+#:include kv/tutorialpage.kv
+#:import utils kivy.utils
+
+FloatLayout:
+    ScreenManager:
+        id: screen_manager
+        LoadingPage:
+            id: loadingpage
+            name: 'loadingpage'
+        StartPage:
+            id: startpage
+            name: 'startpage'
+        LoginPage:
+            id: loginpage
+            name: 'loginpage'
+        CadastroPage:
+            id: cadastropage
+            name: 'cadastropage'
+        TutorialPage:
+            id: tutorialpage
+            name: 'tutorialpage'
+        HomePage:
+            id: homepage
+            name: 'homepage'
+        MapaPage:
+            id: mapapage
+            name: 'mapapage'
+        PerfilPage:
+            id: perfilpage
+            name: 'perfilpage'
