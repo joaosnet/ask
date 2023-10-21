@@ -19,7 +19,13 @@ class StartPage(Screen): # classe da tela StartPage
 class CadastroPage(Screen): # classe da tela CadastroPage
     pass
 
-class TutorialPage(Screen): # classe da tela TodasVendasPage
+class TutorialPage1(Screen): # classe da tela TodasVendasPage
+    pass
+
+class TutorialPage2(Screen): # classe da tela TodasVendasPage
+    pass
+
+class TutorialPage3(Screen): # classe da tela TodasVendasPage
     pass
 
 class LoginPage(Screen): # classe da tela LoginPage

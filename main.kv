@@ -5,12 +5,23 @@
 #:include kv/mapage.kv
 #:include kv/perfil.kv
 #:include kv/startpage.kv
-#:include kv/tutorialpage.kv
+#:include kv/tutorialpageu.kv
+#:include kv/tutorialpaged.kv
+#:include kv/tutorialpaget.kv
 #:import utils kivy.utils
 
 FloatLayout:
     ScreenManager:
         id: screen_manager
+        TutorialPage1:
+            id: tutorialpageu
+            name: 'tutorialpage1'
+        TutorialPage2:
+            id: tutorialpaged
+            name: 'tutorialpage2'
+        TutorialPage3:
+            id: tutorialpaget
+            name: 'tutorialpage3'
         LoadingPage:
             id: loadingpage
             name: 'loadingpage'
@@ -23,9 +34,6 @@ FloatLayout:
         CadastroPage:
             id: cadastropage
             name: 'cadastropage'
-        TutorialPage:
-            id: tutorialpage
-            name: 'tutorialpage'
         HomePage:
             id: homepage
             name: 'homepage'
