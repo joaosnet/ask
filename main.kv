@@ -5,22 +5,22 @@
 #:include kv/mapage.kv
 #:include kv/perfil.kv
 #:include kv/startpage.kv
-#:include kv/tutorialpageu.kv
-#:include kv/tutorialpaged.kv
-#:include kv/tutorialpaget.kv
+#:include kv/tutorialpage1.kv
+#:include kv/tutorialpage2.kv
+#:include kv/tutorialpage3.kv
 #:import utils kivy.utils
 
 FloatLayout:
     ScreenManager:
         id: screen_manager
         TutorialPage1:
-            id: tutorialpageu
+            id: tutorialpage1
             name: 'tutorialpage1'
         TutorialPage2:
-            id: tutorialpaged
+            id: tutorialpage2
             name: 'tutorialpage2'
         TutorialPage3:
-            id: tutorialpaget
+            id: tutorialpage3
             name: 'tutorialpage3'
         LoadingPage:
             id: loadingpage

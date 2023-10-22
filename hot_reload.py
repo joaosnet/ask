@@ -4,7 +4,7 @@ from kivy.core.window import Window
 from telas import *
 from botoes import *
 
-Window.size = (360, 640) # tamanho da janela do aplicativo
+Window.size = (360, 800) # tamanho da janela do aplicativo
 
 class HotReload(MDApp):
     KV_FILES = ['main.kv']

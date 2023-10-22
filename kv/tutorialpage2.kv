@@ -1,0 +1,62 @@
+<TutorialPage2>
+    FloatLayout:
+        canvas:
+            Color:
+                rgb: 1,1,1,1 # cor branca
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        BoxLayout:
+            pos_hint: {"right": 1, "top": 0.85}
+            size_hint: 1, 0.5
+            orientation:'vertical'
+            id: areatutorial
+            Label:
+                text:'Mapas atualizados'
+                font_size: 30
+                color: 0,0,0,1
+                bold: True
+            Image:
+                source: "icones/mapa_imagem.png"
+                size_hint: 1, 2
+                # colocando a imagem no centro
+                allow_stretch: True
+            Label:
+                text:'Nosso aplicativo trabalha com mapas atualizados e altera rotas em tempo real de acordo com os obstáculos encontrados.'
+                font_size: 16
+                color: 0,0,0,1
+                halign: 'center'
+                # quebra de linha
+                text_size: self.width-100, None
+        # Barra de Navegação Inferior
+        GridLayout:
+            row: 1
+            cols: 3
+            pos_hint: {"right": 1, "top": 0.12}
+            size_hint: 1, 0.12
+            canvas:
+                Color:
+                    rgb: 1,1,1,1 # cor branca
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            # botão de pular
+            MDLabel:
+                text: "Pular"
+                color: 0,0,0,1 # cor preta
+                # Colocando o texto em negrito
+                bold: True
+                font_style: "Caption"
+                halign: "center"
+                valign: "center"
+                font_size: 25
+
+            # dock da pagina
+            Image:
+                source: "icones/Meatballs_menu(1).png"
+                size_hint: 0.9, 0.9
+            # botão proximo
+            MDIconButton:
+                icon: 'icones/proximo_roxo.png'
+                icon_size: "80sp"
+                on_release: app.mudar_tela("tutorialpage3")
