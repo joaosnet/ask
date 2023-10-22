@@ -5,10 +5,10 @@ from kivy.core.window import Window
 Window.size = (360, 800) # tamanho da janela do aplicativo
 
 class HotReload(MDApp):
-    KV_FILES = ['kv/tutorialpage1.kv']
+    KV_FILES = ['kv/loginpage.kv']
     DEBUG = True
     def build_app(self):
-        return Builder.load_file('kv/tutorialpage1.kv')
+        return Builder.load_file('kv/loginpage.kv')
 
 HotReload().run()
     

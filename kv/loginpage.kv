@@ -2,7 +2,7 @@
     # é uma tela de login que contempla a autenticação de usuários e a criação de novos usuários.
     MDBoxLayout:
         orientation: 'vertical'
-        padding: 15,15,0,0
+        padding: 15,0,15,0
         spacing: 0
         # adaptive_width: True
 
@@ -14,7 +14,7 @@
             
         MDLabel:
             text: 'Login'
-            font_size: '32sp'
+            font_size: '24sp'
             # TEXTO DE COR PRETA
             color: 0, 0, 0, 1
             bold: True
@@ -22,7 +22,14 @@
             size_hint_y: None
         MDLabel:
             text: 'Com seu email e senha para entrar'
-            font_size: '18sp'
+            font_size: '16sp'
+            # TEXTO DE COR PRETA
+            color: 0, 0, 0, 1
+            halign: 'left'
+            size_hint_y: None
+        MDLabel:
+            text: 'Informe seu email'
+            font_size: '12sp'
             # TEXTO DE COR PRETA
             color: 0, 0, 0, 1
             halign: 'left'
@@ -36,7 +43,15 @@
             icon_right_color: app.theme_cls.primary_color
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             size_hint_x: None
+            size_hint_y: None
             width: 300
+        MDLabel:
+            text: 'Informe sua senha'
+            font_size: '12sp'
+            # TEXTO DE COR PRETA
+            color: 0, 0, 0, 1
+            halign: 'left'
+            size_hint_y: None
         MDTextField:
             id: senha
             hint_text: 'Senha'
@@ -50,33 +65,32 @@
             password: True
         MDBoxLayout:
             orientation: 'horizontal'
-            padding: 25,25,0,0
-            spacing: 25
-            MDRectangleFlatButton:
-                text: 'Cadastrar'
-                font_size: '18sp'
-                # TEXTO DE COR BRANCA
-                theme_text_color: 'Custom'
-                text_color: "#8C52FF"
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                # Cor da borda do botão
-                line_color: "#8C52FF"
-                # on_release: app.login()
-            MDRectangleFlatButton:
-                text: 'Acessar'
-                font_size: '18sp'
-                # TEXTO DE COR BRANCA
-                theme_text_color: 'Custom'
-                text_color: 1, 1, 1, 1
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                # cor do fundo do botao
-                md_bg_color: "#8C52FF"
-                # Cor da borda do botão
-                line_color: "#8C52FF"
-                # on_release: app.criar_conta()
+            padding: 25,0,50,0
+            # Caixa de seleção de lembrar senha
+            MDCheckbox:
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                selected_color: "#8C52FF"
+                # checkbox_icon_down: 'icones/select_box.png'
+
+            # Lembrar minha senha
+            MDLabel:
+                text: 'Lembrar minha senha'
+                font_size: '12sp'
+                halign: 'left'
+                # size_hint_y: None
+                size_hint_x: None
+
+            # botão de Esqueci minha senha
+            MDFlatButton:
+                text: "Esqueci minha senha"
+                font_size: 12
+                color:  "#8C52FF"
+                pos_hint: {"center_x": .5, "center_y": .5}
+                # on_release: app.mudar_tela("startpage")
+        
         MDBoxLayout:
             orientation: 'horizontal'
-            padding: 25,25,0,0
+            padding: 50,0,50,0
             spacing: 25
             MDRectangleFlatButton:
                 text: 'Cadastrar'
@@ -88,6 +102,8 @@
                 # Cor da borda do botão
                 line_color: "#8C52FF"
                 # tamanho do botao
+                size_hint: 154, None
+
                 
                 # on_release: app.login()
             MDRectangleFlatButton:
@@ -101,6 +117,45 @@
                 md_bg_color: "#8C52FF"
                 # Cor da borda do botão
                 line_color: "#8C52FF"
-                # on_release: app.criar_conta()
+                on_release: app.mudar_tela('homepage')
+        MDBoxLayout:
+            orientation: 'horizontal'
+            padding: 10,0,10,0
+            spacing: 0
+            Image:
+                source: 'icones/Line 3.png'
+                size_hint_x: None
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            MDLabel:
+                text: 'Ou logar com'
+                font_size: '16sp'
+                # TEXTO DE COR PRETA
+                color: 0, 0, 0, 1
+                halign: 'center'
+                size_hint_y: 1
+            Image:
+                source: 'icones/Line 2.png'
+                size_hint_x: None
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        MDBoxLayout:
+            orientation: 'horizontal'
+            padding: 100,0,100,0
+            spacing: 0
+            MDIconButton:
+                icon: 'icones/bt_google.png'
+                icon_size: "45sp"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            MDIconButton:
+                icon: 'icones/bt_facebook.png'
+                icon_size: "45sp"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+        MDBoxLayout:
+            orientation: 'horizontal'
+            padding: 100,0,100,0
+            spacing: 0
+            MDIconButton:
+                icon: 'blanck.png'
+                icon_size: "45sp"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
         
         
