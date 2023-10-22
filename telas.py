@@ -1,4 +1,5 @@
-from kivy.uix.screenmanager import Screen
+from kivymd.uix.screen import MDScreen as Screen
+from kivymd.uix.screenmanager import MDScreenManager
 
 
 class HomePage(Screen): # classe da tela HomePafw

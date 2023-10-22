@@ -1,0 +1,106 @@
+<CadastroPage>:
+    # é uma tela de login que contempla a autenticação de usuários e a criação de novos usuários.
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 15,15,0,0
+        spacing: 0
+        # adaptive_width: True
+
+        MDIconButton:
+            pos_hint: {'center_x': 0.05,'center_y': 1}
+            icon: 'icones/Expand_left@3x.png'
+            icon_size: "45sp"
+            on_release: app.mudar_tela('startpage')
+
+        MDLabel:
+            text: 'Cadastre-se'
+            font_size: '32sp'
+            # TEXTO DE COR PRETA
+            color: 0, 0, 0, 1
+            bold: True
+            halign: 'left'
+            size_hint_y: None
+        MDLabel:
+            text: 'Com seu email e senha para entrar'
+            font_size: '18sp'
+            # TEXTO DE COR PRETA
+            color: 0, 0, 0, 1
+            halign: 'left'
+            size_hint_y: None
+        MDTextField:
+            id: email
+            hint_text: 'Email'
+            helper_text: 'O email deve ser válido'
+            helper_text_mode: 'on_focus'
+            icon_right: 'email'
+            icon_right_color: app.theme_cls.primary_color
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x: None
+            width: 300
+        MDTextField:
+            id: senha
+            hint_text: 'Senha'
+            helper_text: 'A senha deve conter no mínimo 6 caracteres'
+            helper_text_mode: 'on_focus'
+            icon_right: 'eye-off'
+            icon_right_color: app.theme_cls.primary_color
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x: None
+            width: 300
+            password: True
+        MDBoxLayout:
+            orientation: 'horizontal'
+            padding: 25,25,0,0
+            spacing: 25
+            MDRectangleFlatButton:
+                text: 'Cadastrar'
+                font_size: '18sp'
+                # TEXTO DE COR BRANCA
+                theme_text_color: 'Custom'
+                text_color: "#8C52FF"
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                # Cor da borda do botão
+                line_color: "#8C52FF"
+                # on_release: app.login()
+            MDRectangleFlatButton:
+                text: 'Acessar'
+                font_size: '18sp'
+                # TEXTO DE COR BRANCA
+                theme_text_color: 'Custom'
+                text_color: 1, 1, 1, 1
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                # cor do fundo do botao
+                md_bg_color: "#8C52FF"
+                # Cor da borda do botão
+                line_color: "#8C52FF"
+                # on_release: app.criar_conta()
+        MDBoxLayout:
+            orientation: 'horizontal'
+            padding: 25,25,0,0
+            spacing: 25
+            MDRectangleFlatButton:
+                text: 'Cadastrar'
+                font_size: '18sp'
+                # TEXTO DE COR BRANCA
+                theme_text_color: 'Custom'
+                text_color: "#8C52FF"
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                # Cor da borda do botão
+                line_color: "#8C52FF"
+                # tamanho do botao
+                
+                # on_release: app.login()
+            MDRectangleFlatButton:
+                text: 'Acessar'
+                font_size: '18sp'
+                # TEXTO DE COR BRANCA
+                theme_text_color: 'Custom'
+                text_color: 1, 1, 1, 1
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                # cor do fundo do botao
+                md_bg_color: "#8C52FF"
+                # Cor da borda do botão
+                line_color: "#8C52FF"
+                # on_release: app.criar_conta()
+        
+        

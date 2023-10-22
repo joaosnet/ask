@@ -10,36 +10,36 @@
 #:include kv/tutorialpage3.kv
 #:import utils kivy.utils
 
-FloatLayout:
-    ScreenManager:
-        id: screen_manager
-        TutorialPage1:
-            id: tutorialpage1
-            name: 'tutorialpage1'
-        TutorialPage2:
-            id: tutorialpage2
-            name: 'tutorialpage2'
-        TutorialPage3:
-            id: tutorialpage3
-            name: 'tutorialpage3'
-        LoadingPage:
-            id: loadingpage
-            name: 'loadingpage'
-        StartPage:
-            id: startpage
-            name: 'startpage'
-        LoginPage:
-            id: loginpage
-            name: 'loginpage'
-        CadastroPage:
-            id: cadastropage
-            name: 'cadastropage'
-        HomePage:
-            id: homepage
-            name: 'homepage'
-        MapaPage:
-            id: mapapage
-            name: 'mapapage'
-        PerfilPage:
-            id: perfilpage
-            name: 'perfilpage'
+MDScreenManager:
+    id: screen_manager
+    name: 'screen_manager'
+    TutorialPage1:
+        id: tutorialpage1
+        name: 'tutorialpage1'
+    TutorialPage2:
+        id: tutorialpage2
+        name: 'tutorialpage2'
+    TutorialPage3:
+        id: tutorialpage3
+        name: 'tutorialpage3'
+    LoadingPage:
+        id: loadingpage
+        name: 'loadingpage'
+    StartPage:
+        id: startpage
+        name: 'startpage'
+    LoginPage:
+        id: loginpage
+        name: 'loginpage'
+    CadastroPage:
+        id: cadastropage
+        name: 'cadastropage'
+    HomePage:
+        id: homepage
+        name: 'homepage'
+    MapaPage:
+        id: mapapage
+        name: 'mapapage'
+    PerfilPage:
+        id: perfilpage
+        name: 'perfilpage'

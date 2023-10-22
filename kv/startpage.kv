@@ -1,0 +1,53 @@
+<StartPage>:
+    # é um Floatlayout que contem um retangulo de cor #EEE6FF como background de bordas arredondadas e que não preenche todo o espaço do layout
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 0.933, 0.902, 1, 1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [20,20]
+        BoxLayout:
+            pos_hint: {"center_x": .5, "center_y": .5}
+            size_hint: .8, .8
+            orientation: "vertical"
+            spacing: 10
+            padding: 0, 10, 0, 0
+            Image:
+                source: "icones/Omelhorappderotas.png"
+                size_hint: 1, 1
+            Image:
+                source: "icones/LOGO APP.png"
+                size_hint: 1, 1
+            Image:
+                source: "icones/inclusiveWAY (1).png"
+                size_hint: 1, 1
+            MDRaisedButton:
+                text: "Começar"
+                text_color: 1,1,1,1 # cor preta"
+                # colocando em negrito
+                font_style: "H6"
+                md_bg_color: "#8C52FF"
+                pos_hint: {"center_x": .5, "center_y": .5}
+                size_hint: 1.15, 0.40
+                on_release: app.mudar_tela("cadastropage")
+
+            # MDLabel:
+            #     text: "já tem uma conta? [color=#8C52FF]Faça login[/color]"
+            #     color: 0,0,0,1 # cor preta
+            #     halign: "center"
+            #     valign: "center"
+            #     font_size: 12
+            #     markup: True
+            MDRectangleFlatButton:
+                text: "já tem uma conta? [color=#8C52FF]Faça login[/color]"
+                theme_text_color: "Custom"
+                text_color: 0,0,0,1
+                line_color: 0.933, 0.902, 1, 1
+                halign: "center"
+                valign: "center"
+                font_size: 12
+                markup: True
+                pos_hint: {"center_x": .5, "center_y": 0.5}
+                on_release: app.mudar_tela("loginpage")

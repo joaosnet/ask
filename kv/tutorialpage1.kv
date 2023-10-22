@@ -29,11 +29,12 @@
                 # quebra de linha
                 text_size: self.width-100, None
         # Barra de Navegação Inferior
-        GridLayout:
-            row: 1
-            cols: 3
+        MDBoxLayout:
+            orientation: "horizontal"
             pos_hint: {"right": 1, "top": 0.12}
             size_hint: 1, 0.12
+            spacing: "10dp"
+            padding: 10, 10, 0, 0
             canvas:
                 Color:
                     rgb: 1,1,1,1 # cor branca
@@ -41,15 +42,14 @@
                     pos: self.pos
                     size: self.size
             # botão de pular
-            MDLabel:
+            MDFlatButton:
                 text: "Pular"
+                font_size: 30
                 color: 0,0,0,1 # cor preta
                 # Colocando o texto em negrito
+                pos_hint: {"center_x": .5, "center_y": .5}
                 bold: True
-                font_style: "Caption"
-                halign: "center"
-                valign: "center"
-                font_size: 25
+                on_release: app.mudar_tela("startpage")
 
             # dock da pagina
             Image:
@@ -59,4 +59,4 @@
             MDIconButton:
                 icon: 'icones/proximo_roxo.png'
                 icon_size: "80sp"
-                on_release: app.mudar_tela("tutorialpage2")
+                on_release: app.mudar_tela('tutorialpage2')
