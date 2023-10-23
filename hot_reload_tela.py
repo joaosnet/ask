@@ -3,15 +3,16 @@ from kivy.lang import Builder
 from kivy.core.window import Window
 from botoes import *
 from telas import *
+from kivy_garden.mapview import MapView
 
 Window.size = (360, 800) # tamanho da janela do aplicativo
 
 
 class HotReload(MDApp):
-    KV_FILES = ['kv/cadastropage.kv']
+    KV_FILES = ['kv/homepage.kv']
     DEBUG = True
     def build_app(self):
-        return Builder.load_file('kv/cadastropage.kv')
+        return Builder.load_file('kv/homepage.kv')
 
 HotReload().run()
     

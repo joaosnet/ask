@@ -26,7 +26,7 @@ Melhorar a mobilidade de pessoas com deficiência visual no meio urbano.
 1. Faça um clone do repositório e instale o python 3.11.4 se necessário(`https://www.python.org/downloads/`)
 2. Crie seu ambiente virtual (`python -m venv venv`)
 3. Instale os pacotes necessários (`pip install -r requirements.txt`)
-4. Execute o aplicativo (`python hot_reload.py`)
+4. Execute o aplicativo (`python main.py`)
 
 ## Como Contribuir
 

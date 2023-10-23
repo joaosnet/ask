@@ -14,7 +14,7 @@ class MainApp(MDApp):
         # Gerenciador de Telas
         self.sm = MDScreenManager()
 
-    def build_app(self):
+    def build(self):
         self.sm.add_widget(TutorialPage1(name='tutorialpage1'))
         self.sm.add_widget(TutorialPage2(name='tutorialpage2'))
         self.sm.add_widget(TutorialPage3(name='tutorialpage3'))
