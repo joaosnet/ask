@@ -1,9 +1,10 @@
 <CadastroPage>:
+    name: 'Cadastropage'
     # é uma tela de login que contempla a autenticação de usuários e a criação de novos usuários.
     MDBoxLayout:
         orientation: 'vertical'
-        padding: 15,15,0,0
-        spacing: 0
+        padding: 15,20,15,25
+        spacing: 25
         # adaptive_width: True
 
         MDIconButton:
@@ -11,96 +12,198 @@
             icon: 'icones/Expand_left@3x.png'
             icon_size: "45sp"
             on_release: app.mudar_tela('startpage')
-
+            
         MDLabel:
             text: 'Cadastre-se'
-            font_size: '32sp'
+            font_size: '24sp'
             # TEXTO DE COR PRETA
             color: 0, 0, 0, 1
             bold: True
             halign: 'left'
-            size_hint_y: None
         MDLabel:
-            text: 'Com seu email e senha para entrar'
-            font_size: '18sp'
+            text: 'Crie uma nova conta usando seu email'
+            font_size: '16sp'
             # TEXTO DE COR PRETA
             color: 0, 0, 0, 1
             halign: 'left'
-            size_hint_y: None
+        MDLabel:
+            text: 'Informe seu nome'
+            font_size: '12sp'
+            # TEXTO DE COR PRETA
+            color: 0, 0, 0, 1
+            halign: 'left'
+        MDTextField:
+            id: nome
+            mode: "fill"
+            hint_text: 'Nome'
+            helper_text: 'Informe seu nome completo'
+            helper_text_mode: 'on_focus'
+            fill_color_normal: "#EDF1FF"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x: None
+            width: 320
+            radius: [5, 5, 5, 5]
+        MDLabel:
+            text: 'Informe seu email'
+            font_size: '12sp'
+            # TEXTO DE COR PRETA
+            color: 0, 0, 0, 1
+            halign: 'left'
         MDTextField:
             id: email
+            mode: "fill"
             hint_text: 'Email'
             helper_text: 'O email deve ser válido'
             helper_text_mode: 'on_focus'
             icon_right: 'email'
+            # cores
             icon_right_color: app.theme_cls.primary_color
+            fill_color_normal: "#EDF1FF"
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             size_hint_x: None
-            width: 300
-        MDTextField:
-            id: senha
-            hint_text: 'Senha'
-            helper_text: 'A senha deve conter no mínimo 6 caracteres'
-            helper_text_mode: 'on_focus'
-            icon_right: 'eye-off'
-            icon_right_color: app.theme_cls.primary_color
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            width: 320
+            radius: [5, 5, 5, 5]
+        MDLabel:
+            text: 'Informe sua senha'
+            font_size: '12sp'
+            # TEXTO DE COR PRETA
+            color: 0, 0, 0, 1
+            halign: 'left'
+        
+        ClickableTextFieldRound:
             size_hint_x: None
-            width: 300
-            password: True
+            width: "300dp"
+            hint_text: "Senha"
+            pos_hint: {"center_x": .5, "center_y": .5}
+        
+        MDLabel:
+            text: 'Confirme sua senha'
+            font_size: '12sp'
+            # TEXTO DE COR PRETA
+            color: 0, 0, 0, 1
+            halign: 'left'
+        
+        ClickableTextFieldRound:
+            size_hint_x: None
+            width: "300dp"
+            hint_text: "Senha"
+            pos_hint: {"center_x": .5, "center_y": .5}
+        
+        MDRectangleFlatButton:
+            text: 'Cadastrar'
+            font_size: '18sp'
+            # TEXTO DE COR BRANCA
+            theme_text_color: 'Custom'
+            text_color: 1, 1, 1, 1
+            # cor do fundo do botao
+            md_bg_color: "#8C52FF"
+            # Cor da borda do botão
+            line_color: "#8C52FF"
+            # tamanho do botao
+            size_hint: 1, "1.2dp"
+            on_release: app.mudar_tela('homepage')
+
         MDBoxLayout:
             orientation: 'horizontal'
-            padding: 25,25,0,0
-            spacing: 25
-            MDRectangleFlatButton:
-                text: 'Cadastrar'
-                font_size: '18sp'
-                # TEXTO DE COR BRANCA
-                theme_text_color: 'Custom'
-                text_color: "#8C52FF"
+            padding: 10,0,10,0
+            spacing: 0
+            Image:
+                source: 'icones/Line 3.png'
+                size_hint_x: None
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                # Cor da borda do botão
-                line_color: "#8C52FF"
-                # on_release: app.login()
-            MDRectangleFlatButton:
-                text: 'Acessar'
-                font_size: '18sp'
-                # TEXTO DE COR BRANCA
-                theme_text_color: 'Custom'
-                text_color: 1, 1, 1, 1
+            MDLabel:
+                text: 'Ou cadastre-se com'
+                font_size: '12sp'
+                # TEXTO DE COR PRETA
+                color: 0, 0, 0, 1
+                halign: 'center'
+                size_hint_y: 1
+            Image:
+                source: 'icones/Line 2.png'
+                size_hint_x: None
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                # cor do fundo do botao
-                md_bg_color: "#8C52FF"
-                # Cor da borda do botão
-                line_color: "#8C52FF"
-                # on_release: app.criar_conta()
         MDBoxLayout:
             orientation: 'horizontal'
-            padding: 25,25,0,0
-            spacing: 25
-            MDRectangleFlatButton:
-                text: 'Cadastrar'
-                font_size: '18sp'
-                # TEXTO DE COR BRANCA
-                theme_text_color: 'Custom'
-                text_color: "#8C52FF"
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                # Cor da borda do botão
-                line_color: "#8C52FF"
-                # tamanho do botao
-                
-                # on_release: app.login()
-            MDRectangleFlatButton:
-                text: 'Acessar'
-                font_size: '18sp'
-                # TEXTO DE COR BRANCA
-                theme_text_color: 'Custom'
-                text_color: 1, 1, 1, 1
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                # cor do fundo do botao
-                md_bg_color: "#8C52FF"
-                # Cor da borda do botão
-                line_color: "#8C52FF"
-                # on_release: app.criar_conta()
+            padding: 100,0,100,0
+            spacing: 0
+            MDIconButton:
+                icon: 'icones/bt_google.png'
+                icon_size: "45sp"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            MDIconButton:
+                icon: 'icones/bt_facebook.png'
+                icon_size: "45sp"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            spacing: 15
+            MDBoxLayout:
+                orientation: 'horizontal'
+                # centralizando
+                padding: 10,0,10,0
+                spacing: 0
+                MDLabel:
+                    text:"Ao me registrar, concordo com os"
+                    font_size: 12
+                    valign: 'center'
+                    halign: 'right'
+                MDFlatButton:
+                    text: "[color=#8C52FF]termos e condições[/color]"
+                    font_size: 12
+                    markup: True
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    # on_release: app.mudar_tela("startpage")
+            MDLabel:
+                text:"do InclusiveWAY."
+                font_size: 12
+                valign: 'center'
+                halign: 'center'
+        # criando uma linha de cor cinza
+        MDBoxLayout:
+            orientation: 'horizontal'
+            # centralizando
+            padding: 50,0,50,0
+            MDLabel:
+                text:"já tem uma conta?"
+                font_size: 12
+                valign: 'center'
+                halign: 'right'
+            MDFlatButton:
+                text: "[color=#8C52FF]Faça Login[/color]"
+                font_size: 12
+                markup: True
+                pos_hint: {"center_x": .5, "center_y": .5}
+                # on_release: app.mudar_tela("startpage")
+
+# Função para mostrar a senha ou ocultar a senha
+<ClickableTextFieldRound>:
+    size_hint_y: None
+    height: text_field.height
+
+    MDTextField:
+        id: text_field
+        text: root.text
+        mode: "fill"
+        hint_text: root.hint_text
+        # cores
+        fill_color_normal: "#EDF1FF"
+        helper_text: 'A senha deve conter no mínimo 6 caracteres'
+        helper_text_mode: 'on_focus'
+        # usando o icone direito para mostrar a senha o ocultar a senha
+        radius: [5, 5, 5, 5]
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        size_hint_x: None
+        width: 320
+        password: True
+
+    MDIconButton:
+        icon: "eye-off"
+        pos_hint: {"center_y": .5}
+        pos: text_field.width - self.width - dp(5), 0
+        theme_text_color: "Hint"
+        on_release:
+            self.icon = "eye" if self.icon == "eye-off" else "eye-off"
+            text_field.password = False if text_field.password is True else True
         
-        
+CadastroPage:
