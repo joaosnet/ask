@@ -10,7 +10,7 @@ O projeto ASK visa melhorar a mobilidade de pessoas com deficiência visual no m
 _Telas_
 
 ## Arquitetura do Aplicativo
-![Arquitetura](/icones/arquitetura.png)
+![Arquitetura](/images/arquitetura.png)
 
 _Arquitetura_
 
