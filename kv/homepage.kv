@@ -6,7 +6,7 @@
         # Barra de Navegação
         MDBottomNavigation:
             # painel da cor do fundo branco
-            panel_color: get_color_from_hex("#FFFFFF")
+            md_bg_color: "#EDF1FF"
             # font_name: 'icones/Roboto-Regular.ttf'
 
             MDBottomNavigationItem:
@@ -57,66 +57,148 @@
                 #     on_release: app.mudar_tela('loginpage')
                 MDBackdrop:
                     id: backdrop
+                    back_layer_color: "#EDF1FF"
                     left_action_items: [['icones/Expand_left@3x.png', lambda x: app.mudar_tela('loginpage')]]
-                    title: "N"
-                    header_text: ""
-                    radius_left: "0dp"
-                    radius_right: "0dp"
-                    header_md_bg_color: "#EDF1FF"
+                    close_icon: 'icones/Expand_left@3x.png'
+                    header: False
 
-                    MDBackdropBackLayer:
-                        md_bg_color: "#EDF1FF"
+                    MDBackdropBackLayer:                      
                         orientation: "vertical"
+                        # alterando o tamanho do Back layer
+                        padding: ('100dp', '20dp', '100dp', '550dp')
                         # Campos de pesquisa de origem e destino
-                        MDBoxLayout:
-                            orientation:'vertical'
-                            pos_hint: {'right': 1,'top': 1}
-                            MDTextField:
-                                hint_text: "Partida"
-                                helper_text: "Informe seu local de Partida"
-                                helper_text_mode: "on_focus"
-                                icon_right: "map-marker"
-                                icon_right_color: app.theme_cls.primary_color
-                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                                size_hint_x: None
-                                width: 300
-                            MDTextField:
-                                hint_text: "Destino"
-                                helper_text: "Informe seu destino"
-                                helper_text_mode: "on_focus"
-                                icon_right: "map-marker"
-                                icon_right_color: app.theme_cls.primary_color
-                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                                size_hint_x: None
-                                width: 300
+                        MDTextField:
+                            hint_text: "Partida"
+                            helper_text: "Informe seu local de Partida"
+                            helper_text_mode: "on_focus"
+                            icon_right: "map-marker"
+                            icon_right_color: app.theme_cls.primary_color
+                            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            size_hint_x: None
+                            width: 300
+                        MDTextField:
+                            hint_text: "Destino"
+                            helper_text: "Informe seu destino"
+                            helper_text_mode: "on_focus"
+                            icon_right: "map-marker"
+                            icon_right_color: app.theme_cls.primary_color
+                            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                            size_hint_x: None
+                            width: 300
 
                     MDBackdropFrontLayer:
-                        # Visualização do Mapa
-                        MapView:
-                            # localização do mapa em tempo real
-                            lat: -1.474081251977831
-                            lon: -48.45160647253775
-                            zoom: 1000
-                            # Verifica a localização atual quando o mapa é carregado
-                            on_lat:
-                                print(self.lat)
-                            on_lon:
-                                print(self.lon)
-                            MapMarkerPopup:
-                                source: 'icones/Marker.png'
+                        orientation: 'vertical'
+                        MDFloatLayout:
+                            md_bg_color: "#EDF1FF"
+                            # Visualização do Mapa
+                            MapView:
+                                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                                # localização do mapa em tempo real
                                 lat: -1.474081251977831
                                 lon: -48.45160647253775
-                                Button:
-                                    on_release: print("Hello World") 
+                                zoom: 1000
+                                # Verifica a localização atual quando o mapa é carregado
+                                on_lat:
+                                    print(self.lat)
+                                on_lon:
+                                    print(self.lon)
+                                MapMarkerPopup:
+                                    source: 'icones/Marker.png'
+                                    lat: -1.474081251977831
+                                    lon: -48.45160647253775
+                                    Button:
+                                        on_release: print("Hello World") 
+                            # Botão de abrir o menu
+                            MDRaisedButton:
+                                text: ""
+                                pos_hint: {'center_x': 0.5,'center_y': 1.02}
+                                # ajustar o tamanho do botao
+                                on_release: backdrop.open()
+                                radius: [4, 4, 4, 4]
+                                size: 36, 10
+                                md_bg_color: "#C7D2FB"        
 
             MDBottomNavigationItem:
                 name: 'screen 3'
                 text: 'Perfil'
                 icon: 'icones/user_cicrle_light.png'
 
-                MDLabel:
-                    text: 'Página de Perfil'
-                    halign: 'center'
+                # Página Perfil
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    padding: 0, 10, 10, 200
+                    spacing: 0
+                    # Botão de Voltar (icones/Expand_left@3x.png)
+                    MDIconButton:
+                        pos_hint: {'center_x': 0.1,'center_y': 0.93}
+                        icon: 'icones/Expand_left@3x.png'
+                        icon_size: "45sp"
+                        on_release: app.mudar_tela('loginpage')
+                    # Foto de Perfil
+                    Image:
+                        id: foto_perfil
+                        source: 'icones/user/User_cicrle_duotone@3x.png'
+                        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                        size_hint: 1.5, 1.5
+                    # Botão de Texto "Mudar foto de perfil"
+                    MDFlatButton:
+                        text: "[color=#8C52FF]Mudar foto de perfil[/color]"
+                        font_size: 12
+                        markup: True
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                    # Campo de texto com Nome
+                    MDLabel:
+                        text: "Nome"
+                        # centralizar o texto
+                        halign: "center"
+                        font_size: 28
+                        bold: True
+                        color: 0, 0, 0, 1
+                    # Campo de texto com Email
+                    MDLabel:
+                        text: "Email@gmail.com (exemplo)"
+                        font_size: 12
+                        # centralizar o texto
+                        halign: "center"
+                        color: 0, 0, 0, 1
+                    # Botão de Texto "Editar suas informações" em roxo
+                    MDFlatButton:
+                        text: "[color=#8C52FF]Editar suas informações[/color]"
+                        font_size: 12
+                        markup: True
+                        pos_hint: {"center_x": .5, "center_y": .5}
+
+                    # Inpunt de texto com endereço
+                    MDTextField:
+                        hint_text: "Endereço (casa)"
+                        helper_text: "Informe seu endereço do trabalho"
+                        helper_text_mode: "on_focus"
+                        icon_left: "map-marker"
+                        icon_left_color: app.theme_cls.primary_color
+                        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                        size_hint_x: None
+                        width: 300
+                    # Inpunt de texto com Endereço (trabalho)
+                    MDTextField:
+                        hint_text: "Endereço (trabalho)"
+                        helper_text: "Informe seu endereço de trabalho"
+                        helper_text_mode: "on_focus"
+                        icon_left: "map-marker"
+                        icon_left_color: app.theme_cls.primary_color
+                        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                        size_hint_x: None
+                        width: 300
+                    # Inpunt de texto com Infotmações pessoais
+                    MDTextField:
+                        hint_text: "Informações pessoais"
+                        helper_text: "Informe suas informações pessoais"
+                        helper_text_mode: "on_focus"
+                        icon_left: "information"
+                        icon_left_color: app.theme_cls.primary_color
+                        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                        size_hint_x: None
+                        width: 300      
+                        
 
     MDNavigationDrawer:
         id: nav_drawer
