@@ -29,9 +29,9 @@ Melhorar a mobilidade de pessoas com deficiência visual no meio urbano.
 ## Como executar o Protótipo do Aplicativo
 
 1. Faça um clone do repositório e instale o python 3.11.4 se necessário(`https://www.python.org/downloads/`)
-2. Crie seu ambiente virtual (`py -m venv venv`)
-3. Instale os pacotes necessários (`pip install -r requirements.txt`)
-4. Execute o aplicativo (`python main.py`)
+2. Crie seu ambiente virtual (`py -m venv venv`) e ative o ambiente virtual criado
+3. Instale os pacotes necessários (`py -m pip install -r requirements.txt`)
+4. Execute o aplicativo (`py main.py`)
 
 ## Como Contribuir
 
