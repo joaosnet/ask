@@ -1,18 +1,21 @@
+# Definição da tela de cadastro de usuários
 <CadastroPage>:
-    name: 'Cadastropage'
     # é uma tela de login que contempla a autenticação de usuários e a criação de novos usuários.
+
+    # Layout principal da tela
     MDBoxLayout:
         orientation: 'vertical'
         padding: 15,20,15,25
         spacing: 25
-        # adaptive_width: True
 
+        # Botão para voltar para a tela inicial
         MDIconButton:
             pos_hint: {'center_x': 0.05,'center_y': 1}
             icon: 'icones/Expand_left@3x.png'
             icon_size: "45sp"
             on_release: app.mudar_tela('startpage')
             
+        # Título da tela
         MDLabel:
             text: 'Cadastre-se'
             font_size: '24sp'
@@ -20,12 +23,16 @@
             color: 0, 0, 0, 1
             bold: True
             halign: 'left'
+
+        # Descrição da tela
         MDLabel:
             text: 'Crie uma nova conta usando seu email'
             font_size: '16sp'
             # TEXTO DE COR PRETA
             color: 0, 0, 0, 1
             halign: 'left'
+
+        # Campo para informar o nome do usuário
         MDLabel:
             text: 'Informe seu nome'
             font_size: '12sp'
@@ -43,6 +50,8 @@
             size_hint_x: None
             width: 320
             radius: [5, 5, 5, 5]
+
+        # Campo para informar o email do usuário
         MDLabel:
             text: 'Informe seu email'
             font_size: '12sp'
@@ -63,32 +72,38 @@
             size_hint_x: None
             width: 320
             radius: [5, 5, 5, 5]
+
+        # Campo para informar a senha do usuário
         MDLabel:
             text: 'Informe sua senha'
             font_size: '12sp'
             # TEXTO DE COR PRETA
             color: 0, 0, 0, 1
             halign: 'left'
-        
         ClickableTextFieldRound:
+            id: senha_sem_confirmacao
             size_hint_x: None
             width: "300dp"
             hint_text: "Senha"
             pos_hint: {"center_x": .5, "center_y": .5}
-        
+            helper_text_mode: "on_error"
+
+        # Campo para confirmar a senha do usuário
         MDLabel:
             text: 'Confirme sua senha'
             font_size: '12sp'
             # TEXTO DE COR PRETA
             color: 0, 0, 0, 1
             halign: 'left'
-        
         ClickableTextFieldRound:
+            id: senha_de_confirmacao
             size_hint_x: None
             width: "300dp"
             hint_text: "Senha"
             pos_hint: {"center_x": .5, "center_y": .5}
-        
+            helper_text_mode: "on_error"
+
+        # Botão para cadastrar o usuário
         MDRectangleFlatButton:
             text: 'Cadastrar'
             font_size: '18sp'
@@ -101,8 +116,10 @@
             line_color: "#8C52FF"
             # tamanho do botao
             size_hint: 1, "1.2dp"
-            on_release: app.mudar_tela('homepage')
+            # quando clicado confirma a senha e faz o cadastro, quando não, mostra uma mensagem de erro nos campos senha e confirmação de senha
+            on_release: app.firebase.confirmar_senha(nome.text, email.text, senha_sem_confirmacao.ids.text_field.text, senha_de_confirmacao.ids.text_field.text)
 
+        # Divisão horizontal
         MDBoxLayout:
             orientation: 'horizontal'
             padding: 10,0,10,0
@@ -122,6 +139,8 @@
                 source: 'icones/Line 2.png'
                 size_hint_x: None
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        # Botões para cadastro com Google e Facebook
         MDBoxLayout:
             orientation: 'horizontal'
             padding: 100,0,100,0
@@ -135,9 +154,20 @@
                 icon_size: "45sp"
                 pos_hint: {'center_x': 0.5,'center_y': 0.5}
 
+        # Para mostrar a mesagem de erro generica
+        MDLabel:
+            id: mensagem_erro
+            text: ''
+            font_size: '12sp'
+            # TEXTO DE COR PRETA
+            color: 0, 0, 0, 1
+            halign: 'center'
+        # Divisão vertical
         MDBoxLayout:
             orientation: 'vertical'
             spacing: 15
+
+            # Termos e condições
             MDBoxLayout:
                 orientation: 'horizontal'
                 # centralizando
@@ -153,13 +183,15 @@
                     font_size: 12
                     markup: True
                     pos_hint: {"center_x": .5, "center_y": .5}
-                    # on_release: app.mudar_tela("startpage")
+
+            # Texto final
             MDLabel:
                 text:"do InclusiveWAY."
                 font_size: 12
                 valign: 'center'
                 halign: 'center'
-        # criando uma linha de cor cinza
+
+        # Divisão horizontal
         MDBoxLayout:
             orientation: 'horizontal'
             # centralizando
@@ -174,7 +206,6 @@
                 font_size: 12
                 markup: True
                 pos_hint: {"center_x": .5, "center_y": .5}
-                # on_release: app.mudar_tela("startpage")
 
 # Função para mostrar a senha ou ocultar a senha
 <ClickableTextFieldRound>:

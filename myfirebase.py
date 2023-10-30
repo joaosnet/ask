@@ -1,8 +1,6 @@
 import requests
-from kivy.app import App
-
-import requests
-from kivy.app import App
+from kivymd.app import MDApp
+from datetime import date
 
 class MyFirebase():
     """
@@ -11,7 +9,19 @@ class MyFirebase():
 
     API_KEY = "AIzaSyCL5SzpjM8b1VlO6XSwniNFplITXo99Xmo"
 
-    def criar_conta(self, email, senha):
+    # quando clicado confirma a senha e faz o cadastro, quando não, mostra uma mensagem de erro nos campos senha e confirmação de senha
+    def confirmar_senha(self, nome, email, senha, confirmacao_senha):
+        if senha == confirmacao_senha:
+            self.criar_conta(nome, email, senha)
+        else:
+            meu_aplicativo = MDApp.get_running_app()
+            pagina_cadastro = meu_aplicativo.root.get_screen("cadastropage")
+            pagina_cadastro.ids["senha_sem_confirmacao"].ids["text_field"].helper_text = "As senhas não coincidem"
+            pagina_cadastro.ids["senha_sem_confirmacao"].ids["text_field"].error = True
+            pagina_cadastro.ids["senha_de_confirmacao"].ids["text_field"].helper_text = "As senhas não coincidem"
+            pagina_cadastro.ids["senha_de_confirmacao"].ids["text_field"].error = True
+
+    def criar_conta(self, nome, email, senha):
         """
         Cria uma nova conta de usuário no Firebase Authentication.
 
@@ -39,7 +49,7 @@ class MyFirebase():
             local_id = requisicao_dic["localId"]
             id_token = requisicao_dic["idToken"]
 
-            meu_aplicativo = App.get_running_app()
+            meu_aplicativo = MDApp.get_running_app()
             meu_aplicativo.local_id = local_id # -> coloca o id do usuario no app
             meu_aplicativo.id_token = id_token # -> coloca o token do usuario no app
             
@@ -47,29 +57,31 @@ class MyFirebase():
             with open("refresh_token.txt", "w") as f:
                 f.write(refresh_token)
             # pegando o valor do id do vendedor para criar a conta com o id
-            req_id = requests.get(f"https://aplicativovendashashdojoao-default-rtdb.firebaseio.com/proximo_id_vendedor.json?auth={id_token}")
-            id_vendedor = req_id.json()
+            req_id = requests.get(f"https://inclusiveway-ask-default-rtdb.firebaseio.com/proximo_id.json?auth={id_token}")
+            id = req_id.json()
 
-            link = f"https://aplicativovendashashdojoao-default-rtdb.firebaseio.com/{local_id}.json?auth={id_token}"
+            link = f"https://inclusiveway-ask-default-rtdb.firebaseio.com/{local_id}.json?auth={id_token}"
 
-            info_usuario = f'{{"avatar": "foto1.png", "equipe": "", "total_vendas": "0", "vendas": "", "id_vendedor": "{id_vendedor}"}}'
+            data = date.today().strftime('%d/%m/%Y')
+
+            info_usuario = f'{{"foto_de_perfil": "foto1.png", "nome": "{nome}", "data_criacao_de_conta": "{data}", "deficiencia": "", "id": "{id}", "telefone": "", "localizacao":""}}'
             
             requests.patch(link, data=info_usuario)
             
             # atualizar o valor do id do vendedor
-            proximo_id_vendedor = int(id_vendedor) + 1
-            info_id_vendedor = f'{{"proximo_id_vendedor": "{proximo_id_vendedor}"}}'
-            requests.patch(f"https://aplicativovendashashdojoao-default-rtdb.firebaseio.com/.json?auth={id_token}", data=info_id_vendedor)
+            proximo_id = int(id) + 1
+            info_id_vendedor = f'{{"proximo_id": "{proximo_id}"}}'
+            requests.patch(f"https://inclusiveway-ask-default-rtdb.firebaseio.com/.json?auth={id_token}", data=info_id_vendedor)
 
 
             meu_aplicativo.carregar_info_usuario()
             meu_aplicativo.mudar_tela("homepage")
         else:
             mensagem_erro = requisicao_dic["error"]["message"]
-            meu_aplicativo = App.get_running_app()
-            pagina_login = meu_aplicativo.root.ids["loginpage"]
-            pagina_login.ids["mensagem_login"].text = mensagem_erro
-            pagina_login.ids["mensagem_login"].color = (1, 0, 0, 1)
+            meu_aplicativo = MDApp.get_running_app()
+            pagina_cadastro = meu_aplicativo.root.get_screen("cadastropage")
+            pagina_cadastro.ids["mensagem_erro"].text = mensagem_erro
+            pagina_cadastro.ids["mensagem_erro"].color = (1, 0, 0, 1)
 
     def fazer_login(self, email, senha):
         """
@@ -99,7 +111,7 @@ class MyFirebase():
             local_id = requisicao_dic["localId"]
             id_token = requisicao_dic["idToken"]
 
-            meu_aplicativo = App.get_running_app()
+            meu_aplicativo = MDApp.get_running_app()
             meu_aplicativo.local_id = local_id # -> coloca o id do usuario no app
             meu_aplicativo.id_token = id_token # -> coloca o token do usuario no app
             
@@ -111,7 +123,7 @@ class MyFirebase():
             meu_aplicativo.mudar_tela("homepage")
         else:
             mensagem_erro = requisicao_dic["error"]["message"]
-            meu_aplicativo = App.get_running_app()
+            meu_aplicativo = MDApp.get_running_app()
             pagina_login = meu_aplicativo.root.ids["loginpage"]
             pagina_login.ids["mensagem_login"].text = mensagem_erro
             pagina_login.ids["mensagem_login"].color = (1, 0, 0, 1)
