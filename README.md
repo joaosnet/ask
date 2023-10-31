@@ -1,4 +1,4 @@
-# Projeto ASK - Aplicativo para Melhorar a Mobilidade de Pessoas com Deficiência Visual
+# Projeto ASK - Aplicativo para Melhorar a Mobilidade de Pessoas com Deficiência
 
 ## Descrição do Projeto
 
