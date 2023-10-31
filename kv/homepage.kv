@@ -197,7 +197,16 @@
                         icon_left_color: app.theme_cls.primary_color
                         pos_hint: {'center_x': 0.5,'center_y': 0.5}
                         size_hint_x: None
-                        width: 300      
+                        width: 300
+                    # Botão de logout
+                    MDRaisedButton:
+                        text: "Sair"
+                        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                        # ajustar o tamanho do botao
+                        radius: [4, 4, 4, 4]
+                        size: 36, 10
+                        md_bg_color: "#8C52FF"
+                        on_release: app.firebase.logout()     
                         
 
     MDNavigationDrawer:

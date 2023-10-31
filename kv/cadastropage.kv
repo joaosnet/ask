@@ -72,6 +72,7 @@
             size_hint_x: None
             width: 320
             radius: [5, 5, 5, 5]
+            validator: "email"
 
         # Campo para informar a senha do usuário
         MDLabel:
@@ -206,6 +207,7 @@
                 font_size: 12
                 markup: True
                 pos_hint: {"center_x": .5, "center_y": .5}
+                on_release: app.mudar_tela('loginpage')
 
 # Função para mostrar a senha ou ocultar a senha
 <ClickableTextFieldRound>:

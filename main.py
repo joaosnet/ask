@@ -17,6 +17,7 @@ class MainApp(MDApp):
         # Gerenciador de Telas
         self.sm = MDScreenManager()
         self.firebase = MyFirebase()
+        self.visitas_app = 0
 
     def build(self):
         self.sm.add_widget(TutorialPage1(name='tutorialpage1'))
@@ -32,12 +33,24 @@ class MainApp(MDApp):
         return self.sm
     
     def on_start(self):
-
+        # self.visitas_app += 1
         # carregar as informacoes do usuario
         self.carregar_info_usuario()
 
     def carregar_info_usuario(self):
         try:
+            try:
+                # carrengado o email e senha do arquivo usuario.txt
+                with open("usuario.txt", "r") as arquivo:
+                    email, senha = arquivo.read().splitlines()
+                # escrevendo nos campos de email e senha
+                pagina_login = self.root.get_screen("loginpage")
+                pagina_login.ids["email"].text = email
+                pagina_login.ids["senha"].ids["text_field"].text = senha
+                pagina_login.ids["caixa_selecao"].active = True
+            except Exception as excecao:
+                pp(excecao)
+
             with open("refresh_token.txt", "r") as arquivo:
                 refresh_token = arquivo.read()
             local_id, id_token = self.firebase.trocar_token(refresh_token)
@@ -72,7 +85,12 @@ class MainApp(MDApp):
         # se nao tiver o arquivo de refresh token ou ocorrer outro erro, mudar para a tela de login e mostrar a excecao se for o segundo acesso do usuario ao app
         except Exception as excecao:
             pp(excecao)
-            self.mudar_tela("loginpage") 
+            # se for a primeira vez entrando no app redirecionar para pagina de tutorialpage1
+            if self.visitas_app == 0:
+                # se for a segunda vez entrando no app redirecionar para pagina de startpage
+                self.mudar_tela("tutorialpage1")
+            else:
+                self.mudar_tela("startpage")
 
     def mudar_tela(self, nome_tela):
         # print(id_tela)

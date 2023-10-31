@@ -9,10 +9,10 @@ Window.size = (360, 800) # tamanho da janela do aplicativo
 
 
 class HotReload(MDApp):
-    KV_FILES = ['kv/cadastropage.kv']
+    KV_FILES = ['kv/homepage.kv']
     DEBUG = True
     def build_app(self):
-        return Builder.load_file('kv/cadastropage.kv')
+        return Builder.load_file('kv/homepage.kv')
 
 if __name__ == '__main__':
     HotReload().run()

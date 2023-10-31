@@ -122,11 +122,25 @@ class MyFirebase():
             meu_aplicativo.carregar_info_usuario()
             meu_aplicativo.mudar_tela("homepage")
         else:
-            mensagem_erro = requisicao_dic["error"]["message"]
             meu_aplicativo = MDApp.get_running_app()
-            pagina_login = meu_aplicativo.root.ids["loginpage"]
-            pagina_login.ids["mensagem_login"].text = mensagem_erro
-            pagina_login.ids["mensagem_login"].color = (1, 0, 0, 1)
+            mensagem_erro = requisicao_dic["error"]["message"]
+            pagina_login = meu_aplicativo.root.get_screen("loginpage")
+            if mensagem_erro == "INVALID_EMAIL" or mensagem_erro == "EMAIL_NOT_FOUND":
+                mensagem_erro = "Email não cadastrado"
+                pagina_login.ids["email"].helper_text = "As senhas não coincidem"
+                pagina_login.ids["email"].error = True
+            elif mensagem_erro == "INVALID_LOGIN_CREDENTIALS":
+                mensagem_erro = "Email e/ou senha incorretos"
+                pagina_login.ids["email"].helper_text = mensagem_erro
+                pagina_login.ids["email"].error = True
+                pagina_login.ids["senha"].ids["text_field"].helper_text = mensagem_erro
+                pagina_login.ids["senha"].ids["text_field"].error = True
+            elif mensagem_erro == "MISSING_PASSWORD" :
+                pagina_login.ids["senha"].ids["text_field"].helper_text = "Faltou a Senha"
+                pagina_login.ids["senha"].ids["text_field"].error = True
+            else:
+                pagina_login.ids["email"].helper_text = mensagem_erro
+                pagina_login.ids["email"].error = True
 
     def trocar_token(self, refresh_token):
         """
@@ -145,3 +159,21 @@ class MyFirebase():
         local_id = requisicao_dic["user_id"]
         id_token = requisicao_dic["id_token"]
         return local_id, id_token
+    # fazer o logout do app apagando o refresh token do arquivo refresh_token.txt e deixando ele vazio
+    def logout(self):
+        with open("refresh_token.txt", "w") as f:
+            f.write("")
+        meu_aplicativo = MDApp.get_running_app()
+        meu_aplicativo.local_id = None
+        meu_aplicativo.id_token = None
+        meu_aplicativo.root.current = "startpage"
+        meu_aplicativo.root.transition.direction = "right"
+
+    # lembrar o email e a senha do usuario para fazer o login automaticamente
+    def lembrar_senha(self, ativo,email, senha):
+        if ativo:
+            with open("usuario.txt", "w") as f:
+                f.write(f"{email}\n{senha}")
+        else:
+            with open("usuario.txt", "w") as f:
+                f.write("")

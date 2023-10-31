@@ -46,6 +46,7 @@
             size_hint_x: None
             width: 320
             radius: [5, 5, 5, 5]
+            validator: "email"
         MDLabel:
             text: 'Informe sua senha'
             font_size: '12sp'
@@ -54,6 +55,7 @@
             halign: 'left'
         
         ClickableTextFieldRound:
+            id: senha
             size_hint_x: None
             width: "300dp"
             hint_text: "Senha"
@@ -63,10 +65,11 @@
             orientation: 'horizontal'
             # Caixa de seleção de lembrar senha
             MDCheckbox:
+                id: caixa_selecao
                 pos_hint: {'center_x': .5, 'center_y': .5}
                 width: "31dp"
                 height: "30dp"
-
+                on_active: app.firebase.lembrar_senha(self.active, email.text, senha.ids.text_field.text)
 
             # Lembrar minha senha
             MDLabel:
@@ -83,7 +86,10 @@
                 font_size: 12
                 markup: True
                 pos_hint: {"center_x": .5, "center_y": .5}
-                # on_release: app.mudar_tela("startpage")
+                # se esquecer a senha, vai mostrar um texto de erro no campo da senha
+                on_release: 
+                    senha.ids.text_field.helper_text = 'Se Ferrou'
+                    senha.ids.text_field.error = True
         
         MDBoxLayout:
             orientation: 'horizontal'
@@ -115,7 +121,7 @@
                 line_color: "#8C52FF"
                 # tamanho do botao
                 size_hint: 154, 1
-                on_release: app.mudar_tela('homepage')
+                on_release: app.firebase.fazer_login(email.text, senha.ids.text_field.text)
         MDBoxLayout:
             orientation: 'horizontal'
             padding: 10,0,10,0
@@ -167,6 +173,7 @@
         size_hint_x: None
         width: 320
         password: True
+        helper_text_mode: "on_error"
 
     MDIconButton:
         icon: "eye-off"
@@ -177,3 +184,4 @@
             self.icon = "eye" if self.icon == "eye-off" else "eye-off"
             text_field.password = False if text_field.password is True else True
         
+LoginPage:
