@@ -63,7 +63,10 @@
                     back_layer_color: "#EDF1FF"
                     left_action_items: [['icones/Expand_left@3x.png', lambda x: app.mudar_tela('loginpage')]]
                     close_icon: 'icones/Expand_left@3x.png'
-                    header: False
+                    header: True
+                    header_text: "Navegar"
+                    # centralizando o header
+
 
                     MDBackdropBackLayer:                      
                         orientation: "vertical"
@@ -122,6 +125,7 @@
                                 md_bg_color: "#C7D2FB"        
 
             MDBottomNavigationItem:
+                id: perfil
                 name: 'screen 3'
                 text: 'Perfil'
                 icon: 'icones/user_cicrle_light.png'

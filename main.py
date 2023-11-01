@@ -50,7 +50,8 @@ class MainApp(MDApp):
                 pagina_login.ids["senha"].ids["text_field"].text = senha
                 pagina_login.ids["caixa_selecao"].active = True
             except Exception as excecao:
-                pp(excecao)
+                print("Deu um erro ao carregar o email e senha do arquivo usuario.txt:", excecao)
+                traceback.print_exc()
 
             with open("refresh_token.txt", "r") as arquivo:
                 refresh_token = arquivo.read()
@@ -72,39 +73,67 @@ class MainApp(MDApp):
             # preencher o ID Unico do usuario
             id = requisicao_dic["id"]
             self.id = id
-            try:
-                barra_navegacao_homepage = self.root.get_screen["homepage"].ids["box"].ids["barranavegacao"].get_screen["screen 3"].ids["perfilpage"].ids["id"]
-                barra_navegacao_homepage.ids["id_usuario"].text = f'Seu ID Único é: {id}'
-            # mostrando o erro detalhadamente
-            except Exception as excecao:
-                print("O erro do perfi é", excecao)
-                traceback.print_exc()
+            self.root.get_screen("homepage").ids["perfilpage"].ids["id_usuario"].text = f'Seu ID Único é {id}'
 
             # preencher o nome do usuario
+            nome = requisicao_dic["nome"]
+            self.nome = nome
+            self.root.get_screen("homepage").ids["perfilpage"].ids["nome"].text = nome
 
-            # preencher o email do usuario
+            # preencher o email do usuario, porém não tem email no banco de dados do usuário só no authenticatior do google
+            email = "Sem email no banco de dados"
+            self.email = email
+            self.root.get_screen("homepage").ids["perfilpage"].ids["email"].text = email
 
             # preencher o telefone do usuario
+            telefone = requisicao_dic["telefone"]
+            self.telefone = telefone
+            self.root.get_screen("homepage").ids["perfilpage"].ids["telefone"].text = telefone
 
             # preencher a localizacao do usuario
+            localizacao = requisicao_dic["localizacao"]
+            self.localizacao = localizacao
+            self.root.get_screen("homepage").ids["perfilpage"].ids["localizacao"].text = localizacao
 
             # preencher a data de cadastro do usuario
+            data_cadastro = requisicao_dic["data_criacao_de_conta"]
+            self.data_cadastro = data_cadastro
+            self.root.get_screen("homepage").ids["perfilpage"].ids["data_cadastro"].text = f"Data de Cadastro: {str(data_cadastro)}"
 
             # preencher o tipo de deficiencia do usuario
+            tipo_deficiencia = requisicao_dic["deficiencia"]
+            self.tipo_deficiencia = tipo_deficiencia
+            self.root.get_screen("homepage").ids["perfilpage"].ids["tipo_deficiencia"].text = tipo_deficiencia
 
             # Quando preenchidas as informacoes, mudar para a homepage
             self.mudar_tela("homepage")
         
         # se nao tiver o arquivo de refresh token ou ocorrer outro erro, mudar para a tela de login e mostrar a excecao se for o segundo acesso do usuario ao app
         except Exception as excecao:
-            pp("Deu um erro ao carregar as informações do Usuário: ")
-            pp(excecao)
+            print("Deu um erro ao carregar as informações do Usuário:", excecao)
+            traceback.print_exc()
+
+            try:
+                # carrengado o email e senha do arquivo usuario.txt
+                with open("usuario.txt", "r") as arquivo:
+                    email, senha = arquivo.read().splitlines()
+                # escrevendo nos campos de email e senha
+                pagina_login = self.root.get_screen("loginpage")
+                pagina_login.ids["email"].text = email
+                pagina_login.ids["senha"].ids["text_field"].text = senha
+                pagina_login.ids["caixa_selecao"].active = True
+
+                self.visitas_app += 1
+            except Exception as excecao:
+                print("Deu um erro ao carregar o email e senha do arquivo usuario.txt:", excecao)
+                traceback.print_exc()
+
             # se for a primeira vez entrando no app redirecionar para pagina de tutorialpage1
             if self.visitas_app == 0:
                 # se for a segunda vez entrando no app redirecionar para pagina de startpage
                 self.mudar_tela("tutorialpage1")
             else:
-                self.mudar_tela("startpage")
+                self.mudar_tela("loginpage")
 
     def mudar_tela(self, nome_tela):
         # print(id_tela)
