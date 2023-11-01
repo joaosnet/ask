@@ -1,10 +1,13 @@
 #:import MapView kivy_garden.mapview.MapView
+#:include kv/perfilpage.kv
 <HomePage>:
     BoxLayout:
+        id: box
         orientation:'vertical'
 
         # Barra de Navegação
         MDBottomNavigation:
+            id: barra_navegacao
             # painel da cor do fundo branco
             md_bg_color: "#EDF1FF"
             # font_name: 'icones/Roboto-Regular.ttf'
@@ -122,92 +125,10 @@
                 name: 'screen 3'
                 text: 'Perfil'
                 icon: 'icones/user_cicrle_light.png'
-
                 # Página Perfil
-                MDBoxLayout:
-                    orientation: 'vertical'
-                    padding: 0, 10, 10, 200
-                    spacing: 0
-                    # Botão de Voltar (icones/Expand_left@3x.png)
-                    MDIconButton:
-                        pos_hint: {'center_x': 0.1,'center_y': 0.93}
-                        icon: 'icones/Expand_left@3x.png'
-                        icon_size: "45sp"
-                        on_release: app.mudar_tela('loginpage')
-                    # Foto de Perfil
-                    Image:
-                        id: foto_perfil
-                        source: 'icones/user/User_cicrle_duotone@3x.png'
-                        pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                        size_hint: 1.5, 1.5
-                    # Botão de Texto "Mudar foto de perfil"
-                    MDFlatButton:
-                        text: "[color=#8C52FF]Mudar foto de perfil[/color]"
-                        font_size: 12
-                        markup: True
-                        pos_hint: {"center_x": .5, "center_y": .5}
-                    # Campo de texto com Nome
-                    MDLabel:
-                        text: "Nome"
-                        # centralizar o texto
-                        halign: "center"
-                        font_size: 28
-                        bold: True
-                        color: 0, 0, 0, 1
-                    # Campo de texto com Email
-                    MDLabel:
-                        text: "Email@gmail.com (exemplo)"
-                        font_size: 12
-                        # centralizar o texto
-                        halign: "center"
-                        color: 0, 0, 0, 1
-                    # Botão de Texto "Editar suas informações" em roxo
-                    MDFlatButton:
-                        text: "[color=#8C52FF]Editar suas informações[/color]"
-                        font_size: 12
-                        markup: True
-                        pos_hint: {"center_x": .5, "center_y": .5}
-
-                    # Inpunt de texto com endereço
-                    MDTextField:
-                        hint_text: "Endereço (casa)"
-                        helper_text: "Informe seu endereço do trabalho"
-                        helper_text_mode: "on_focus"
-                        icon_left: "map-marker"
-                        icon_left_color: app.theme_cls.primary_color
-                        pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                        size_hint_x: None
-                        width: 300
-                    # Inpunt de texto com Endereço (trabalho)
-                    MDTextField:
-                        hint_text: "Endereço (trabalho)"
-                        helper_text: "Informe seu endereço de trabalho"
-                        helper_text_mode: "on_focus"
-                        icon_left: "map-marker"
-                        icon_left_color: app.theme_cls.primary_color
-                        pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                        size_hint_x: None
-                        width: 300
-                    # Inpunt de texto com Infotmações pessoais
-                    MDTextField:
-                        hint_text: "Informações pessoais"
-                        helper_text: "Informe suas informações pessoais"
-                        helper_text_mode: "on_focus"
-                        icon_left: "information"
-                        icon_left_color: app.theme_cls.primary_color
-                        pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                        size_hint_x: None
-                        width: 300
-                    # Botão de logout
-                    MDRaisedButton:
-                        text: "Sair"
-                        pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                        # ajustar o tamanho do botao
-                        radius: [4, 4, 4, 4]
-                        size: 36, 10
-                        md_bg_color: "#8C52FF"
-                        on_release: app.firebase.logout()     
-                        
+                PerfilPage:
+                    id: perfilpage
+                                  
 
     MDNavigationDrawer:
         id: nav_drawer
@@ -234,4 +155,4 @@
 
 
 
-HomePage:
+# HomePage:

@@ -5,6 +5,7 @@ from botoes import *
 from myfirebase import MyFirebase
 import requests
 from pprint import pprint as pp
+import traceback
 
 Window.size = (360, 800) # tamanho da janela do aplicativo
 
@@ -24,8 +25,8 @@ class MainApp(MDApp):
         self.sm.add_widget(TutorialPage2(name='tutorialpage2'))
         self.sm.add_widget(TutorialPage3(name='tutorialpage3'))
         self.sm.add_widget(StartPage(name='startpage'))
-        self.sm.add_widget(HomePage(name='homepage'))
-        self.sm.add_widget(PerfilPage(name='perfilpage'))
+        self.sm.add_widget(HomePage(name='homepage', id="homepage"))
+        # self.sm.add_widget(PerfilPage(name='perfilpage'))
         self.sm.add_widget(LoadingPage(name='loadingpage'))
         self.sm.add_widget(MapaPage(name='mapapage'))
         self.sm.add_widget(CadastroPage(name='cadastropage', id="cadastropage"))
@@ -60,6 +61,7 @@ class MainApp(MDApp):
             link = f"https://inclusiveway-ask-default-rtdb.firebaseio.com/{self.local_id}.json?auth={self.id_token}"
             requisicao = requests.get(link)
             requisicao_dic = requisicao.json()
+            # pp(requisicao_dic)
 
             # # preencher foto de perfil
             # avatar = requisicao_dic["foto_de_perfil"]
@@ -67,23 +69,35 @@ class MainApp(MDApp):
             # foto_perfil = self.root.ids["foto_perfil"]
             # foto_perfil.source = f"icones/fotos_perfil/{avatar}"
 
-            # # preencher o ID Unico
-            # id_vendedor = requisicao_dic["id_vendedor"]
-            # self.id_vendedor = id_vendedor
-            # pagina_ajustes = self.root.ids["ajustespage"]
-            # pagina_ajustes.ids["id_vendedor"].text = f'Seu ID Único: {id_vendedor}'
+            # preencher o ID Unico do usuario
+            id = requisicao_dic["id"]
+            self.id = id
+            try:
+                barra_navegacao_homepage = self.root.get_screen["homepage"].ids["box"].ids["barranavegacao"].get_screen["screen 3"].ids["perfilpage"].ids["id"]
+                barra_navegacao_homepage.ids["id_usuario"].text = f'Seu ID Único é: {id}'
+            # mostrando o erro detalhadamente
+            except Exception as excecao:
+                print("O erro do perfi é", excecao)
+                traceback.print_exc()
 
-            # # preencher o total de vendas
-            # total_vendas = float(requisicao_dic["total_vendas"])
-            # self.total_vendas = total_vendas
-            # homepage = self.root.ids["homepage"]
-            # homepage.ids["label_total_vendas"].text = f"[color=#000000]Total de Vendas:[/color] [b]R${total_vendas:,.2f}[/b]"
+            # preencher o nome do usuario
+
+            # preencher o email do usuario
+
+            # preencher o telefone do usuario
+
+            # preencher a localizacao do usuario
+
+            # preencher a data de cadastro do usuario
+
+            # preencher o tipo de deficiencia do usuario
 
             # Quando preenchidas as informacoes, mudar para a homepage
             self.mudar_tela("homepage")
         
         # se nao tiver o arquivo de refresh token ou ocorrer outro erro, mudar para a tela de login e mostrar a excecao se for o segundo acesso do usuario ao app
         except Exception as excecao:
+            pp("Deu um erro ao carregar as informações do Usuário: ")
             pp(excecao)
             # se for a primeira vez entrando no app redirecionar para pagina de tutorialpage1
             if self.visitas_app == 0:

@@ -80,8 +80,20 @@ class MyFirebase():
             mensagem_erro = requisicao_dic["error"]["message"]
             meu_aplicativo = MDApp.get_running_app()
             pagina_cadastro = meu_aplicativo.root.get_screen("cadastropage")
-            pagina_cadastro.ids["mensagem_erro"].text = mensagem_erro
-            pagina_cadastro.ids["mensagem_erro"].color = (1, 0, 0, 1)
+            if mensagem_erro == "INVALID_EMAIL" or mensagem_erro == "EMAIL_NOT_FOUND":
+                pagina_cadastro.ids["email"].helper_text = "Email não cadastrado"
+                pagina_cadastro.ids["email"].error = True
+            elif mensagem_erro == "EMAIL_EXISTS":
+                pagina_cadastro.ids["email"].helper_text = "Email já cadastrado"
+                pagina_cadastro.ids["email"].error = True
+            elif mensagem_erro == "MISSING_PASSWORD" :
+                pagina_cadastro.ids["senha_sem_confirmacao"].ids["text_field"].helper_text = "Faltou a Senha"
+                pagina_cadastro.ids["senha_sem_confirmacao"].ids["text_field"].error = True
+                pagina_cadastro.ids["senha_de_confirmacao"].ids["text_field"].helper_text = "Faltou a Senha"
+                pagina_cadastro.ids["senha_de_confirmacao"].ids["text_field"].error = True
+            else:
+                pagina_cadastro.ids["mensagem_erro"].text = mensagem_erro
+                pagina_cadastro.ids["mensagem_erro"].color = (1, 0, 0, 1)
 
     def fazer_login(self, email, senha):
         """
@@ -126,8 +138,7 @@ class MyFirebase():
             mensagem_erro = requisicao_dic["error"]["message"]
             pagina_login = meu_aplicativo.root.get_screen("loginpage")
             if mensagem_erro == "INVALID_EMAIL" or mensagem_erro == "EMAIL_NOT_FOUND":
-                mensagem_erro = "Email não cadastrado"
-                pagina_login.ids["email"].helper_text = "As senhas não coincidem"
+                pagina_login.ids["email"].helper_text = "Email não cadastrado"
                 pagina_login.ids["email"].error = True
             elif mensagem_erro == "INVALID_LOGIN_CREDENTIALS":
                 mensagem_erro = "Email e/ou senha incorretos"

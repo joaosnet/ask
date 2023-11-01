@@ -1,0 +1,152 @@
+<PerfilPage>:
+# Página Perfil
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 0, 0, 0, 10
+        spacing: 10
+
+        # Botão de Voltar (icones/Expand_left@3x.png)
+        MDIconButton:
+            pos_hint: {'center_x': 0.1,'center_y': 0.93}
+            icon: 'icones/Expand_left@3x.png'
+            icon_size: "45sp"
+            on_release: app.mudar_tela('loginpage')
+
+        # Foto de Perfil
+        Image:
+            id: foto_perfil
+            source: 'icones/user/User_cicrle_duotone@3x.png'
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            size_hint: None, None
+        # Botão de Texto "Mudar foto de perfil"
+        MDFlatButton:
+            text: "[color=#8C52FF]Mudar foto de perfil[/color]"
+            font_size: 12
+            markup: True
+            pos_hint: {"center_x": .5, "center_y": .5}
+
+        # Id do Usuário
+        MDLabel:
+            id: id_usuario
+            text: "Seu ID é: 0"
+            font_style: "Caption"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            halign: "center"
+            
+        # Data de Cadastro
+        MDLabel:
+            id: data_cadastro
+            text: "Data de Cadastro: 00/00/0000"
+            font_style: "Caption"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            halign: "center"
+
+
+        # Campo de texto com Nome
+        MDTextField:
+            id: nome
+            mode: "fill"
+            hint_text: "Nome"
+            helper_text_mode: "on_focus"
+            icon_left: "account"
+            icon_left_color: app.theme_cls.primary_color
+            fill_color_normal: "#EDF1FF"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x: None
+            width: 320
+            radius: [5, 5, 5, 5]
+
+        # Campo de texto com Email
+        MDTextField:
+            id: email
+            mode: "fill"
+            hint_text: "email"
+            helper_text_mode: "on_focus"
+            icon_left: "email"
+            icon_left_color: app.theme_cls.primary_color
+            fill_color_normal: "#EDF1FF"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x: None
+            width: 320
+            radius: [5, 5, 5, 5]
+
+        # Telefone do Usuário
+        MDTextField:
+            id: telefone
+            mode: "fill"
+            hint_text: "Telefone"
+            helper_text_mode: "on_focus"
+            icon_left: "phone"
+            icon_left_color: app.theme_cls.primary_color
+            fill_color_normal: "#EDF1FF"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x: None
+            width: 320
+            radius: [5, 5, 5, 5]
+
+        # Localização do Usuário
+        MDTextField:
+            id: localizacao
+            mode: "fill"
+            hint_text: "Localização"
+            helper_text_mode: "on_focus"
+            icon_left: "map-marker"
+            icon_left_color: app.theme_cls.primary_color
+            fill_color_normal: "#EDF1FF"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x: None
+            width: 320
+            radius: [5, 5, 5, 5]
+        
+        # Caixa de texto que contem uma Lista de tipos de deficiência
+        MDTextField:
+            id: tipo_deficiencia
+            mode: "fill"
+            hint_text: 'Tipo de Deficiência'
+            helper_text: 'Selecione o tipo de deficiência que você possui'
+            helper_text_mode: 'on_focus'
+            icon_right: 'arrow-down-drop-circle-outline'
+            # cores
+            icon_right_color: app.theme_cls.primary_color
+            fill_color_normal: "#EDF1FF"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x: None
+            width: 320
+            radius: [5, 5, 5, 5]
+            # Lista de tipos de deficiência do MenuTipoDeficiencia
+            # on_focus: if self.focus: MDDropdownMenu(items=[{"viewclass": "OneLineListItem", "text": f"{i}"} for i in range(5)], width_mult=4, caller=self).open()
+            readonly: True
+
+
+        # Botão de Texto "Editar suas informações" em roxo
+        MDFlatButton:
+            text: "[color=#8C52FF]Editar suas informações[/color]"
+            font_size: 12
+            markup: True
+            pos_hint: {"center_x": .5, "center_y": .5}
+
+        # Mensagem
+        MDLabel:
+            id: mensagem
+            text: ""
+            font_style: "Caption"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            halign: "center"
+    
+        # Botão de logout
+        MDRaisedButton:
+            text: "Sair"
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            # ajustar o tamanho do botao
+            radius: [4, 4, 4, 4]
+            size: 36, 10
+            md_bg_color: "#8C52FF"
+            on_release: app.firebase.logout()     
+          
+# PerfilPage:          
