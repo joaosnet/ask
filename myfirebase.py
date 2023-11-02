@@ -188,3 +188,25 @@ class MyFirebase():
         else:
             with open("usuario.txt", "w") as f:
                 f.write("")
+
+    # Função para fazer alterações no perfil do usuario
+    def alterar_perfil(self, foto_de_perfil, nome, deficiencia, telefone, localizacao):
+        # verificando se algum campo conteve alteração
+        if foto_de_perfil != "" and nome != "" and deficiencia != "" and telefone != "" and localizacao != "":
+            meu_aplicativo = MDApp.get_running_app()
+            id_token = meu_aplicativo.id_token
+            local_id = meu_aplicativo.local_id
+            link = f"https://inclusiveway-ask-default-rtdb.firebaseio.com/{local_id}.json?auth={id_token}"
+            info = f'{{"foto_de_perfil":"{foto_de_perfil}", "nome": "{nome}", "deficiencia": "{deficiencia}", "telefone": "{telefone}", "localizacao": "{localizacao}"}}'
+            requisicao = requests.patch(link, data=info)
+            requisicao_dic = requisicao.json()
+            # atualizar as informações do usuario na homepage
+            meu_aplicativo.carregar_info_usuario()
+            # escrevendo uma mensagem na tela
+            pagina_perfil = meu_aplicativo.root.get_screen("homepage").ids["perfilpage"]
+            pagina_perfil.ids["mensagem"].text = "As alterações foram feitas com sucesso"          
+        else:
+            # escrevendo uma mensagem de erro na tela
+            meu_aplicativo = MDApp.get_running_app()
+            pagina_perfil = meu_aplicativo.root.get_screen("homepage").ids["perfilpage"]
+            pagina_perfil.ids["mensagem"].text = "Nenhuma alteração foi feita, pois algum campo está vazio"

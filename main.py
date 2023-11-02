@@ -4,8 +4,8 @@ from telas import *
 from botoes import *
 from myfirebase import MyFirebase
 import requests
-from pprint import pprint as pp
-import traceback
+# import traceback
+from kivymd.uix.menu import MDDropdownMenu
 
 # Window.size = (360, 800) # tamanho da janela do aplicativo
 
@@ -25,11 +25,10 @@ class MainApp(MDApp):
         self.sm.add_widget(TutorialPage2(name='tutorialpage2'))
         self.sm.add_widget(TutorialPage3(name='tutorialpage3'))
         self.sm.add_widget(StartPage(name='startpage'))
-        self.sm.add_widget(HomePage(name='homepage', id="homepage"))
-        # self.sm.add_widget(PerfilPage(name='perfilpage'))
+        self.sm.add_widget(HomePage(name='homepage'))
         self.sm.add_widget(LoadingPage(name='loadingpage'))
         self.sm.add_widget(MapaPage(name='mapapage'))
-        self.sm.add_widget(CadastroPage(name='cadastropage', id="cadastropage"))
+        self.sm.add_widget(CadastroPage(name='cadastropage'))
         self.sm.add_widget(LoginPage(name='loginpage'))
         return self.sm
     
@@ -37,6 +36,45 @@ class MainApp(MDApp):
         # self.visitas_app += 1
         # carregar as informacoes do usuario
         self.carregar_info_usuario()
+
+        menu_items = [
+            {
+                "text": "Não Possuo",
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x="Nao Possuo": self.menu_callback(x),
+            },
+            {
+                "text": "Visual",
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x="Visual": self.menu_callback(x),
+            }, 
+            {
+                "text": "Auditiva",
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x="Auditiva": self.menu_callback(x),
+            },
+            {
+                "text": "Física",
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x="Fisica": self.menu_callback(x),
+            },
+            {
+                "text": "Intelectual",
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x="Intelectual": self.menu_callback(x),
+            },
+            {
+                "text": "Múltipla",
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x="Multipla": self.menu_callback(x),
+            },
+        ]
+        self.menu = MDDropdownMenu(
+            caller=self.root.get_screen("homepage").ids["perfilpage"].ids["tipo_deficiencia"],
+            items=menu_items,
+            position="bottom",
+            width_mult=4,
+        )
 
     def carregar_info_usuario(self):
         try:
@@ -49,9 +87,11 @@ class MainApp(MDApp):
                 pagina_login.ids["email"].text = email
                 pagina_login.ids["senha"].ids["text_field"].text = senha
                 pagina_login.ids["caixa_selecao"].active = True
-            except Exception as excecao:
-                print("Deu um erro ao carregar o email e senha do arquivo usuario.txt:", excecao)
-                traceback.print_exc()
+            except:
+                pass
+            # except Exception as excecao:
+            #     print("Deu um erro ao carregar o email e senha do arquivo usuario.txt:", excecao)
+            #     traceback.print_exc()
 
             with open("refresh_token.txt", "r") as arquivo:
                 refresh_token = arquivo.read()
@@ -64,11 +104,13 @@ class MainApp(MDApp):
             requisicao_dic = requisicao.json()
             # pp(requisicao_dic)
 
-            # # preencher foto de perfil
-            # avatar = requisicao_dic["foto_de_perfil"]
-            # self.avatar = avatar
-            # foto_perfil = self.root.ids["foto_perfil"]
-            # foto_perfil.source = f"icones/fotos_perfil/{avatar}"
+            # preencher foto de perfil
+            avatar = requisicao_dic["foto_de_perfil"]
+            self.avatar = avatar
+            foto_perfil = self.root.get_screen("homepage").ids["perfilpage"].ids["foto_perfil"]
+            foto_perfil.source = f"icones/user/{avatar}"
+            nome_foto_perfil =  self.root.get_screen("homepage").ids["perfilpage"].ids["nome_foto_perfil"]
+            nome_foto_perfil.text = avatar
 
             # preencher o ID Unico do usuario
             id = requisicao_dic["id"]
@@ -107,11 +149,12 @@ class MainApp(MDApp):
 
             # Quando preenchidas as informacoes, mudar para a homepage
             self.mudar_tela("homepage")
-        
-        # se nao tiver o arquivo de refresh token ou ocorrer outro erro, mudar para a tela de login e mostrar a excecao se for o segundo acesso do usuario ao app
-        except Exception as excecao:
-            print("Deu um erro ao carregar as informações do Usuário:", excecao)
-            traceback.print_exc()
+        except:
+            pass
+        # # se nao tiver o arquivo de refresh token ou ocorrer outro erro, mudar para a tela de login e mostrar a excecao se for o segundo acesso do usuario ao app
+        # except Exception as excecao:
+        #     print("Deu um erro ao carregar as informações do Usuário:", excecao)
+        #     traceback.print_exc()
 
             try:
                 # carrengado o email e senha do arquivo usuario.txt
@@ -124,9 +167,11 @@ class MainApp(MDApp):
                 pagina_login.ids["caixa_selecao"].active = True
 
                 self.visitas_app += 1
-            except Exception as excecao:
-                print("Deu um erro ao carregar o email e senha do arquivo usuario.txt:", excecao)
-                traceback.print_exc()
+            except:
+                pass
+            # except Exception as excecao:
+            #     print("Deu um erro ao carregar o email e senha do arquivo usuario.txt:", excecao)
+            #     traceback.print_exc()
 
             # se for a primeira vez entrando no app redirecionar para pagina de tutorialpage1
             if self.visitas_app == 0:
@@ -135,6 +180,12 @@ class MainApp(MDApp):
             else:
                 self.mudar_tela("loginpage")
 
+    # Funcao para abrir o menu do tipo de deficiencia
+    def menu_callback(self, text_item):
+        self.root.get_screen("homepage").ids["perfilpage"].ids["tipo_deficiencia"].text = text_item
+        self.menu.dismiss()
+
+    # Funcao para mudar de tela
     def mudar_tela(self, nome_tela):
         # print(id_tela)
         gerenciador_telas = self.root

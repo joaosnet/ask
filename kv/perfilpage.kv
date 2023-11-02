@@ -18,6 +18,19 @@
             source: 'icones/user/User_cicrle_duotone@3x.png'
             pos_hint: {'center_x': 0.5,'center_y': 0.5}
             size_hint: None, None
+        # Caixa para escrever o nome da foto de perfil
+        MDTextField:
+            id: nome_foto_perfil
+            mode: "fill"
+            hint_text: "Nome da foto de perfil"
+            helper_text_mode: "on_focus"
+            icon_left: "account"
+            icon_left_color: app.theme_cls.primary_color
+            fill_color_normal: "#EDF1FF"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x: None
+            width: 320
+            radius: [5, 5, 5, 5]
         # Botão de Texto "Mudar foto de perfil"
         MDFlatButton:
             text: "[color=#8C52FF]Mudar foto de perfil[/color]"
@@ -118,7 +131,7 @@
             width: 320
             radius: [5, 5, 5, 5]
             # Lista de tipos de deficiência do MenuTipoDeficiencia
-            # on_focus: if self.focus: MDDropdownMenu(items=[{"viewclass": "OneLineListItem", "text": f"{i}"} for i in range(5)], width_mult=4, caller=self).open()
+            on_focus: if self.focus: app.menu.open()
             readonly: True
 
 
@@ -128,6 +141,7 @@
             font_size: 12
             markup: True
             pos_hint: {"center_x": .5, "center_y": .5}
+            on_release: app.firebase.alterar_perfil(nome_foto_perfil.text, nome.text, tipo_deficiencia.text, telefone.text, localizacao.text)
 
         # Mensagem
         MDLabel:
