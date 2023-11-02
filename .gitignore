@@ -27,6 +27,7 @@ share/python-wheels/
 MANIFEST
 cache/
 .buildozer/
+bin/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
