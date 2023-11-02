@@ -150,7 +150,6 @@ class MainApp(MDApp):
             # Quando preenchidas as informacoes, mudar para a homepage
             self.mudar_tela("homepage")
         except:
-            pass
         # # se nao tiver o arquivo de refresh token ou ocorrer outro erro, mudar para a tela de login e mostrar a excecao se for o segundo acesso do usuario ao app
         # except Exception as excecao:
         #     print("Deu um erro ao carregar as informações do Usuário:", excecao)
