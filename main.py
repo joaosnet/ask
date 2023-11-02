@@ -1,5 +1,5 @@
 from kivymd.app import MDApp
-from kivy.core.window import Window
+# from kivy.core.window import Window
 from telas import *
 from botoes import *
 from myfirebase import MyFirebase
@@ -7,7 +7,7 @@ import requests
 from pprint import pprint as pp
 import traceback
 
-Window.size = (360, 800) # tamanho da janela do aplicativo
+# Window.size = (360, 800) # tamanho da janela do aplicativo
 
 class MainApp(MDApp):
 
