@@ -4,6 +4,21 @@
 
 O projeto InclusiveWay da organização ASK visa melhorar a mobilidade de pessoas com deficiência visual no meio urbano, proporcionando uma solução inovadora para a locomoção em vias públicas. Com cerca de 250 milhões de pessoas com deficiência visual no mundo, e aproximadamente 45 milhões no Brasil, o aplicativo busca facilitar a vida dessas pessoas, oferecendo informações em tempo real sobre as condições das vias e alertas sobre obstáculos.
 
+# Índice
+
+*[Descrição do Projeto](#descrição-do-projeto)
+*[Telas do Aplicativo](#telas-do-aplicativo)
+*[Arquitetura do Aplicativo](#arquitetura-do-aplicativo)
+*[Objetivos](#objetivos)
+*[Integrantes do Grupo](#integrantes-do-grupo)
+*[Slides do Projeto](#slides-do-projeto)
+*[Como executar o Protótipo do Aplicativo](#como-executar-o-protótipo-do-aplicativo)
+*[Como Contribuir](#como-contribuir)
+*[Para construir uma versão no Buildozer](#para-construir-uma-versão-no-buildozer)
+*[Para colocar em segundo plano no linux](#para-colocar-em-segundo-plano-no-linux)
+*[Para atualizar o git](#para-atualizar-o-git)
+
+
 ## Telas do Aplicativo
 ![Telas](/icones/Telas.png)
 
