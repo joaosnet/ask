@@ -66,9 +66,20 @@ pip install -r requirements_linux.txt
 python main.py
 ```
 
+## Como Contribuir
+
+Se você deseja contribuir para o desenvolvimento do aplicativo, siga os passos abaixo:
+
+1. Faça um fork do repositório
+2. Clone o fork para o seu ambiente local
+3. Crie uma branch para suas alterações (`git checkout -b nome-da-sua-branch`)
+4. Faça commit das suas alterações (`git commit -m 'Descrição das alterações'`)
+5. Faça push para a branch (`git push origin nome-da-sua-branch`)
+6. Abra um pull request no repositório original
+
 ## Para construir uma versão no Buildozer
 - Modifique o arquivo (`buildozer.spec`)
-### Para ver o erros
+### Para ver o erros e fazer uma criar uma versão.apk
 ```bash
 buildozer android debug deploy run logcat
 ```
@@ -87,39 +98,29 @@ buildozer android logcat > log.txt
 ```bash
 buildozer android clean
 ```
-# Para o git
-## Fazendo alterações no git
+
+## Para colocar em segundo plano no linux
+```bash
+nohup buildozer -v android debug > log.txt &
+```
+### Para ver o log
+```bash
+tail -f log.txt
+```
+
+## Para atualizar o git
+### Fazendo alterações no git
 ```bash
 git pull
 git add .
 git commit -m "Atualizando"
 git push
 ```
-## Adicionando uma nova realease apenas do arquivo .apk gerado pelo buildozer no github
+### Adicionando uma nova realease apenas do arquivo .apk gerado pelo buildozer no github
 ```bash
 git tag -a v1.0 -m "Versão 1.0"
 git push origin v1.0
 ```
-
-# Para colocar em segundo plano no linux
-```bash
-nohup buildozer -v android debug > log.txt &
-```
-## Para ver o log
-```bash
-tail -f log.txt
-```
-
-## Como Contribuir
-
-Se você deseja contribuir para o desenvolvimento do aplicativo, siga os passos abaixo:
-
-1. Faça um fork do repositório
-2. Clone o fork para o seu ambiente local
-3. Crie uma branch para suas alterações (`git checkout -b nome-da-sua-branch`)
-4. Faça commit das suas alterações (`git commit -m 'Descrição das alterações'`)
-5. Faça push para a branch (`git push origin nome-da-sua-branch`)
-6. Abra um pull request no repositório original
 
 ## Integrantes do Grupo
 
