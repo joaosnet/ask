@@ -26,6 +26,32 @@ Melhorar a mobilidade de pessoas com deficiência visual no meio urbano.
 2. Oferecer informações sobre a condição das vias para traçar rotas ideais.
 3. Garantir acessibilidade completa por meio da compatibilidade com leitores de tela.
 
+## Integrantes do Grupo
+
+![Integrantes](/images/integrantes.png)
+
+_Figure 1: Integrantes_
+
+## Slides do Projeto
+
+### Problema e Desafio Estratégico
+
+![Problema](/images/problema.png)
+
+_Figure 2: Problema em 1 slide_
+
+### Solução e Proposta de Valor
+
+![Solução](/images/solucao.png)
+
+_Figure 3: Solução em 1 slide_
+
+### Protótipo
+
+![Protótipo](/images/prototipo.png)
+
+_Figure 4: Protótipo em 1 slide_
+
 ## Como executar o Protótipo do Aplicativo
 
 ### No windows
@@ -122,28 +148,3 @@ git tag -a v1.0 -m "Versão 1.0"
 git push origin v1.0
 ```
 
-## Integrantes do Grupo
-
-![Integrantes](/images/integrantes.png)
-
-_Figure 1: Integrantes_
-
-## Slides do Projeto
-
-### Problema e Desafio Estratégico
-
-![Problema](/images/problema.png)
-
-_Figure 2: Problema em 1 slide_
-
-### Solução e Proposta de Valor
-
-![Solução](/images/solucao.png)
-
-_Figure 3: Solução em 1 slide_
-
-### Protótipo
-
-![Protótipo](/images/prototipo.png)
-
-_Figure 4: Protótipo em 1 slide_
