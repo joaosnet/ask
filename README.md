@@ -7,15 +7,25 @@ O projeto InclusiveWay da organização ASK visa melhorar a mobilidade de pessoa
 # Índice
 
 *[Descrição do Projeto](#descrição-do-projeto)
+
 *[Telas do Aplicativo](#telas-do-aplicativo)
+
 *[Arquitetura do Aplicativo](#arquitetura-do-aplicativo)
+
 *[Objetivos](#objetivos)
+
 *[Integrantes do Grupo](#integrantes-do-grupo)
+
 *[Slides do Projeto](#slides-do-projeto)
+
 *[Como executar o Protótipo do Aplicativo](#como-executar-o-protótipo-do-aplicativo)
+
 *[Como Contribuir](#como-contribuir)
+
 *[Para construir uma versão no Buildozer](#para-construir-uma-versão-no-buildozer)
+
 *[Para colocar em segundo plano no linux](#para-colocar-em-segundo-plano-no-linux)
+
 *[Para atualizar o git](#para-atualizar-o-git)
 
 
