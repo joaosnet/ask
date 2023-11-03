@@ -1,8 +1,8 @@
-# Projeto ASK - Aplicativo para Melhorar a Mobilidade de Pessoas com Deficiência
+# InclusiveWay - Aplicativo para Melhorar a Mobilidade de Pessoas com Deficiência
 
 ## Descrição do Projeto
 
-O projeto ASK visa melhorar a mobilidade de pessoas com deficiência visual no meio urbano, proporcionando uma solução inovadora para a locomoção em vias públicas. Com cerca de 250 milhões de pessoas com deficiência visual no mundo, e aproximadamente 45 milhões no Brasil, o aplicativo busca facilitar a vida dessas pessoas, oferecendo informações em tempo real sobre as condições das vias e alertas sobre obstáculos.
+O projeto InclusiveWay da organização ASK visa melhorar a mobilidade de pessoas com deficiência visual no meio urbano, proporcionando uma solução inovadora para a locomoção em vias públicas. Com cerca de 250 milhões de pessoas com deficiência visual no mundo, e aproximadamente 45 milhões no Brasil, o aplicativo busca facilitar a vida dessas pessoas, oferecendo informações em tempo real sobre as condições das vias e alertas sobre obstáculos.
 
 ## Telas do Aplicativo
 ![Telas](/icones/Telas.png)
@@ -29,7 +29,7 @@ Melhorar a mobilidade de pessoas com deficiência visual no meio urbano.
 ## Como executar o Protótipo do Aplicativo
 
 ### No windows
-1. Instale o anaconda
+1. Instale o [anaconda](https://docs.anaconda.com/free/anaconda/install/windows.html)
 2. Crie um ambiente virtual
 ```bash
 conda create -n ask python=3.11.4
@@ -48,7 +48,7 @@ python main.py
 ```
 
 ### No Linux
-1. Instale o anaconda
+1. Instale o [anaconda](https://www.digitalocean.com/community/tutorials/how-to-install-the-anaconda-python-distribution-on-ubuntu-20-04-pt)
 2. Crie um ambiente virtual
 ```bash
 conda create -n ask python=3.11.4
