@@ -1,0 +1,9 @@
+## Para o Buildozer
+buildozer android debug deploy run
+buildozer android logcat > log.txt
+buildozer android clean
+## Para o git
+git pull
+git add .
+git commit -m "Atualizando"
+git push
