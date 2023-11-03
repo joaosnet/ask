@@ -1,0 +1,15 @@
+Primeiro configurar rdp nos grupos de segurança
+sudo su
+passwd ubuntu
+sudo apt update && sudo apt upgrade -y
+sudo apt install ubuntu-desktop
+sudo apt install xrdp -y
+sudo systemctl enable --now xrdp
+sudo apt install lightdm
+# seta para baixo e seleciona lightdm apertar enter
+sudo service lightdm start
+cat /etc/X11/default-display-manager
+sudo ufw allow from any to any port 3389 proto tcp
+sudo add-apt-repository ppa:gnome3-team/gnome3
+sudo apt-get install gnome-shell ubuntu-gnome-desktop
+Verificar a liberação graficamente na Amazon EC2 e testar!
