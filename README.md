@@ -1,5 +1,7 @@
 # InclusiveWay - Aplicativo para Melhorar a Mobilidade de Pessoas com Deficiência
 
+<img align="right" height="256" src="https://github.com/joaosnet/ask/blob/main/images/1_APP.png"/>
+
 ## Descrição do Projeto
 
 O projeto InclusiveWay da organização ASK visa melhorar a mobilidade de pessoas com deficiência visual no meio urbano, proporcionando uma solução inovadora para a locomoção em vias públicas. Com cerca de 250 milhões de pessoas com deficiência visual no mundo, e aproximadamente 45 milhões no Brasil, o aplicativo busca facilitar a vida dessas pessoas, oferecendo informações em tempo real sobre as condições das vias e alertas sobre obstáculos.
