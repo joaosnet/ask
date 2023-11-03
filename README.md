@@ -28,10 +28,87 @@ Melhorar a mobilidade de pessoas com deficiência visual no meio urbano.
 
 ## Como executar o Protótipo do Aplicativo
 
-1. Faça um clone do repositório e instale o python 3.11.4 se necessário(`https://www.python.org/downloads/`)
-2. Crie seu ambiente virtual (`py -m venv venv`) e ative o ambiente virtual criado
-3. Instale os pacotes necessários (`py -m pip install -r requirements.txt`)
-4. Execute o aplicativo (`py main.py`)
+### No windows
+1. Instale o anaconda
+2. Crie um ambiente virtual
+```bash
+conda create -n ask python=3.11.4
+```
+3. Ative o ambiente virtual
+```bash
+conda activate ask
+```
+4. Instale as dependências
+```bash
+pip install -r requirements_windows.txt
+```
+5. Execute o aplicativo
+```bash
+python main.py
+```
+
+### No Linux
+1. Instale o anaconda
+2. Crie um ambiente virtual
+```bash
+conda create -n ask python=3.11.4
+```
+3. Ative o ambiente virtual
+```bash
+conda activate ask
+```
+4. Instale as dependências
+```bash
+pip install -r requirements_linux.txt
+```
+5. Execute o aplicativo
+```bash
+python main.py
+```
+
+## Para construir uma versão no Buildozer
+- Modifique o arquivo (`buildozer.spec`)
+### Para ver o erros
+```bash
+buildozer android debug deploy run logcat
+```
+
+### Para ver os erros e o log em .txt
+```bash
+buildozer android debug deploy run logcat > log.txt
+```
+### Para construir apenas o arquivo .apk
+```bash
+buildozer -v android debug
+buildozer android logcat > log.txt
+```
+
+### Sempre limpar o buildozer antes de fazer uma nova build
+```bash
+buildozer android clean
+```
+# Para o git
+## Fazendo alterações no git
+```bash
+git pull
+git add .
+git commit -m "Atualizando"
+git push
+```
+## Adicionando uma nova realease apenas do arquivo .apk gerado pelo buildozer no github
+```bash
+git tag -a v1.0 -m "Versão 1.0"
+git push origin v1.0
+```
+
+# Para colocar em segundo plano no linux
+```bash
+nohup buildozer -v android debug > log.txt &
+```
+## Para ver o log
+```bash
+tail -f log.txt
+```
 
 ## Como Contribuir
 
