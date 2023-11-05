@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Requisitos do aplicativo
 # separados por vírgula, por exemplo, requirements = sqlite3,kivy
-requirements = kivy==2.2.1, kivymd==1.1.1, requests==2.31.0, mapview==1.0.6
+requirements = kivy==master, https://github.com/kivymd/KivyMD/archive/master.zip, requests==2.31.0, mapview==1.0.6
 # (str) Pastas de origem personalizadas para requisitos
 # Define a origem personalizada para quaisquer requisitos com receitas
 # requirements.source.kivy = ../../kivy
@@ -63,10 +63,10 @@ orientation = portrait
 # author = © Informações de direitos autorais
 
 # altera a versão principal do python usada pelo aplicativo
-osx.python_version = 3.11.4
+osx.python_version = 3.10
 
 # versão do Kivy a ser usada
-osx.kivy_version = 2.2.1
+osx.kivy_version = 2.3
 
 #
 # Específico do Android
