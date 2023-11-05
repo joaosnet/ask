@@ -10,10 +10,10 @@ from kivymd.uix.menu import MDDropdownMenu
 
 
 class HotReload(MDApp):
-    KV_FILES = ['kv/perfilpage.kv']
+    KV_FILES = ['kv/perfilpage.kv','kv/loginpage.kv','kv/homepage.kv']
     DEBUG = True
     def build_app(self):
-        return Builder.load_file('kv/perfilpage.kv')
+        return Builder.load_file('kv/loginpage.kv')
 
 if __name__ == '__main__':
     HotReload().run()
