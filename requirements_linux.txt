@@ -10,10 +10,10 @@ docutils==0.20.1
 filelock==3.13.1
 idna==3.4
 Jinja2==3.1.2
-Kivy @ https://github.com/kivy/kivy/archive/master.zip
+Kivy @ https://github.com/kivy/kivy/archive/master.zip#sha256=21834d9b149310a3cb65cc5b2784b77f9d4f658cafdec45a670d0419ee9358ff
 Kivy-Garden==0.1.5
 kivy-garden.mapview==1.0.6
-kivymd @ https://github.com/kivymd/KivyMD/archive/master.zip
+kivymd @ https://github.com/kivymd/KivyMD/archive/master.zip#sha256=e55b90474afa09a6c971f4ef1cdf07a4e028d7e565d8165179b7fc9b8f6b4d1b
 mapview==1.0.6
 MarkupSafe==2.1.3
 materialyoucolor==1.2.0
