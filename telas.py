@@ -11,7 +11,10 @@ class PerfilPage(Screen): # classe da tela PerfilPage
 class LoadingPage(Screen): # classe da tela LoadingPage
     pass
 
-class MapaPage(Screen): # classe da tela MapaPage
+class MapaPage1(Screen): # classe da tela MapaPage
+    pass
+
+class MapaPage2(Screen): # classe da tela MapaPage
     pass
 
 class StartPage(Screen): # classe da tela StartPage

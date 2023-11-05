@@ -1,0 +1,59 @@
+<MapaPage2>:
+    MDBackdrop:
+        id: backdrop
+        back_layer_color: "#EDF1FF"
+        # voltando para tela anterior da homepage
+        left_action_items: [['icones/Expand_left@3x.png', lambda x: app.mudar_tela('homepage')]]
+        close_icon: 'icones/Expand_left@3x.png'
+        header: True
+        header_text: "Navegar"
+        # centralizando o header
+
+        MDBackdropBackLayer:                      
+            orientation: "vertical"
+            # alterando o tamanho do Back layer
+            padding: ('100dp', '0dp', '100dp', '700dp')
+            # Campos de pesquisa de origem e destino
+            MDTextField:
+                hint_text: "Partida"
+                helper_text: "Informe seu local de Partida"
+                helper_text_mode: "on_focus"
+                icon_right: "map-marker"
+                icon_right_color: app.theme_cls.primary_color
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                size_hint_x: None
+                width: 300
+            MDTextField:
+                hint_text: "Destino"
+                helper_text: "Informe seu destino"
+                helper_text_mode: "on_focus"
+                icon_right: "map-marker"
+                icon_right_color: app.theme_cls.primary_color
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                size_hint_x: None
+                width: 300
+
+        MDBackdropFrontLayer:
+            orientation: 'vertical'
+            MDFloatLayout:
+                md_bg_color: "#EDF1FF"
+                # Visualização do Mapa
+                MapView:
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                    # localização do mapa em tempo real
+                    lat: -1.474081251977831
+                    lon: -48.45160647253775
+                    zoom: 1000
+                    # Verifica a localização atual quando o mapa é carregado
+                    # on_lat:
+                    #     print(self.lat)
+                    # on_lon:
+                    #     print(self.lon)
+                    MapMarkerPopup:
+                        source: 'icones/Marker.png'
+                        lat: -1.474081251977831
+                        lon: -48.45160647253775
+                        Button:
+                            on_release: print("Hello World")
+
+# MapaPage2:

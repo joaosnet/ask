@@ -25,11 +25,9 @@ class MainApp(MDApp):
         self.sm.add_widget(TutorialPage2(name='tutorialpage2'))
         self.sm.add_widget(TutorialPage3(name='tutorialpage3'))
         self.sm.add_widget(StartPage(name='startpage'))
-        self.sm.add_widget(HomePage(name='homepage'))
-        self.sm.add_widget(LoadingPage(name='loadingpage'))
-        self.sm.add_widget(MapaPage(name='mapapage'))
         self.sm.add_widget(CadastroPage(name='cadastropage'))
         self.sm.add_widget(LoginPage(name='loginpage'))
+        self.sm.add_widget(HomePage(name='homepage'))
         return self.sm
     
     def on_start(self):
@@ -183,6 +181,10 @@ class MainApp(MDApp):
     def menu_callback(self, text_item):
         self.root.get_screen("homepage").ids["perfilpage"].ids["tipo_deficiencia"].text = text_item
         self.menu.dismiss()
+
+    # Funcao para abrir a nav_drawer da homepage
+    def open_nav_drawer(self):
+        self.root.get_screen("homepage").ids["nav_drawer"].set_state("open")
 
     # Funcao para mudar de tela
     def mudar_tela(self, nome_tela):
