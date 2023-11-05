@@ -34,7 +34,7 @@
         # Botão de Texto "Mudar foto de perfil"
         MDFlatButton:
             text: "[color=#8C52FF]Mudar foto de perfil[/color]"
-            font_size: 12
+            font_size: '16sp'
             markup: True
             pos_hint: {"center_x": .5, "center_y": .5}
 
@@ -138,7 +138,7 @@
         # Botão de Texto "Editar suas informações" em roxo
         MDFlatButton:
             text: "[color=#8C52FF]Editar suas informações[/color]"
-            font_size: 12
+            font_size: '16sp'
             markup: True
             pos_hint: {"center_x": .5, "center_y": .5}
             on_release: app.firebase.alterar_perfil(nome_foto_perfil.text, nome.text, tipo_deficiencia.text, telefone.text, localizacao.text)
