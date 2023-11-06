@@ -85,7 +85,7 @@ _Figure 4: Protótipo em 1 slide_
 1. Instale o [anaconda](https://docs.anaconda.com/free/anaconda/install/windows.html)
 2. Crie um ambiente virtual
 ```bash
-conda create -n ask python=3.11.4
+conda create -n ask python=3.10
 ```
 3. Ative o ambiente virtual
 ```bash
@@ -104,7 +104,7 @@ python main.py
 1. Instale o [anaconda](https://www.digitalocean.com/community/tutorials/how-to-install-the-anaconda-python-distribution-on-ubuntu-20-04-pt)
 2. Crie um ambiente virtual
 ```bash
-conda create -n ask python=3.11.4
+conda create -n ask python=3.10
 ```
 3. Ative o ambiente virtual
 ```bash
