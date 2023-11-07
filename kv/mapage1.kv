@@ -9,12 +9,11 @@
             lon: -48.45160647253775
             zoom: 5
             double_tap_zoom: True
-            on_zoom:
-                self.zoom = 10 if self.zoom < 10 else self.zoom
+           # on_zoom:
+                #self.zoom = 10 if self.zoom < 10 else self.zoom
             GpsBlinker:
                 id: blinker
-            
-                    
+                      
         # Botao de configuração
         MDIconButton:
             pos_hint: {'center_x': 0.1,'center_y': 0.93}
@@ -27,5 +26,13 @@
             data: {'Perigoso': 'close-octagon', 'Atenção': 'alert-circle', 'Temporário': 'clock-fast',}
             root_button_anim: True
             hint_animation: True
+
+        MDLabel:
+            id: erro
+            text: ''
+            pos_hint: {'center_x': 1,'center_y': 0.5}
+            font_style: 'H5'
+            theme_text_color: 'Custom'
+            text_color: 0, 0, 0, 1
 
 # MapaPage1:

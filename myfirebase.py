@@ -41,7 +41,7 @@ class MyFirebase():
         requisicao_dic = requisicao.json()
 
         if requisicao.ok:
-            print(requisicao_dic)
+            # print(requisicao_dic)
             # requisicao_dic["idToken"]
             # requisicao_dic["localId"] -> id do usuario
             # requisicao_dic["refreshToken"] -> token que matém o usuário logado
@@ -115,7 +115,7 @@ class MyFirebase():
         requisicao_dic = requisicao.json()
 
         if requisicao.ok:
-            print(requisicao_dic)
+            # print(requisicao_dic)
             # requisicao_dic["idToken"]
             # requisicao_dic["localId"] -> id do usuario
             # requisicao_dic["refreshToken"] -> token que matém o usuário logado

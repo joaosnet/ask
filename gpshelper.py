@@ -18,21 +18,24 @@ class GpsHelper():
         # Start blinking the GpsBlinker
         gps_blinker.blink()
 
+        mens_erro = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["erro"]
         # Request permissions on Android
         if platform == 'android':
             from android.permissions import Permission, request_permissions
             def callback(permission, results):
                 if all([res for res in results]):
-                    print("Got all permissions")
+                    mens_erro.text = "Permissão de GPS concedida"
                     from plyer import gps
                     gps.configure(on_location=self.update_blinker_position,
                                   on_status=self.on_auth_status)
                     gps.start(minTime=1000, minDistance=0)
                 else:
-                    print("Did not get all permissions")
+                    mens_erro.text = "Permissão de GPS negada"  
 
             request_permissions([Permission.ACCESS_COARSE_LOCATION,
                                  Permission.ACCESS_FINE_LOCATION], callback)
+            
+            
 
         # Configure GPS
         if platform == 'ios':
@@ -48,7 +51,7 @@ class GpsHelper():
         """
         my_lat = kwargs['lat']
         my_lon = kwargs['lon']
-        print("GPS POSITION", my_lat, my_lon)
+        MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["erro"].text = "GPS POSITION", my_lat, my_lon
         # Update GpsBlinker position
         gps_blinker = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["blinker"]
         gps_blinker.lat = my_lat
