@@ -33,12 +33,14 @@
                 fill_color_normal: "#EDF1FF"
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                 radius: [5, 5, 5, 5]
+                size_hint_y: None
             # Botão de Texto "Mudar foto de perfil"
             MDFlatButton:
                 text: "[color=#8C52FF]Mudar foto de perfil[/color]"
                 font_size: '16sp'
                 markup: True
                 pos_hint: {"center_x": .5, "center_y": .5}
+                size_hint_y: None
 
             # Id do Usuário
             MDLabel:
@@ -49,6 +51,7 @@
                 text_color: 0, 0, 0, 1
                 pos_hint: {'center_x': 0.5,'center_y': 0.5}
                 halign: "center"
+                size_hint_y: None
 
             # Data de Cadastro
             MDLabel:
@@ -59,6 +62,7 @@
                 text_color: 0, 0, 0, 1
                 pos_hint: {'center_x': 0.5,'center_y': 0.5}
                 halign: "center"
+                size_hint_y: None
 
 
             # Campo de texto com Nome
@@ -72,6 +76,7 @@
                 fill_color_normal: "#EDF1FF"
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                 radius: [5, 5, 5, 5]
+                size_hint_y: None
 
             # Campo de texto com Email
             MDTextField:
@@ -84,6 +89,7 @@
                 fill_color_normal: "#EDF1FF"
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                 radius: [5, 5, 5, 5]
+                size_hint_y: None
 
             # Telefone do Usuário
             MDTextField:
@@ -96,6 +102,7 @@
                 fill_color_normal: "#EDF1FF"
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                 radius: [5, 5, 5, 5]
+                size_hint_y: None
 
             # Localização do Usuário
             MDTextField:
@@ -108,6 +115,7 @@
                 fill_color_normal: "#EDF1FF"
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                 radius: [5, 5, 5, 5]
+                size_hint_y: None
             
             # Caixa de texto que contem uma Lista de tipos de deficiência
             MDTextField:
@@ -125,7 +133,6 @@
                 radius: [5, 5, 5, 5]
                 # Lista de tipos de deficiência do MenuTipoDeficiencia
                 on_focus: if self.focus: app.menu.open()
-                readonly: True
 
 
             # Botão de Texto "Editar suas informações" em roxo
@@ -135,7 +142,7 @@
                 markup: True
                 pos_hint: {"center_x": .5, "center_y": .5}
                 on_release: app.firebase.alterar_perfil(nome_foto_perfil.text, nome.text, tipo_deficiencia.text, telefone.text, localizacao.text)
-
+                size_hint_y: None
             # Mensagem
             MDLabel:
                 id: mensagem
@@ -145,6 +152,7 @@
                 text_color: 0, 0, 0, 1
                 pos_hint: {'center_x': 0.5,'center_y': 0.5}
                 halign: "center"
+                size_hint_y: None
                 
             # Botão de logout
             MDRaisedButton:
@@ -154,6 +162,7 @@
                 border_radius: [4, 4, 4, 4]
                 size: 36, 10
                 md_bg_color: "#8C52FF"
-                on_release: app.firebase.logout()  
+                on_release: app.firebase.logout()
+                size_hint_y: None  
           
 # PerfilPage:          
