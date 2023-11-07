@@ -6,7 +6,7 @@
 # Search for Git (git)
 #  -> found at /usr/bin/git
 # Search for Cython (cython)
-#  -> found at /home/ubuntu/.local/bin/cython
+#  -> found at /home/ubuntu/anaconda3/bin/cython
 # Search for Java compiler (javac)
 #  -> found at /usr/lib/jvm/java-17-openjdk-amd64/bin/javac
 # Search for Java keytool (keytool)
@@ -163,9 +163,9 @@ options:
 [1m[INFO][0m:    Found NDK version 25b
 [1m[INFO][0m:    Getting NDK API version (i.e. minimum supported API) from user argument
 [1m[INFO][0m:    ccache is missing, the build will not be optimized in the future.
-[1m[90m[DEBUG][39m[0m:   All possible dists: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, mapview, requests, https://github.com/kivymd/kivymd/archive/master.zip, urllib3, chardet, certifi, idna)>]
-[1m[90m[DEBUG][39m[0m:   Dist matching name and arch: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, mapview, requests, https://github.com/kivymd/kivymd/archive/master.zip, urllib3, chardet, certifi, idna)>]
-[1m[90m[DEBUG][39m[0m:   dist <Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, mapview, requests, https://github.com/kivymd/kivymd/archive/master.zip, urllib3, chardet, certifi, idna)> missing recipe https://github.com/kivymd/KivyMD/archive/master.zip
+[1m[90m[DEBUG][39m[0m:   All possible dists: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, chardet, idna, mapview, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, certifi, requests)>]
+[1m[90m[DEBUG][39m[0m:   Dist matching name and arch: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, chardet, idna, mapview, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, certifi, requests)>]
+[1m[90m[DEBUG][39m[0m:   dist <Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, chardet, idna, mapview, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, certifi, requests)> missing recipe https://github.com/kivymd/KivyMD/archive/master.zip
 [1m[90m[DEBUG][39m[0m:   Dist matching ndk_api and recipe: []
 [1m[INFO][0m:    No existing dists meet the given requirements!
 [1m[90m[DEBUG][39m[0m:   Remove directory and subdirectory /home/ubuntu/ask/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/dists/inclusiveway
@@ -175,7 +175,7 @@ options:
 [1m[INFO][0m:    [1m[32m# Creating dist with sdl2 bootstrap[0m[39m
 [1m[INFO][0m:    [1m[94mDist will have name inclusiveway and requirements (kivy, https://github.com/kivymd/KivyMD/archive/master.zip, requests, mapview)[0m
 [1m[INFO][0m:    Dist contains the following requirements as recipes: ['hostpython3', 'libffi', 'openssl', 'sdl2_image', 'sdl2_mixer', 'sdl2_ttf', 'sqlite3', 'python3', 'sdl2', 'setuptools', 'six', 'pyjnius', 'android', 'kivy']
-[1m[INFO][0m:    Dist will also contain modules (idna, requests, certifi, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, chardet, mapview) installed from pip
+[1m[INFO][0m:    Dist will also contain modules (requests, certifi, chardet, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, idna, mapview) installed from pip
 [1m[INFO][0m:    Dist will be build in mode debug
 [1m[INFO][0m:    [36m-> directory context /home/ubuntu/ask/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/bootstrap_builds/sdl2[39m
 [1m[INFO][0m:    [36m<- directory context /home/ubuntu/ask/.buildozer/android/platform/python-for-android[39m
@@ -625,7 +625,7 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[INFO][0m:    [1m[32mBuilding openssl for arm64-v8a[0m[39m
 [1m[INFO][0m:    openssl said it is already built, skipping
 stty: 'standard input': Inappropriate ioctl for device
-[1m[90m[DEBUG][39m[0m:   [90m->[0m running cp /home/ubuntu/ask/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/openssl/arm64-v8a__ndk_target_21/openssl1.1/libssl1.1.so /home/ubuntu/ask/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/openssl/arm64-v8a__ndk_target_21/openssl1.1/libcrypto1.1.so /home/ubuntu/ask/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/libs_collections/inclusiveway/arm64-v8a[0m
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running cp /home/ubuntu/ask/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/openssl/arm64-v8a__ndk_target_21/openssl1.1/libcrypto1.1.so /home/ubuntu/ask/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/openssl/arm64-v8a__ndk_target_21/openssl1.1/libssl1.1.so /home/ubuntu/ask/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/libs_collections/inclusiveway/arm64-v8a[0m
 [1m[INFO][0m:    [1m[32mBuilding sdl2_image for arm64-v8a[0m[39m
 [1m[INFO][0m:    [1m[32mBuilding sdl2_mixer for arm64-v8a[0m[39m
 [1m[INFO][0m:    [1m[32mBuilding sdl2_ttf for arm64-v8a[0m[39m
@@ -712,7 +712,7 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[90m[DEBUG][39m[0m:   	  Running command Getting requirements to build wheel
 [1m[90m[DEBUG][39m[0m:   	  Ignoring "sys._home = value" override
 [1m[90m[DEBUG][39m[0m:   	  fatal: not a git repository (or any of the parent directories): .git
-[1m[90m[DEBUG][39m[0m:   	  /tmp/pip-build-env-bprctvv_/overlay/lib/python3.10/site-packages/setuptools/config/setupcfg.py:293: _DeprecatedConfig: Deprecated config in `setup.cfg`
+[1m[90m[DEBUG][39m[0m:   	  /tmp/pip-build-env-efgqq_zw/overlay/lib/python3.10/site-packages/setuptools/config/setupcfg.py:293: _DeprecatedConfig: Deprecated config in `setup.cfg`
 [1m[90m[DEBUG][39m[0m:   	  !!
 [1m[90m[DEBUG][39m[0m:   	
 [1m[90m[DEBUG][39m[0m:   	          ********************************************************************************
@@ -741,7 +741,7 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[90m[DEBUG][39m[0m:   	  Running command Preparing metadata (pyproject.toml)
 [1m[90m[DEBUG][39m[0m:   	  Ignoring "sys._home = value" override
 [1m[90m[DEBUG][39m[0m:   	  fatal: not a git repository (or any of the parent directories): .git
-[1m[90m[DEBUG][39m[0m:   	  /tmp/pip-build-env-bprctvv_/overlay/lib/python3.10/site-packages/setuptools/config/setupcfg.py:293: _DeprecatedConfig: Deprecated config in `setup.cfg`
+[1m[90m[DEBUG][39m[0m:   	  /tmp/pip-build-env-efgqq_zw/overlay/lib/python3.10/site-packages/setuptools/config/setupcfg.py:293: _DeprecatedConfig: Deprecated config in `setup.cfg`
 [1m[90m[DEBUG][39m[0m:   	  !!
 [1m[90m[DEBUG][39m[0m:   	
 [1m[90m[DEBUG][39m[0m:   	          ********************************************************************************
@@ -756,17 +756,17 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[90m[DEBUG][39m[0m:   	  !!
 [1m[90m[DEBUG][39m[0m:   	    parsed = self.parsers.get(option_name, lambda x: x)(value)
 [1m[90m[DEBUG][39m[0m:   	  running dist_info
-[1m[90m[DEBUG][39m[0m:   	  creating /tmp/pip-modern-metadata-g1fo9_jj/kivymd.egg-info
-[1m[90m[DEBUG][39m[0m:   	  writing /tmp/pip-modern-metadata-g1fo9_jj/kivymd.egg-info/PKG-INFO
-[1m[90m[DEBUG][39m[0m:   	  writing dependency_links to /tmp/pip-modern-metadata-g1fo9_jj/kivymd.egg-info/dependency_links.txt
-[1m[90m[DEBUG][39m[0m:   	  writing entry points to /tmp/pip-modern-metadata-g1fo9_jj/kivymd.egg-info/entry_points.txt
-[1m[90m[DEBUG][39m[0m:   	  writing requirements to /tmp/pip-modern-metadata-g1fo9_jj/kivymd.egg-info/requires.txt
-[1m[90m[DEBUG][39m[0m:   	  writing top-level names to /tmp/pip-modern-metadata-g1fo9_jj/kivymd.egg-info/top_level.txt
-[1m[90m[DEBUG][39m[0m:   	  writing manifest file '/tmp/pip-modern-metadata-g1fo9_jj/kivymd.egg-info/SOURCES.txt'
-[1m[90m[DEBUG][39m[0m:   	  reading manifest file '/tmp/pip-modern-metadata-g1fo9_jj/kivymd.egg-info/SOURCES.txt'
+[1m[90m[DEBUG][39m[0m:   	  creating /tmp/pip-modern-metadata-mvofedvb/kivymd.egg-info
+[1m[90m[DEBUG][39m[0m:   	  writing /tmp/pip-modern-metadata-mvofedvb/kivymd.egg-info/PKG-INFO
+[1m[90m[DEBUG][39m[0m:   	  writing dependency_links to /tmp/pip-modern-metadata-mvofedvb/kivymd.egg-info/dependency_links.txt
+[1m[90m[DEBUG][39m[0m:   	  writing entry points to /tmp/pip-modern-metadata-mvofedvb/kivymd.egg-info/entry_points.txt
+[1m[90m[DEBUG][39m[0m:   	  writing requirements to /tmp/pip-modern-metadata-mvofedvb/kivymd.egg-info/requires.txt
+[1m[90m[DEBUG][39m[0m:   	  writing top-level names to /tmp/pip-modern-metadata-mvofedvb/kivymd.egg-info/top_level.txt
+[1m[90m[DEBUG][39m[0m:   	  writing manifest file '/tmp/pip-modern-metadata-mvofedvb/kivymd.egg-info/SOURCES.txt'
+[1m[90m[DEBUG][39m[0m:   	  reading manifest file '/tmp/pip-modern-metadata-mvofedvb/kivymd.egg-info/SOURCES.txt'
 [1m[90m[DEBUG][39m[0m:   	  adding license file 'LICENSE'
-[1m[90m[DEBUG][39m[0m:   	  writing manifest file '/tmp/pip-modern-metadata-g1fo9_jj/kivymd.egg-info/SOURCES.txt'
-[1m[90m[DEBUG][39m[0m:   	  creating '/tmp/pip-modern-metadata-g1fo9_jj/kivymd-1.2.0.dev0.dist-info'
+[1m[90m[DEBUG][39m[0m:   	  writing manifest file '/tmp/pip-modern-metadata-mvofedvb/kivymd.egg-info/SOURCES.txt'
+[1m[90m[DEBUG][39m[0m:   	  creating '/tmp/pip-modern-metadata-mvofedvb/kivymd-1.2.0.dev0.dist-info'
 [1m[90m[DEBUG][39m[0m:   	  Preparing metadata (pyproject.toml) ... [?25l[?25hdone
 [1m[90m[DEBUG][39m[0m:   	Collecting mapview==1.0.6 (from -r requirements.txt (line 2))
 [1m[90m[DEBUG][39m[0m:   	  Using cached mapview-1.0.6-py3-none-any.whl (32 kB)
@@ -774,7 +774,7 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[90m[DEBUG][39m[0m:   	  Running command Building wheel for kivymd (pyproject.toml)
 [1m[90m[DEBUG][39m[0m:   	  Ignoring "sys._home = value" override
 [1m[90m[DEBUG][39m[0m:   	  fatal: not a git repository (or any of the parent directories): .git
-[1m[90m[DEBUG][39m[0m:   	  /tmp/pip-build-env-bprctvv_/overlay/lib/python3.10/site-packages/setuptools/config/setupcfg.py:293: _DeprecatedConfig: Deprecated config in `setup.cfg`
+[1m[90m[DEBUG][39m[0m:   	  /tmp/pip-build-env-efgqq_zw/overlay/lib/python3.10/site-packages/setuptools/config/setupcfg.py:293: _DeprecatedConfig: Deprecated config in `setup.cfg`
 [1m[90m[DEBUG][39m[0m:   	  !!
 [1m[90m[DEBUG][39m[0m:   	
 [1m[90m[DEBUG][39m[0m:   	          ********************************************************************************
@@ -1395,7 +1395,7 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[90m[DEBUG][39m[0m:   	  Copying kivymd.egg-info to build/bdist.linux-x86_64/wheel/kivymd-1.2.0.dev0-py3.10.egg-info
 [1m[90m[DEBUG][39m[0m:   	  running install_scripts
 [1m[90m[DEBUG][39m[0m:   	  creating build/bdist.linux-x86_64/wheel/kivymd-1.2.0.dev0.dist-info/WHEEL
-[1m[90m[DEBUG][39m[0m:   	  creating '/tmp/pip-wheel-nya3vr8u/.tmp-z1oeg5wg/kivymd-1.2.0.dev0-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+[1m[90m[DEBUG][39m[0m:   	  creating '/tmp/pip-wheel-y83xyd9_/.tmp-6dke3egy/kivymd-1.2.0.dev0-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
 [1m[90m[DEBUG][39m[0m:   	  adding 'kivymd/__init__.py'
 [1m[90m[DEBUG][39m[0m:   	  adding 'kivymd/_version.py'
 [1m[90m[DEBUG][39m[0m:   	  adding 'kivymd/app.py'
@@ -1627,14 +1627,14 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[90m[DEBUG][39m[0m:   	  adding 'kivymd-1.2.0.dev0.dist-info/RECORD'
 [1m[90m[DEBUG][39m[0m:   	  removing build/bdist.linux-x86_64/wheel
 [1m[90m[DEBUG][39m[0m:   	  Building wheel for kivymd (pyproject.toml) ... [?25l[?25hdone
-[1m[90m[DEBUG][39m[0m:   	  Created wheel for kivymd: filename=kivymd-1.2.0.dev0-py3-none-any.whl size=2235557 sha256=750e81ad8ffe72fdf97d2cb4eaf5dfc1f082ec22b61d3e8924ab36f5b79c6060
-[1m[90m[DEBUG][39m[0m:   	  Stored in directory: /tmp/pip-ephem-wheel-cache-rxzs0zvf/wheels/58/95/3f/e6be54d628ef86f1b83e6b48cf56c414954730ba201eff0546
+[1m[90m[DEBUG][39m[0m:   	  Created wheel for kivymd: filename=kivymd-1.2.0.dev0-py3-none-any.whl size=2235557 sha256=9aed6f5c1bf199fc1b766d9b96a871b9925bbf626466110c6f2894c288428e4b
+[1m[90m[DEBUG][39m[0m:   	  Stored in directory: /tmp/pip-ephem-wheel-cache-ijrc001y/wheels/58/95/3f/e6be54d628ef86f1b83e6b48cf56c414954730ba201eff0546
 [1m[90m[DEBUG][39m[0m:   	Successfully built kivymd
 [1m[90m[DEBUG][39m[0m:   	Installing collected packages: mapview, kivymd
-[1m[90m[DEBUG][39m[0m:   	  Creating /tmp/pip-target-3i_1a7nc/bin
-[1m[90m[DEBUG][39m[0m:   	  changing mode of /tmp/pip-target-3i_1a7nc/bin/kivymd.add_view to 775
-[1m[90m[DEBUG][39m[0m:   	  changing mode of /tmp/pip-target-3i_1a7nc/bin/kivymd.create_project to 775
-[1m[90m[DEBUG][39m[0m:   	  changing mode of /tmp/pip-target-3i_1a7nc/bin/kivymd.make_release to 775
+[1m[90m[DEBUG][39m[0m:   	  Creating /tmp/pip-target-jmi9v0zc/bin
+[1m[90m[DEBUG][39m[0m:   	  changing mode of /tmp/pip-target-jmi9v0zc/bin/kivymd.add_view to 775
+[1m[90m[DEBUG][39m[0m:   	  changing mode of /tmp/pip-target-jmi9v0zc/bin/kivymd.create_project to 775
+[1m[90m[DEBUG][39m[0m:   	  changing mode of /tmp/pip-target-jmi9v0zc/bin/kivymd.make_release to 775
 [1m[90m[DEBUG][39m[0m:   	Successfully installed kivymd-1.2.0.dev0 mapview-1.0.6
 [1m[90m[DEBUG][39m[0m:   	[33mWARNING: Target directory /home/ubuntu/ask/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/inclusiveway/armeabi-v7a/kivymd already exists. Specify --upgrade to force replacement.[0m[33m
 [1m[90m[DEBUG][39m[0m:   	[0m[33mWARNING: Target directory /home/ubuntu/ask/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/inclusiveway/armeabi-v7a/mapview-1.0.6.dist-info already exists. Specify --upgrade to force replacement.[0m[33m
@@ -2107,7 +2107,7 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[90m[DEBUG][39m[0m:   	  Running command Getting requirements to build wheel
 [1m[90m[DEBUG][39m[0m:   	  Ignoring "sys._home = value" override
 [1m[90m[DEBUG][39m[0m:   	  fatal: not a git repository (or any of the parent directories): .git
-[1m[90m[DEBUG][39m[0m:   	  /tmp/pip-build-env-i07fz0_g/overlay/lib/python3.10/site-packages/setuptools/config/setupcfg.py:293: _DeprecatedConfig: Deprecated config in `setup.cfg`
+[1m[90m[DEBUG][39m[0m:   	  /tmp/pip-build-env-xr4o26bp/overlay/lib/python3.10/site-packages/setuptools/config/setupcfg.py:293: _DeprecatedConfig: Deprecated config in `setup.cfg`
 [1m[90m[DEBUG][39m[0m:   	  !!
 [1m[90m[DEBUG][39m[0m:   	
 [1m[90m[DEBUG][39m[0m:   	          ********************************************************************************
@@ -2136,7 +2136,7 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[90m[DEBUG][39m[0m:   	  Running command Preparing metadata (pyproject.toml)
 [1m[90m[DEBUG][39m[0m:   	  Ignoring "sys._home = value" override
 [1m[90m[DEBUG][39m[0m:   	  fatal: not a git repository (or any of the parent directories): .git
-[1m[90m[DEBUG][39m[0m:   	  /tmp/pip-build-env-i07fz0_g/overlay/lib/python3.10/site-packages/setuptools/config/setupcfg.py:293: _DeprecatedConfig: Deprecated config in `setup.cfg`
+[1m[90m[DEBUG][39m[0m:   	  /tmp/pip-build-env-xr4o26bp/overlay/lib/python3.10/site-packages/setuptools/config/setupcfg.py:293: _DeprecatedConfig: Deprecated config in `setup.cfg`
 [1m[90m[DEBUG][39m[0m:   	  !!
 [1m[90m[DEBUG][39m[0m:   	
 [1m[90m[DEBUG][39m[0m:   	          ********************************************************************************
@@ -2151,17 +2151,17 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[90m[DEBUG][39m[0m:   	  !!
 [1m[90m[DEBUG][39m[0m:   	    parsed = self.parsers.get(option_name, lambda x: x)(value)
 [1m[90m[DEBUG][39m[0m:   	  running dist_info
-[1m[90m[DEBUG][39m[0m:   	  creating /tmp/pip-modern-metadata-boxpnnpu/kivymd.egg-info
-[1m[90m[DEBUG][39m[0m:   	  writing /tmp/pip-modern-metadata-boxpnnpu/kivymd.egg-info/PKG-INFO
-[1m[90m[DEBUG][39m[0m:   	  writing dependency_links to /tmp/pip-modern-metadata-boxpnnpu/kivymd.egg-info/dependency_links.txt
-[1m[90m[DEBUG][39m[0m:   	  writing entry points to /tmp/pip-modern-metadata-boxpnnpu/kivymd.egg-info/entry_points.txt
-[1m[90m[DEBUG][39m[0m:   	  writing requirements to /tmp/pip-modern-metadata-boxpnnpu/kivymd.egg-info/requires.txt
-[1m[90m[DEBUG][39m[0m:   	  writing top-level names to /tmp/pip-modern-metadata-boxpnnpu/kivymd.egg-info/top_level.txt
-[1m[90m[DEBUG][39m[0m:   	  writing manifest file '/tmp/pip-modern-metadata-boxpnnpu/kivymd.egg-info/SOURCES.txt'
-[1m[90m[DEBUG][39m[0m:   	  reading manifest file '/tmp/pip-modern-metadata-boxpnnpu/kivymd.egg-info/SOURCES.txt'
+[1m[90m[DEBUG][39m[0m:   	  creating /tmp/pip-modern-metadata-4lede1dm/kivymd.egg-info
+[1m[90m[DEBUG][39m[0m:   	  writing /tmp/pip-modern-metadata-4lede1dm/kivymd.egg-info/PKG-INFO
+[1m[90m[DEBUG][39m[0m:   	  writing dependency_links to /tmp/pip-modern-metadata-4lede1dm/kivymd.egg-info/dependency_links.txt
+[1m[90m[DEBUG][39m[0m:   	  writing entry points to /tmp/pip-modern-metadata-4lede1dm/kivymd.egg-info/entry_points.txt
+[1m[90m[DEBUG][39m[0m:   	  writing requirements to /tmp/pip-modern-metadata-4lede1dm/kivymd.egg-info/requires.txt
+[1m[90m[DEBUG][39m[0m:   	  writing top-level names to /tmp/pip-modern-metadata-4lede1dm/kivymd.egg-info/top_level.txt
+[1m[90m[DEBUG][39m[0m:   	  writing manifest file '/tmp/pip-modern-metadata-4lede1dm/kivymd.egg-info/SOURCES.txt'
+[1m[90m[DEBUG][39m[0m:   	  reading manifest file '/tmp/pip-modern-metadata-4lede1dm/kivymd.egg-info/SOURCES.txt'
 [1m[90m[DEBUG][39m[0m:   	  adding license file 'LICENSE'
-[1m[90m[DEBUG][39m[0m:   	  writing manifest file '/tmp/pip-modern-metadata-boxpnnpu/kivymd.egg-info/SOURCES.txt'
-[1m[90m[DEBUG][39m[0m:   	  creating '/tmp/pip-modern-metadata-boxpnnpu/kivymd-1.2.0.dev0.dist-info'
+[1m[90m[DEBUG][39m[0m:   	  writing manifest file '/tmp/pip-modern-metadata-4lede1dm/kivymd.egg-info/SOURCES.txt'
+[1m[90m[DEBUG][39m[0m:   	  creating '/tmp/pip-modern-metadata-4lede1dm/kivymd-1.2.0.dev0.dist-info'
 [1m[90m[DEBUG][39m[0m:   	  Preparing metadata (pyproject.toml) ... [?25l[?25hdone
 [1m[90m[DEBUG][39m[0m:   	Collecting mapview==1.0.6 (from -r requirements.txt (line 2))
 [1m[90m[DEBUG][39m[0m:   	  Using cached mapview-1.0.6-py3-none-any.whl (32 kB)
@@ -2169,7 +2169,7 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[90m[DEBUG][39m[0m:   	  Running command Building wheel for kivymd (pyproject.toml)
 [1m[90m[DEBUG][39m[0m:   	  Ignoring "sys._home = value" override
 [1m[90m[DEBUG][39m[0m:   	  fatal: not a git repository (or any of the parent directories): .git
-[1m[90m[DEBUG][39m[0m:   	  /tmp/pip-build-env-i07fz0_g/overlay/lib/python3.10/site-packages/setuptools/config/setupcfg.py:293: _DeprecatedConfig: Deprecated config in `setup.cfg`
+[1m[90m[DEBUG][39m[0m:   	  /tmp/pip-build-env-xr4o26bp/overlay/lib/python3.10/site-packages/setuptools/config/setupcfg.py:293: _DeprecatedConfig: Deprecated config in `setup.cfg`
 [1m[90m[DEBUG][39m[0m:   	  !!
 [1m[90m[DEBUG][39m[0m:   	
 [1m[90m[DEBUG][39m[0m:   	          ********************************************************************************
@@ -2790,7 +2790,7 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[90m[DEBUG][39m[0m:   	  Copying kivymd.egg-info to build/bdist.linux-x86_64/wheel/kivymd-1.2.0.dev0-py3.10.egg-info
 [1m[90m[DEBUG][39m[0m:   	  running install_scripts
 [1m[90m[DEBUG][39m[0m:   	  creating build/bdist.linux-x86_64/wheel/kivymd-1.2.0.dev0.dist-info/WHEEL
-[1m[90m[DEBUG][39m[0m:   	  creating '/tmp/pip-wheel-1ufbv6l9/.tmp-eywzu89i/kivymd-1.2.0.dev0-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+[1m[90m[DEBUG][39m[0m:   	  creating '/tmp/pip-wheel-r607yth4/.tmp-4kl0p9gx/kivymd-1.2.0.dev0-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
 [1m[90m[DEBUG][39m[0m:   	  adding 'kivymd/__init__.py'
 [1m[90m[DEBUG][39m[0m:   	  adding 'kivymd/_version.py'
 [1m[90m[DEBUG][39m[0m:   	  adding 'kivymd/app.py'
@@ -3022,14 +3022,14 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[90m[DEBUG][39m[0m:   	  adding 'kivymd-1.2.0.dev0.dist-info/RECORD'
 [1m[90m[DEBUG][39m[0m:   	  removing build/bdist.linux-x86_64/wheel
 [1m[90m[DEBUG][39m[0m:   	  Building wheel for kivymd (pyproject.toml) ... [?25l[?25hdone
-[1m[90m[DEBUG][39m[0m:   	  Created wheel for kivymd: filename=kivymd-1.2.0.dev0-py3-none-any.whl size=2235557 sha256=c7e4b3ea46871cd27b708c146a1f2d62b2973f9ed06419b7e59730dcd577e7d7
-[1m[90m[DEBUG][39m[0m:   	  Stored in directory: /tmp/pip-ephem-wheel-cache-psml0w5m/wheels/58/95/3f/e6be54d628ef86f1b83e6b48cf56c414954730ba201eff0546
+[1m[90m[DEBUG][39m[0m:   	  Created wheel for kivymd: filename=kivymd-1.2.0.dev0-py3-none-any.whl size=2235557 sha256=073c3181807d9ec07e10dc45f1187cbcfe08e4cbcabdbcfbd2bc284b79a6d693
+[1m[90m[DEBUG][39m[0m:   	  Stored in directory: /tmp/pip-ephem-wheel-cache-c0ph5vdx/wheels/58/95/3f/e6be54d628ef86f1b83e6b48cf56c414954730ba201eff0546
 [1m[90m[DEBUG][39m[0m:   	Successfully built kivymd
 [1m[90m[DEBUG][39m[0m:   	Installing collected packages: mapview, kivymd
-[1m[90m[DEBUG][39m[0m:   	  Creating /tmp/pip-target-bbcjdi2s/bin
-[1m[90m[DEBUG][39m[0m:   	  changing mode of /tmp/pip-target-bbcjdi2s/bin/kivymd.add_view to 775
-[1m[90m[DEBUG][39m[0m:   	  changing mode of /tmp/pip-target-bbcjdi2s/bin/kivymd.create_project to 775
-[1m[90m[DEBUG][39m[0m:   	  changing mode of /tmp/pip-target-bbcjdi2s/bin/kivymd.make_release to 775
+[1m[90m[DEBUG][39m[0m:   	  Creating /tmp/pip-target-j7xwgr4r/bin
+[1m[90m[DEBUG][39m[0m:   	  changing mode of /tmp/pip-target-j7xwgr4r/bin/kivymd.add_view to 775
+[1m[90m[DEBUG][39m[0m:   	  changing mode of /tmp/pip-target-j7xwgr4r/bin/kivymd.create_project to 775
+[1m[90m[DEBUG][39m[0m:   	  changing mode of /tmp/pip-target-j7xwgr4r/bin/kivymd.make_release to 775
 [1m[90m[DEBUG][39m[0m:   	Successfully installed kivymd-1.2.0.dev0 mapview-1.0.6
 [1m[90m[DEBUG][39m[0m:   	[33mWARNING: Target directory /home/ubuntu/ask/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/inclusiveway/arm64-v8a/kivymd already exists. Specify --upgrade to force replacement.[0m[33m
 [1m[90m[DEBUG][39m[0m:   	[0m[33mWARNING: Target directory /home/ubuntu/ask/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/python-installs/inclusiveway/arm64-v8a/mapview-1.0.6.dist-info already exists. Specify --upgrade to force replacement.[0m[33m
@@ -13345,7 +13345,7 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[INFO][0m:    [36m<- directory context /home/ubuntu/ask/.buildozer/android/platform/python-for-android[39m
 [1m[INFO][0m:    [1m[32m# Your distribution was created successfully, exiting.[0m[39m
 [1m[INFO][0m:    Dist can be found at (for now) /home/ubuntu/ask/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/dists/inclusiveway
-# Build the application #13
+# Build the application #17
 # Copy application source from /home/ubuntu/ask
 # Create directory /home/ubuntu/ask/.buildozer/android/app
 # Copy /home/ubuntu/ask/main.py
@@ -14610,17 +14610,17 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[INFO][0m:    Found NDK version 25b
 [1m[INFO][0m:    Getting NDK API version (i.e. minimum supported API) from user argument
 [1m[INFO][0m:    ccache is missing, the build will not be optimized in the future.
-[1m[90m[DEBUG][39m[0m:   All possible dists: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, idna, requests, certifi, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, chardet, mapview)>]
-[1m[90m[DEBUG][39m[0m:   Dist matching name and arch: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, idna, requests, certifi, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, chardet, mapview)>]
-[1m[90m[DEBUG][39m[0m:   Dist matching ndk_api and recipe: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, idna, requests, certifi, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, chardet, mapview)>]
+[1m[90m[DEBUG][39m[0m:   All possible dists: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, requests, certifi, chardet, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, idna, mapview)>]
+[1m[90m[DEBUG][39m[0m:   Dist matching name and arch: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, requests, certifi, chardet, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, idna, mapview)>]
+[1m[90m[DEBUG][39m[0m:   Dist matching ndk_api and recipe: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, requests, certifi, chardet, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, idna, mapview)>]
 [1m[INFO][0m:    Of the existing distributions, the following meet the given requirements:
-[1m[INFO][0m:    	[32m[1minclusiveway[0m: min API 21, includes recipes ([32mhostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, idna, requests, certifi, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, chardet, mapview[0m), built for archs ([34marmeabi-v7a, arm64-v8a[0m)
+[1m[INFO][0m:    	[32m[1minclusiveway[0m: min API 21, includes recipes ([32mhostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, requests, certifi, chardet, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, idna, mapview[0m), built for archs ([34marmeabi-v7a, arm64-v8a[0m)
 [1m[INFO][0m:    [1m[94minclusiveway has compatible recipes, using this one[0m
-[1m[90m[DEBUG][39m[0m:   All possible dists: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, idna, requests, certifi, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, chardet, mapview)>]
-[1m[90m[DEBUG][39m[0m:   Dist matching name and arch: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, idna, requests, certifi, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, chardet, mapview)>]
-[1m[90m[DEBUG][39m[0m:   Dist matching ndk_api and recipe: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, idna, requests, certifi, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, chardet, mapview)>]
+[1m[90m[DEBUG][39m[0m:   All possible dists: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, requests, certifi, chardet, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, idna, mapview)>]
+[1m[90m[DEBUG][39m[0m:   Dist matching name and arch: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, requests, certifi, chardet, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, idna, mapview)>]
+[1m[90m[DEBUG][39m[0m:   Dist matching ndk_api and recipe: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, requests, certifi, chardet, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, idna, mapview)>]
 [1m[INFO][0m:    Of the existing distributions, the following meet the given requirements:
-[1m[INFO][0m:    	[32m[1minclusiveway[0m: min API 21, includes recipes ([32mhostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, idna, requests, certifi, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, chardet, mapview[0m), built for archs ([34marmeabi-v7a, arm64-v8a[0m)
+[1m[INFO][0m:    	[32m[1minclusiveway[0m: min API 21, includes recipes ([32mhostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, requests, certifi, chardet, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, idna, mapview[0m), built for archs ([34marmeabi-v7a, arm64-v8a[0m)
 [1m[INFO][0m:    [1m[94minclusiveway has compatible recipes, using this one[0m
 [1m[INFO][0m:    [36m-> directory context /home/ubuntu/ask/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/bootstrap_builds/sdl2[39m
 [1m[INFO][0m:    [36m<- directory context /home/ubuntu/ask/.buildozer/android/platform/python-for-android[39m
@@ -14633,14 +14633,14 @@ Compiling '/home/ubuntu/ask/.buildozer/android/app/myfirebase.py'...
 Compiling '/home/ubuntu/ask/.buildozer/android/app/telas.py'...
 Compiling '/home/ubuntu/ask/.buildozer/android/app/botoes.py'...
 Compiling '/home/ubuntu/ask/.buildozer/android/app/sitecustomize.py'...
-[1m[90m[DEBUG][39m[0m:   Remove directory and subdirectory /tmp/p4a-extra-env-x1pt7zyo
+[1m[90m[DEBUG][39m[0m:   Remove directory and subdirectory /tmp/p4a-extra-env-s5e7kjvr
 [1m[90m[DEBUG][39m[0m:   Create directory src/main/res/raw
 [1m[INFO][0m:    Detected highest available build tools version to be 34.0.0
 stty: 'standard input': Inappropriate ioctl for device
 [1m[90m[DEBUG][39m[0m:   [90m->[0m running gradlew clean assembleDebug[0m
 [1m[90m[DEBUG][39m[0m:   	
 [1m[90m[DEBUG][39m[0m:   	
-[1m[90m[DEBUG][39m[0m:   	[2A[1m<[0;1m-------------> 0% CONFIGURING [102ms][m[38D[1B[1m> root project > Resolve dependencies of :classpath[m[51D[1B[2A[1m<[0;1m-------------> 0% CONFIGURING [202ms][m[38D[2B[2A[1m<[0;1m-------------> 0% CONFIGURING [302ms][m[38D[1B[1m> root project[m[0K[14D[1B[2A[1m<[0;32;1m=============[0;39;1m> 100% CONFIGURING [402ms][m[40D[1B> IDLE[0K[6D[1B[2AWARNING:We recommend using a newer Android Gradle plugin to use compileSdk = 33
+[1m[90m[DEBUG][39m[0m:   	[1A[1m> Connecting to Daemon[m[22D[1B[2A[1m<[0;1m-------------> 0% INITIALIZING [30ms][m[38D[1B> IDLE[0K[6D[1B[2A[1m<[0;1m-------------> 0% CONFIGURING [127ms][m[38D[1B[1m> root project > Resolve dependencies of :classpath[m[51D[1B[2A[1m<[0;1m-------------> 0% CONFIGURING [227ms][m[38D[2B[2A[1m<[0;1m-------------> 0% CONFIGURING [327ms][m[38D[1B[1m> root project[m[0K[14D[1B[2A[1m<[0;32;1m=============[0;39;1m> 100% CONFIGURING [427ms][m[40D[1B> IDLE[0K[6D[1B[2AWARNING:We recommend using a newer Android Gradle plugin to use compileSdk = 33
 [1m[90m[DEBUG][39m[0m:   	[0K
 [1m[90m[DEBUG][39m[0m:   	This Android Gradle plugin (7.1.2) was tested up to compileSdk = 32
 [1m[90m[DEBUG][39m[0m:   	
@@ -14652,7 +14652,7 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[90m[DEBUG][39m[0m:   	use a newer Android Gradle Plugin that has been tested with compileSdk = 33
 [1m[90m[DEBUG][39m[0m:   	[0K
 [1m[90m[DEBUG][39m[0m:   	[0K
-[1m[90m[DEBUG][39m[0m:   	[2A[1m<[0;32;1m=[0;39;1m------------> 9% EXECUTING [502ms][m[36D[1B[1m> :compileDebugAidl[m[19D[1B[2A[1m<[0;32;1m===[0;39;1m----------> 26% EXECUTING [602ms][m[37D[1B[1m> :mergeDebugResources > Resolve files of :debugRuntimeClasspath[m[64D[1B[2A[1m<[0;32;1m===[0;39;1m----------> 26% EXECUTING [703ms][m[37D[1B[1m> :mergeDebugResources[m[0K[22D[1B[2A[1m<[0;32;1m===[0;39;1m----------> 26% EXECUTING [802ms][m[37D[2B[2A[1m<[0;32;1m===[0;39;1m----------> 26% EXECUTING [902ms][m[37D[2B[2A[1m<[0;32;1m===[0;39;1m----------> 26% EXECUTING [1s][m[0K[34D[2B
+[1m[90m[DEBUG][39m[0m:   	[2A[1m<[0;32;1m=============[0;39;1m> 100% CONFIGURING [527ms][m[40D[1B> IDLE[6D[1B[2A[1m<[0;32;1m===[0;39;1m----------> 26% EXECUTING [627ms][m[0K[37D[1B[1m> :mergeDebugResources > Resolve files of :debugRuntimeClasspath[m[64D[1B[2A[1m<[0;32;1m===[0;39;1m----------> 26% EXECUTING [727ms][m[37D[1B[1m> :mergeDebugResources[m[0K[22D[1B[2A[1m<[0;32;1m===[0;39;1m----------> 26% EXECUTING [827ms][m[37D[2B[2A[1m<[0;32;1m===[0;39;1m----------> 26% EXECUTING [927ms][m[37D[2B[2A[1m<[0;32;1m===[0;39;1m----------> 26% EXECUTING [1s][m[0K[34D[2B
 [1m[90m[DEBUG][39m[0m:   	[3A[1m<[0;32;1m====[0;39;1m---------> 31% EXECUTING [1s][m[34D[2B[1m> :processDebugMainManifest[m[27D[1B[3A[0K
 [1m[90m[DEBUG][39m[0m:   	[1m> Task :processDebugMainManifest[m
 [1m[90m[DEBUG][39m[0m:   	[androidx.vectordrawable:vectordrawable-animated:1.0.0] /home/ubuntu/.gradle/caches/transforms-3/e32842fd9bc2e7016ba613bf4b1a11f4/transformed/vectordrawable-animated-1.0.0/AndroidManifest.xml Warning:
@@ -14660,38 +14660,38 @@ stty: 'standard input': Inappropriate ioctl for device
 [1m[90m[DEBUG][39m[0m:   	[0K
 [1m[90m[DEBUG][39m[0m:   	[0K
 [1m[90m[DEBUG][39m[0m:   	[0K
-[1m[90m[DEBUG][39m[0m:   	[3A[1m<[0;32;1m=====[0;39;1m--------> 39% EXECUTING [1s][m[34D[1B[1m> :mergeDebugResources[m[22D[1B[1m> :mergeDebugShaders[m[20D[1B[3A[1m<[0;32;1m======[0;39;1m-------> 48% EXECUTING [1s][m[34D[1B> IDLE[0K[6D[1B[1m> :mergeDebugAssets[m[0K[19D[1B[3A[1m<[0;32;1m======[0;39;1m-------> 51% EXECUTING [1s][m[34D[2B[1m> :processDebugResources[m[24D[1B[3A[1m<[0;32;1m======[0;39;1m-------> 51% EXECUTING [2s][m[34D[1B[1m> :compressDebugAssets[m[22D[2B[3A[1m<[0;32;1m=======[0;39;1m------> 56% EXECUTING [3s][m[34D[1B[1m> :mergeDebugJavaResource[m[25D[2B[3A[1m<[0;32;1m=======[0;39;1m------> 58% EXECUTING [3s][m[34D[2B[1m> :compileDebugJavaWithJavac[m[28D[1B[3A[1m<[0;32;1m=======[0;39;1m------> 60% EXECUTING [3s][m[34D[1B> IDLE[0K[6D[2B[3A[1m<[0;32;1m=======[0;39;1m------> 60% EXECUTING [4s][m[34D[3B[3A[1m<[0;32;1m=======[0;39;1m------> 60% EXECUTING [5s][m[34D[3B[3A[0K
+[1m[90m[DEBUG][39m[0m:   	[3A[1m<[0;32;1m====[0;39;1m---------> 34% EXECUTING [1s][m[34D[1B[1m> :mergeDebugResources[m[22D[1B[1m> :processDebugManifest[m[23D[1B[3A[1m<[0;32;1m====[0;39;1m---------> 36% EXECUTING [1s][m[34D[2B[1m> :processDebugManifestForPackage[m[33D[1B[3A[1m<[0;32;1m=====[0;39;1m--------> 39% EXECUTING [1s][m[34D[2B[1m> :mergeDebugShaders[m[0K[20D[1B[3A[1m<[0;32;1m======[0;39;1m-------> 46% EXECUTING [1s][m[34D[2B[1m> :mergeDebugAssets[m[0K[19D[1B[3A[1m<[0;32;1m======[0;39;1m-------> 48% EXECUTING [1s][m[34D[1B> IDLE[0K[6D[2B[3A[1m<[0;32;1m======[0;39;1m-------> 51% EXECUTING [1s][m[34D[2B[1m> :processDebugResources[m[24D[1B[3A[1m<[0;32;1m======[0;39;1m-------> 51% EXECUTING [2s][m[34D[3B[2A[1m> :compressDebugAssets[m[22D[2B[3A[1m<[0;32;1m======[0;39;1m-------> 53% EXECUTING [3s][m[34D[2B[1m> :compileDebugJavaWithJavac[m[28D[1B[3A[1m<[0;32;1m=======[0;39;1m------> 56% EXECUTING [3s][m[34D[1B> IDLE[0K[6D[2B[3A[1m<[0;32;1m=======[0;39;1m------> 56% EXECUTING [4s][m[34D[3B[3A[0K
 [1m[90m[DEBUG][39m[0m:   	[1m> Task :compileDebugJavaWithJavac[m
 [1m[90m[DEBUG][39m[0m:   	Note: Some input files use or override a deprecated API.
 [1m[90m[DEBUG][39m[0m:   	Note: Recompile with -Xlint:deprecation for details.
 [1m[90m[DEBUG][39m[0m:   	[0K
 [1m[90m[DEBUG][39m[0m:   	[0K
 [1m[90m[DEBUG][39m[0m:   	[0K
-[1m[90m[DEBUG][39m[0m:   	[3A[1m<[0;32;1m=======[0;39;1m------> 60% EXECUTING [5s][m[34D[1B> IDLE[6D[1B[1m> :compileDebugJavaWithJavac[m[28D[1B[3A[1m<[0;32;1m========[0;39;1m-----> 68% EXECUTING [5s][m[34D[2B[1m> :mergeExtDexDebug > Resolve files of :debugRuntimeClasspath[m[61D[1B[2A[1m> :mergeLibDexDebug[m[19D[1B[1m> :mergeExtDexDebug[m[0K[19D[1B[3A[1m<[0;32;1m========[0;39;1m-----> 68% EXECUTING [6s][m[34D[3B[3A[1m<[0;32;1m=========[0;39;1m----> 73% EXECUTING [6s][m[34D[1B[1m> :dexBuilderDebug[m[0K[18D[1B> IDLE[0K[6D[1B[3A[1m<[0;32;1m=========[0;39;1m----> 73% EXECUTING [7s][m[34D[3B[3A[1m<[0;32;1m=========[0;39;1m----> 73% EXECUTING [8s][m[34D[3B[3A[1m<[0;32;1m=========[0;39;1m----> 75% EXECUTING [8s][m[34D[1B[1m> :mergeProjectDexDebug[m[23D[1B[1m> :mergeDebugJniLibFolders[m[26D[1B[3A[1m<[0;32;1m==========[0;39;1m---> 82% EXECUTING [8s][m[34D[1B[1m> :writeDebugAppMetadata[m[24D[1B[1m> :mergeDebugNativeLibs[m[0K[23D[1B[3A[1m<[0;32;1m===========[0;39;1m--> 87% EXECUTING [8s][m[34D[1B> IDLE[0K[6D[2B[3A[1m<[0;32;1m===========[0;39;1m--> 87% EXECUTING [9s][m[34D[3B[3A[1m<[0;32;1m===========[0;39;1m--> 90% EXECUTING [9s][m[34D[2B[1m> :stripDebugDebugSymbols[m[25D[1B[3A[0K
+[1m[90m[DEBUG][39m[0m:   	[3A[1m<[0;32;1m========[0;39;1m-----> 63% EXECUTING [4s][m[34D[1B[1m> :desugarDebugFileDependencies > Resolve files of :debugRuntimeClasspath[m[73D[1B[1m> :mergeDebugJavaResource[m[25D[1B[3A[1m<[0;32;1m========[0;39;1m-----> 65% EXECUTING [4s][m[34D[1B[1m> :mergeExtDexDebug > Resolve files of :debugRuntimeClasspath[m[0K[61D[2B[3A[1m<[0;32;1m========[0;39;1m-----> 68% EXECUTING [4s][m[34D[2B> IDLE[0K[6D[1B[3A[1m<[0;32;1m========[0;39;1m-----> 68% EXECUTING [5s][m[34D[3B[2A[1m> :mergeExtDexDebug[m[0K[19D[1B[1m> :mergeLibDexDebug[m[19D[1B[3A[1m<[0;32;1m========[0;39;1m-----> 68% EXECUTING [6s][m[34D[3B[3A[1m<[0;32;1m=========[0;39;1m----> 73% EXECUTING [6s][m[34D[1B> IDLE[0K[6D[1B[1m> :dexBuilderDebug[m[0K[18D[1B[3A[1m<[0;32;1m=========[0;39;1m----> 73% EXECUTING [7s][m[34D[3B[3A[1m<[0;32;1m=========[0;39;1m----> 75% EXECUTING [8s][m[34D[1B[1m> :mergeDebugJniLibFolders[m[26D[1B[1m> :mergeProjectDexDebug[m[23D[1B[3A[1m<[0;32;1m==========[0;39;1m---> 82% EXECUTING [8s][m[34D[1B[1m> :mergeDebugNativeLibs[m[0K[23D[1B[1m> :writeDebugAppMetadata[m[24D[1B[3A[1m<[0;32;1m===========[0;39;1m--> 87% EXECUTING [8s][m[34D[2B> IDLE[0K[6D[1B[3A[1m<[0;32;1m===========[0;39;1m--> 90% EXECUTING [8s][m[34D[1B[1m> :stripDebugDebugSymbols[m[25D[2B[3A[0K
 [1m[90m[DEBUG][39m[0m:   	[1m> Task :stripDebugDebugSymbols[m
 [1m[90m[DEBUG][39m[0m:   	Unable to strip the following libraries, packaging them as they are: libSDL2.so, libSDL2_image.so, libSDL2_mixer.so, libSDL2_ttf.so, libcrypto1.1.so, libffi.so, libmain.so, libpybundle.so, libpython3.10.so, libsqlite3.so, libssl1.1.so.
 [1m[90m[DEBUG][39m[0m:   	[0K
 [1m[90m[DEBUG][39m[0m:   	[0K
 [1m[90m[DEBUG][39m[0m:   	[0K
-[1m[90m[DEBUG][39m[0m:   	[3A[1m<[0;32;1m============[0;39;1m-> 92% EXECUTING [9s][m[34D[1B> IDLE[6D[1B[1m> :packageDebug[m[15D[1B[3A[1m<[0;32;1m============[0;39;1m-> 92% EXECUTING [10s][m[35D[3B[3A[1m<[0;32;1m============[0;39;1m-> 92% EXECUTING [11s][m[35D[3B[3A[1m<[0;32;1m============[0;39;1m-> 92% EXECUTING [12s][m[35D[3B[3A[0K
-[1m[90m[DEBUG][39m[0m:   	Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.[0K[0K
+[1m[90m[DEBUG][39m[0m:   	[3A[1m<[0;32;1m============[0;39;1m-> 92% EXECUTING [9s][m[34D[1B[1m> :packageDebug[m[15D[1B> IDLE[6D[1B[3A[1m<[0;32;1m============[0;39;1m-> 92% EXECUTING [10s][m[35D[3B[3A[1m<[0;32;1m============[0;39;1m-> 92% EXECUTING [11s][m[35D[3B[3A[0K
+[1m[90m[DEBUG][39m[0m:   	Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
 [1m[90m[DEBUG][39m[0m:   	
 [1m[90m[DEBUG][39m[0m:   	You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
 [1m[90m[DEBUG][39m[0m:   	
 [1m[90m[DEBUG][39m[0m:   	See https://docs.gradle.org/7.4.1/userguide/command_line_interface.html#sec:command_line_warnings
 [1m[90m[DEBUG][39m[0m:   	
-[1m[90m[DEBUG][39m[0m:   	[32;1mBUILD SUCCESSFUL[0;39m in 13s
+[1m[90m[DEBUG][39m[0m:   	[32;1mBUILD SUCCESSFUL[0;39m in 12s
 [1m[90m[DEBUG][39m[0m:   	31 actionable tasks: 30 executed, 1 up-to-date
 [1m[90m[DEBUG][39m[0m:   	[0K
 [1m[90m[DEBUG][39m[0m:   	[0K
 [1m[90m[DEBUG][39m[0m:   	[0K
-[1m[90m[DEBUG][39m[0m:   	[3A[1m<[0;1m-------------> 0% WAITING[m[26D[1B> IDLE[6D[1B[1m> :packageDebug[m[15D[1B[3A[2K[1B[2K[1B[2K[2A[0m[?12l[?25h
+[1m[90m[DEBUG][39m[0m:   	[3A[1m<[0;1m-------------> 0% WAITING[m[26D[1B[1m> :packageDebug[m[15D[1B> IDLE[6D[1B[3A[2K[1B[2K[1B[2K[2A[0m[?12l[?25h
 [1m[INFO][0m:    [36m<- directory context /home/ubuntu/ask/.buildozer/android/platform/python-for-android[39m
-[1m[90m[DEBUG][39m[0m:   All possible dists: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, idna, requests, certifi, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, chardet, mapview)>]
-[1m[90m[DEBUG][39m[0m:   Dist matching name and arch: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, idna, requests, certifi, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, chardet, mapview)>]
-[1m[90m[DEBUG][39m[0m:   Dist matching ndk_api and recipe: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, idna, requests, certifi, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, chardet, mapview)>]
+[1m[90m[DEBUG][39m[0m:   All possible dists: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, requests, certifi, chardet, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, idna, mapview)>]
+[1m[90m[DEBUG][39m[0m:   Dist matching name and arch: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, requests, certifi, chardet, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, idna, mapview)>]
+[1m[90m[DEBUG][39m[0m:   Dist matching ndk_api and recipe: [<Distribution: name inclusiveway with recipes (hostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, requests, certifi, chardet, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, idna, mapview)>]
 [1m[INFO][0m:    Of the existing distributions, the following meet the given requirements:
-[1m[INFO][0m:    	[32m[1minclusiveway[0m: min API 21, includes recipes ([32mhostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, idna, requests, certifi, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, chardet, mapview[0m), built for archs ([34marmeabi-v7a, arm64-v8a[0m)
+[1m[INFO][0m:    	[32m[1minclusiveway[0m: min API 21, includes recipes ([32mhostpython3, libffi, openssl, sdl2_image, sdl2_mixer, sdl2_ttf, sqlite3, python3, sdl2, setuptools, six, pyjnius, android, kivy, requests, certifi, chardet, urllib3, https://github.com/kivymd/kivymd/archive/master.zip, idna, mapview[0m), built for archs ([34marmeabi-v7a, arm64-v8a[0m)
 [1m[INFO][0m:    [1m[94minclusiveway has compatible recipes, using this one[0m
 [1m[INFO][0m:    [1m[32m# Copying android package to current directory[0m[39m
 [1m[INFO][0m:    [1m[32m# Android package filename not found in build output. Guessing...[0m[39m
