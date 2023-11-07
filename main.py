@@ -6,6 +6,7 @@ from myfirebase import MyFirebase
 import requests
 # import traceback
 from kivymd.uix.menu import MDDropdownMenu
+from gpshelper import GpsHelper
 
 # Window.size = (360, 800) # tamanho da janela do aplicativo
 
@@ -32,8 +33,11 @@ class MainApp(MDApp):
     
     def on_start(self):
         # self.visitas_app += 1
+        # carrega o gps
+        GpsHelper().run()
         # carregar as informacoes do usuario
         self.carregar_info_usuario()
+        # carregar os obstaculos do banco de dados
         self.carregar_obstaculos()
 
     def carregar_info_usuario(self):

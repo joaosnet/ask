@@ -12,7 +12,7 @@ from kivymd.uix.menu import MDDropdownMenu
 class HotReload(MDApp):
     DEBUG = True
     def build_app(self):
-        return Builder.load_file('kv/loginpage.kv')
+        return Builder.load_file('kv/startpage.kv')
 
 if __name__ == '__main__':
     HotReload().run()

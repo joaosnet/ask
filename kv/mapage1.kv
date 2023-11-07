@@ -3,20 +3,17 @@
 
         # Visualização do Mapa
         MapView:
+            id: mapview
             # localização do mapa em tempo real
             lat: -1.474081251977831
             lon: -48.45160647253775
             zoom: 5
             double_tap_zoom: True
-            # Verifica a localização atual quando o mapa é carregado
-            # on_lat:
-            #     print(self.lat)
-            # on_lon:
-            #     print(self.lon)
-            MapMarkerPopup:
-                source: 'icones/Marker.png'
-                lat: -1.474081251977831
-                lon: -48.45160647253775
+            on_zoom:
+                self.zoom = 10 if self.zoom < 10 else self.zoom
+            GpsBlinker:
+                id: blinker
+            
                     
         # Botao de configuração
         MDIconButton:

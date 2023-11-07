@@ -12,7 +12,8 @@
         MDBackdropBackLayer:                      
             orientation: "vertical"
             # alterando o tamanho do Back layer
-            padding: ('0dp', '0dp', '0dp', '0dp')
+            padding: ('10dp', '0dp', '10dp', '0dp')
+            spacing: '10dp'
             MDScrollView:
                 MDBoxLayout:
                     orientation: "vertical"
@@ -52,6 +53,7 @@
                 md_bg_color: "#EDF1FF"
                 # Visualização do Mapa
                 MapView:
+                    id: mapview
                     pos_hint: {'center_x': 0.5,'center_y': 0.5}
                     # localização do mapa em tempo real
                     lat: -1.474081251977831
