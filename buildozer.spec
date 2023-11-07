@@ -13,7 +13,7 @@ package.domain = ask.test
 source.dir = .
 
 # (list) Arquivos de origem para incluir (deixe vazio para incluir todos os arquivos)
-source.include_exts = py,png,jpg,kv,atlas
+source.include_exts = py,png,jpg,kv,atlas,txt
 
 # (list) Lista de inclusões usando correspondência de padrões
 # source.include_patterns = icones/*.png
@@ -94,7 +94,7 @@ android.presplash_lottie = %(source.dir)s/images/maprouteanimation.json
 
 # (list) Permissões
 # (Veja https://python-for-android.readthedocs.io/en/latest/buildoptions/#build-options-1 para todas as sintaxes e propriedades suportadas)
-android.permissions = android.permission.INTERNET, (name=android.permission.WRITE_EXTERNAL_STORAGE;maxSdkVersion=18)
+android.permissions = android.permission.INTERNET, (name=android.permission.WRITE_EXTERNAL_STORAGE;maxSdkVersion=18), android.permission.ACCESS_COARSE_LOCATION, android.permission.ACCESS_FINE_LOCATION
 
 # (list) recursos compartilhados do Android que serão adicionados ao AndroidManifest.xml usando a tag <uses-library>
 #android.uses_library =
