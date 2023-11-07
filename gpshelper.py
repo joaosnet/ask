@@ -24,7 +24,7 @@ class GpsHelper():
             from android.permissions import Permission, request_permissions
             def callback(permission, results):
                 if all([res for res in results]):
-                    mens_erro.text = "Permissão de GPS concedida"
+                    #mens_erro.text = "Permissão de GPS concedida"
                     from plyer import gps
                     gps.configure(on_location=self.update_blinker_position,
                                   on_status=self.on_auth_status)
@@ -56,6 +56,8 @@ class GpsHelper():
         gps_blinker = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["blinker"]
         gps_blinker.lat = my_lat
         gps_blinker.lon = my_lon
+
+        MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["erro"].text = my_lat, my_lon
 
         # Center map on gps
         if not self.has_centered_map:
