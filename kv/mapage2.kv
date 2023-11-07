@@ -12,26 +12,39 @@
         MDBackdropBackLayer:                      
             orientation: "vertical"
             # alterando o tamanho do Back layer
-            padding: ('100dp', '10dp', '100dp', '100dp')
-            # Campos de pesquisa de origem e destino
-            MDTextField:
-                hint_text: "Partida"
-                helper_text: "Informe seu local de Partida"
-                helper_text_mode: "on_focus"
-                icon_right: "map-marker"
-                icon_right_color: app.theme_cls.primary_color
-                pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                size_hint_x: None
-                width: 300
-            MDTextField:
-                hint_text: "Destino"
-                helper_text: "Informe seu destino"
-                helper_text_mode: "on_focus"
-                icon_right: "map-marker"
-                icon_right_color: app.theme_cls.primary_color
-                pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                size_hint_x: None
-                width: 300
+            padding: ('0dp', '0dp', '0dp', '0dp')
+            MDScrollView:
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+                    # Campos de pesquisa de origem e destino
+                    MDTextField:
+                        hint_text: "Partida"
+                        helper_text: "Informe seu local de Partida"
+                        helper_text_mode: "on_focus"
+                        icon_right: "map-marker"
+                        icon_right_color: app.theme_cls.primary_color
+                        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                        size_hint_y: None
+
+                    MDTextField:
+                        hint_text: "Destino"
+                        helper_text: "Informe seu destino"
+                        helper_text_mode: "on_focus"
+                        icon_right: "map-marker"
+                        icon_right_color: app.theme_cls.primary_color
+                        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                        size_hint_y: None
+
+                    MDRaisedButton:
+                        text: "Encontrar Rota"
+                        text_color: 1,1,1,1 # cor preta"
+                        # colocando em negrito
+                        font_style: "H6"
+                        md_bg_color: "#8C52FF"
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        size_hint: 1.15, None
 
         MDBackdropFrontLayer:
             orientation: 'vertical'

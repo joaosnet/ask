@@ -34,45 +34,7 @@ class MainApp(MDApp):
         # self.visitas_app += 1
         # carregar as informacoes do usuario
         self.carregar_info_usuario()
-
-        menu_items = [
-            {
-                "text": "Não Possuo",
-                "viewclass": "OneLineListItem",
-                "on_release": lambda x="Nao Possuo": self.menu_callback(x),
-            },
-            {
-                "text": "Visual",
-                "viewclass": "OneLineListItem",
-                "on_release": lambda x="Visual": self.menu_callback(x),
-            }, 
-            {
-                "text": "Auditiva",
-                "viewclass": "OneLineListItem",
-                "on_release": lambda x="Auditiva": self.menu_callback(x),
-            },
-            {
-                "text": "Física",
-                "viewclass": "OneLineListItem",
-                "on_release": lambda x="Fisica": self.menu_callback(x),
-            },
-            {
-                "text": "Intelectual",
-                "viewclass": "OneLineListItem",
-                "on_release": lambda x="Intelectual": self.menu_callback(x),
-            },
-            {
-                "text": "Múltipla",
-                "viewclass": "OneLineListItem",
-                "on_release": lambda x="Multipla": self.menu_callback(x),
-            },
-        ]
-        self.menu = MDDropdownMenu(
-            caller=self.root.get_screen("homepage").ids["perfilpage"].ids["tipo_deficiencia"],
-            items=menu_items,
-            position="bottom",
-            width_mult=4,
-        )
+        self.carregar_obstaculos()
 
     def carregar_info_usuario(self):
         try:
@@ -177,6 +139,48 @@ class MainApp(MDApp):
             else:
                 self.mudar_tela("loginpage")
 
+    # Funcao para carregar os obstaculos do banco de dados
+    def carregar_obstaculos(self):
+        self.menu_items = [
+            {
+                "text": "Não Possuo",
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x="Nao Possuo": self.menu_callback(x),
+            },
+            {
+                "text": "Visual",
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x="Visual": self.menu_callback(x),
+            }, 
+            {
+                "text": "Auditiva",
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x="Auditiva": self.menu_callback(x),
+            },
+            {
+                "text": "Física",
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x="Fisica": self.menu_callback(x),
+            },
+            {
+                "text": "Intelectual",
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x="Intelectual": self.menu_callback(x),
+            },
+            {
+                "text": "Múltipla",
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x="Multipla": self.menu_callback(x),
+            },
+        ]
+
+        self.menu = MDDropdownMenu(
+            caller=self.root.get_screen("homepage").ids["perfilpage"].ids["tipo_deficiencia"],
+            items=self.menu_items,
+            position="bottom",
+            width_mult=4,
+        )
+        
     # Funcao para abrir o menu do tipo de deficiencia
     def menu_callback(self, text_item):
         self.root.get_screen("homepage").ids["perfilpage"].ids["tipo_deficiencia"].text = text_item
