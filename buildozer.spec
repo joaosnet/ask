@@ -13,7 +13,7 @@ package.domain = ask.test
 source.dir = .
 
 # (list) Arquivos de origem para incluir (deixe vazio para incluir todos os arquivos)
-source.include_exts = py,png,jpg,kv,atlas,txt
+source.include_exts = py,png,jpg,kv,atlas
 
 # (list) Lista de inclusões usando correspondência de padrões
 # source.include_patterns = icones/*.png
@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Requisitos do aplicativo
 # separados por vírgula, por exemplo, requirements = sqlite3,kivy
-requirements = kivy==master, https://github.com/kivymd/KivyMD/archive/master.zip, requests==2.31.0, mapview==1.0.6
+requirements = kivy==master, https://github.com/kivymd/KivyMD/archive/master.zip, requests==2.31.0, mapview==1.0.6, plyer
 # (str) Pastas de origem personalizadas para requisitos
 # Define a origem personalizada para quaisquer requisitos com receitas
 # requirements.source.kivy = ../../kivy
