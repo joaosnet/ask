@@ -51,18 +51,18 @@ class GpsHelper():
         """
         my_lat = kwargs['lat']
         my_lon = kwargs['lon']
-        MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["erro"].text = "GPS POSITION", my_lat, my_lon
+        # MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["erro"].text = "GPS POSITION", my_lat, my_lon
         # Update GpsBlinker position
         gps_blinker = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["blinker"]
-        gps_blinker.lat = my_lat
-        gps_blinker.lon = my_lon
+        gps_blinker.lat = my_lon
+        gps_blinker.lon = my_lat
 
-        MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["erro"].text = my_lat, my_lon
+        # MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["erro"].text = my_lat, my_lon
 
-        # Center map on gps
+        # Centraliza o mapa na posição atual do GPS
         if not self.has_centered_map:
             map = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["mapview"]
-            map.center_on(my_lat, my_lon)
+            map.center_on(my_lon, my_lat)
             self.has_centered_map = True
 
 
