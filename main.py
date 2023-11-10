@@ -7,6 +7,8 @@ import requests
 # import traceback
 from kivymd.uix.menu import MDDropdownMenu
 from gpshelper import GpsHelper
+from kivymd.uix.button import MDFlatButton
+from kivymd.uix.dialog import MDDialog
 
 # Window.size = (360, 800) # tamanho da janela do aplicativo
 
@@ -193,6 +195,27 @@ class MainApp(MDApp):
     # Funcao para abrir a nav_drawer da homepage
     def open_nav_drawer(self):
         self.root.get_screen("homepage").ids["nav_drawer"].set_state("open")
+
+    # mensagem de popup generica para ser usada em qualquer situacao com botoes de ok e cancelar
+    def mostrar_alerta(self, titulo, texto):
+        if not self.dialog:
+            self.dialog = MDDialog(
+                title=f"{titulo}",
+                text=f"{texto}",
+                buttons=[
+                    MDFlatButton(
+                        text="Cancelar",
+                        theme_text_color="Custom",
+                        text_color=self.theme_cls.primary_color,
+                    ),
+                    MDFlatButton(
+                        text="Descartar",
+                        theme_text_color="Custom",
+                        text_color=self.theme_cls.primary_color,
+                    ),
+                ],
+            )
+        self.dialog.open()
 
     # Funcao para mudar de tela
     def mudar_tela(self, nome_tela):

@@ -18,19 +18,21 @@ class GpsHelper():
         # Start blinking the GpsBlinker
         gps_blinker.blink()
 
-        mens_erro = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["erro"]
         # Request permissions on Android
         if platform == 'android':
             from android.permissions import Permission, request_permissions
             def callback(permission, results):
                 if all([res for res in results]):
-                    #mens_erro.text = "Permissão de GPS concedida"
-                    from plyer import gps
-                    gps.configure(on_location=self.update_blinker_position,
-                                  on_status=self.on_auth_status)
-                    gps.start(minTime=1000, minDistance=0)
+                    MDApp.get_running_app().mostrar_alerta("Permissão de GPS Concedida", "Você precisa habilitar o acesso ao GPS para o aplicativo funcionar corretamente")
+                    try:
+                        from plyer import gps
+                        gps.configure(on_location=self.update_blinker_position,
+                                    on_status=self.on_auth_status)
+                        gps.start(minTime=1000, minDistance=0)
+                    except Exception as e:
+                        MDApp.get_running_app().mostrar_alerta("Erro ao Iniciar o GPS", "Ocorreu um erro ao iniciar o GPS: " + str(e))
                 else:
-                    mens_erro.text = "Permissão de GPS negada"  
+                    MDApp.get_running_app().mostrar_alerta("Permissão de GPS Não Concedida", "Você precisa habilitar o acesso ao GPS para o aplicativo funcionar corretamente")  
 
             request_permissions([Permission.ACCESS_COARSE_LOCATION,
                                  Permission.ACCESS_FINE_LOCATION], callback)
@@ -79,10 +81,7 @@ class GpsHelper():
         """
         Exibe um popup de erro informando que o acesso ao GPS precisa ser habilitado.
         """
-        dialog = MDDialog(title="GPS Error", text="Você precisa habilitar o acesso ao GPS para o aplicativo funcionar corretamente")
+        dialog = MDDialog(title="Erro no GPS", text="Você precisa habilitar o acesso ao GPS para o aplicativo funcionar corretamente")
         dialog.size_hint = [.8, .8]
         dialog.pos_hint = {'center_x': .5, 'center_y': .5}
         dialog.open()
-
-
-
