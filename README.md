@@ -171,7 +171,6 @@ git push
 ```
 ### Adicionando uma nova realease apenas do arquivo .apk gerado pelo buildozer no github
 ```bash
-git tag -a v1.0 -m "Versão 1.0"
-git push origin v1.0
+gh release create 0.0.1 '/home/ubuntu/ask/bin/inclusiveway-0.1-arm64-v8a_armeabi-v7a-debug.apk'
 ```
 
