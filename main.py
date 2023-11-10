@@ -22,6 +22,7 @@ class MainApp(MDApp):
         self.sm = MDScreenManager()
         self.firebase = MyFirebase()
         self.visitas_app = 0
+        self.dialog = None
 
     def build(self):
         self.sm.add_widget(TutorialPage1(name='tutorialpage1'))
@@ -202,18 +203,6 @@ class MainApp(MDApp):
             self.dialog = MDDialog(
                 title=f"{titulo}",
                 text=f"{texto}",
-                buttons=[
-                    MDFlatButton(
-                        text="Cancelar",
-                        theme_text_color="Custom",
-                        text_color=self.theme_cls.primary_color,
-                    ),
-                    MDFlatButton(
-                        text="Descartar",
-                        theme_text_color="Custom",
-                        text_color=self.theme_cls.primary_color,
-                    ),
-                ],
             )
         self.dialog.open()
 
