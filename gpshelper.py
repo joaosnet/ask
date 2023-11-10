@@ -23,16 +23,16 @@ class GpsHelper():
             from android.permissions import Permission, request_permissions
             def callback(permission, results):
                 if all([res for res in results]):
-                    MDApp.get_running_app().mostrar_alerta("Permissão de GPS Concedida", "Você precisa habilitar o acesso ao GPS para o aplicativo funcionar corretamente")
+                    MDApp.mostrar_alerta("Permissão de GPS Concedida", "Você precisa habilitar o acesso ao GPS para o aplicativo funcionar corretamente")
                     try:
                         from plyer import gps
                         gps.configure(on_location=self.update_blinker_position,
                                     on_status=self.on_auth_status)
                         gps.start(minTime=1000, minDistance=0)
                     except Exception as e:
-                        MDApp.get_running_app().mostrar_alerta("Erro ao Iniciar o GPS", "Ocorreu um erro ao iniciar o GPS: " + str(e))
+                        MDApp.mostrar_alerta("Erro ao Iniciar o GPS", "Ocorreu um erro ao iniciar o GPS: " + str(e))
                 else:
-                    MDApp.get_running_app().mostrar_alerta("Permissão de GPS Não Concedida", "Você precisa habilitar o acesso ao GPS para o aplicativo funcionar corretamente")  
+                    MDApp.mostrar_alerta("Permissão de GPS Não Concedida", "Você precisa habilitar o acesso ao GPS para o aplicativo funcionar corretamente")  
 
             request_permissions([Permission.ACCESS_COARSE_LOCATION,
                                  Permission.ACCESS_FINE_LOCATION], callback)
@@ -59,7 +59,7 @@ class GpsHelper():
         gps_blinker.lat = my_lat
         gps_blinker.lon = my_lon
 
-        # MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["erro"].text = my_lat, my_lon
+        MDApp.mostrar_alerta("Posição do GPS", str(my_lat) + ", " + str(my_lon))
 
         # Centraliza o mapa na posição atual do GPS
         if not self.has_centered_map:
