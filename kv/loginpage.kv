@@ -96,8 +96,7 @@
                     pos_hint: {"center_x": .5, "center_y": .5}
                     # se esquecer a senha, vai mostrar um texto de erro no campo da senha
                     on_release: 
-                        senha.ids.text_field.helper_text = 'Se Ferrou'
-                        senha.ids.text_field.error = True
+                        app.mostrar_alerta('Esqueci minha senha', 'Faz outra conta ai, meu filho!')
             
             MDBoxLayout:
                 orientation: 'horizontal'
