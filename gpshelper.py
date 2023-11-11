@@ -13,15 +13,14 @@ class GpsHelper():
         """
         Inicia o gerenciamento do GPS e atualiza a posição do GpsBlinker.
         """
-        # iniciou
-        MDApp.get_running_app().mostrar_alerta("Iniciou", "Iniciou o GPS")
         # Get a reference to GpsBlinker, then call blink()
         gps_blinker = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["blinker"]
         # Start blinking the GpsBlinker
         gps_blinker.blink()
 
-        # Request permissions on Android
+        # Requisita permissão de GPS no Android
         if platform == 'android':
+            MDApp.get_running_app().mostrar_alerta("É android", "Você está usando o android")
             from android.permissions import Permission, request_permissions
             def callback(permission, results):
                 if all([res for res in results]):
@@ -41,7 +40,7 @@ class GpsHelper():
             
             
 
-        # Configure GPS
+        # Configura o GPS no iOS
         if platform == 'ios':
             from plyer import gps
             gps.configure(on_location=self.update_blinker_position,
