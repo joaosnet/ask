@@ -36,12 +36,14 @@ class MainApp(MDApp):
     
     def on_start(self):
         # self.visitas_app += 1
-        # carrega o gps
-        GpsHelper().run()
+        # # carrega o gps
+        # GpsHelper().run()
         # carregar as informacoes do usuario
         self.carregar_info_usuario()
         # carregar os obstaculos do banco de dados
         self.carregar_obstaculos()
+        # carrega o gps
+        GpsHelper().run()
 
     def carregar_info_usuario(self):
         try:
