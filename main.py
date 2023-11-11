@@ -36,8 +36,6 @@ class MainApp(MDApp):
     
     def on_start(self):
         # self.visitas_app += 1
-        # # carrega o gps
-        # GpsHelper().run()
         # carregar as informacoes do usuario
         self.carregar_info_usuario()
         # carregar os obstaculos do banco de dados
@@ -208,6 +206,10 @@ class MainApp(MDApp):
             )
         self.dialog.open()
 
+    # funcao generica para usar o gps
+    def gps(self):
+        GpsHelper().run()
+    
     # Funcao para mudar de tela
     def mudar_tela(self, nome_tela):
         # print(id_tela)
