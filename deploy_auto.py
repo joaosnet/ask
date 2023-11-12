@@ -1,7 +1,7 @@
 # script para automatizar o deploy do app
 import os
 os.system("git pull")
-os.system("buildozer android clean")
+# os.system("buildozer android clean")
 # apagar o arquivo de log
 if os.path.exists("log.txt"):
     os.remove("log.txt")
@@ -13,8 +13,9 @@ while True:
         os.system("git add .")
         os.system("git commit -m 'Atualizando'")
         os.system("git push")
-        # os.system("gh release create v0.0.8 '/home/ubuntu/ask/bin/inclusiveway-0.1-arm64-v8a_armeabi-v7a-debug.apk'")
+        os.system("gh release edit v0.0.8 '/home/ubuntu/ask/bin/inclusiveway-0.1-arm64-v8a_armeabi-v7a-debug.apk'")
         # interagindo com o terminal para colocar a realease no github
+        
         '''
         ? Title (optional) v0.0.8
         ? Release notes Leave blank
