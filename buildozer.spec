@@ -13,7 +13,7 @@ package.domain = ask.test
 source.dir = .
 
 # (list) Arquivos de origem para incluir (deixe vazio para incluir todos os arquivos)
-source.include_exts = py,png,jpg,kv,atlas
+source.include_exts = py,png,jpg,kv,atlas,txt
 
 # (list) Lista de inclusões usando correspondência de padrões
 # source.include_patterns = icones/*.png
