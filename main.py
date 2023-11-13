@@ -6,7 +6,7 @@ from myfirebase import MyFirebase
 import requests
 # import traceback
 from kivymd.uix.menu import MDDropdownMenu
-from gpshelper import GpsHelper
+from gpshelper import *
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
 
@@ -35,13 +35,13 @@ class MainApp(MDApp):
         return self.sm
     
     def on_start(self):
+        # carrega o gps
+        GpsHelper().run()
         # self.visitas_app += 1
         # carregar as informacoes do usuario
         self.carregar_info_usuario()
         # carregar os obstaculos do banco de dados
         self.carregar_obstaculos()
-        # carrega o gps
-        GpsHelper().run()
 
     def carregar_info_usuario(self):
         try:
