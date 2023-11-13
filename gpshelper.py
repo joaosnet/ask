@@ -1,7 +1,6 @@
 from kivymd.app import MDApp
 from kivy.utils import platform
 from kivymd.uix.dialog import MDDialog
-from plyer import gps
 
 
 class GpsHelper():
@@ -18,19 +17,21 @@ class GpsHelper():
         gps_blinker = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["blinker"]
         # Iniciando o pulso do GpsBlinker
         gps_blinker.blink()
+        # Iniciando o gerenciamento do GPS
+        def callback(permission, results):
+            if all([res for res in results]):
+                MDApp.get_running_app().mostrar_alerta("Permissão de GPS Concedida", "Você precisa habilitou o acesso ao GPS")
+                from plyer import gps
+                gps.configure(on_location=self.update_blinker_position,
+                            on_status=self.on_auth_status)
+                gps.start(minTime=1000, minDistance=0)
+            else:
+                MDApp.get_running_app().mostrar_alerta("Permissão de GPS Não Concedida", "Você precisa habilitar o acesso ao GPS para o aplicativo funcionar corretamente")
 
         # Requisita permissão de GPS no Android
         if platform == 'android':
-            MDApp.get_running_app().mostrar_alerta("Android", "Você está usando o Android")
+            MDApp.get_running_app().mostrar_alerta("Android", "Você está no Android")
             from android.permissions import Permission, request_permissions
-            def callback(permission, results):
-                if all([res for res in results]):
-                    MDApp.get_running_app().mostrar_alerta("Permissão de GPS Concedida", "Você precisa habilitou o acesso ao GPS")
-                    gps.configure(on_location=self.update_blinker_position,
-                                on_status=self.on_auth_status)
-                    gps.start(minTime=1000, minDistance=0)
-                else:
-                    MDApp.get_running_app().mostrar_alerta("Permissão de GPS Não Concedida", "Você precisa habilitar o acesso ao GPS para o aplicativo funcionar corretamente")  
 
             request_permissions([Permission.ACCESS_COARSE_LOCATION,
                                 Permission.ACCESS_FINE_LOCATION], callback)
