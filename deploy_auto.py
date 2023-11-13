@@ -5,7 +5,7 @@ os.system("git pull")
 # apagar o arquivo de log
 if os.path.exists("log.txt"):
     os.remove("log.txt")
-os.system("nohup buildozer -v android debug > log.txt &")
+os.system("nohup buildozer -v android debug > log.log &")
 
 # verificar se no arquivo de log tem a palavra "APK"
 while True:
