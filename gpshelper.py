@@ -17,22 +17,21 @@ class GpsHelper():
         gps_blinker = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["blinker"]
         # Iniciando o pulso do GpsBlinker
         gps_blinker.blink()
-        # Iniciando o gerenciamento do GPS
-        def callback(permission, results):
-            if all([res for res in results]):
-                MDApp.get_running_app().mostrar_alerta("Permissão de GPS Concedida", "Você precisa habilitou o acesso ao GPS")
-                from plyer import gps
-                gps.configure(on_location=self.update_blinker_position,
-                            on_status=self.on_auth_status)
-                gps.start(minTime=1000, minDistance=0)
-            else:
-                MDApp.get_running_app().mostrar_alerta("Permissão de GPS Não Concedida", "Você precisa habilitar o acesso ao GPS para o aplicativo funcionar corretamente")
+    
 
         # Requisita permissão de GPS no Android
         if platform == 'android':
-            MDApp.get_running_app().mostrar_alerta("Android", "Você está no Android")
             from android.permissions import Permission, request_permissions
-
+            # Iniciando o gerenciamento do GPS
+            def callback(permission, results):
+                if all([res for res in results]):
+                    print("Permissão de GPS concedida")
+                    from plyer import gps
+                    gps.configure(on_location=self.update_blinker_position,
+                                on_status=self.on_auth_status)
+                    gps.start(minTime=1000, minDistance=0)
+                else:
+                    print("Permissão de GPS negada")
             request_permissions([Permission.ACCESS_COARSE_LOCATION,
                                 Permission.ACCESS_FINE_LOCATION], callback)
 
@@ -48,14 +47,13 @@ class GpsHelper():
         """
         Atualiza a posição do GpsBlinker com base na posição atual do GPS.
         """
+        print("A localização atual é lat{lat}, long {lon}".format(**kwargs))
         my_lat = kwargs['lat']
         my_lon = kwargs['lon']
         # Atualiza a posição do GpsBlinker
         gps_blinker = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["blinker"]
         gps_blinker.lat = my_lat
         gps_blinker.lon = my_lon
-
-        MDApp.get_running_app().mostrar_alerta("Posição do GPS", str(my_lat) + ", " + str(my_lon))
 
         # Centraliza o mapa na posição atual do GPS
         if not self.has_centered_map:
