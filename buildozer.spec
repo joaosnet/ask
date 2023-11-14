@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Requisitos do aplicativo
 # separados por vírgula, por exemplo, requirements = sqlite3,kivy
-requirements = kivy==master, https://github.com/kivymd/KivyMD/archive/master.zip, requests==2.31.0, mapview==1.0.6, plyer==2.1.0, 
+requirements = kivy==master, https://github.com/kivymd/KivyMD/archive/master.zip, requests==2.31.0, mapview==1.0.6, https://github.com/HyTurtle/plyer/archive/master.zip 
 # (str) Pastas de origem personalizadas para requisitos
 # Define a origem personalizada para quaisquer requisitos com receitas
 # requirements.source.kivy = ../../kivy
