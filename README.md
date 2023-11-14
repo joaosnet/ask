@@ -149,7 +149,7 @@ buildozer android logcat > log.txt
 
 ### Sempre limpar o buildozer antes de fazer uma nova build
 ```bash
-buildozer android clean
+buildozer -v android clean
 ```
 
 ## Para colocar em segundo plano no linux

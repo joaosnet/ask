@@ -1,7 +1,7 @@
 # script para automatizar o deploy do app
 import os
 os.system("git pull")
-# os.system("buildozer android clean")
+# os.system("buildozer -v android clean")
 # apagar o arquivo de log
 if os.path.exists("log.txt"):
     os.remove("log.txt")
