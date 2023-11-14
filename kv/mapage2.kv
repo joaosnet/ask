@@ -3,7 +3,7 @@
         id: backdrop
         back_layer_color: "#EDF1FF"
         # voltando para tela anterior da homepage
-        left_action_items: [['icones/Expand_left@3x.png', lambda x: app.gps()]]
+        left_action_items: [['icones/Expand_left@3x.png', lambda x: app.trocar_screen("screen 1")]]
         close_icon: 'icones/Expand_left@3x.png'
         header: True
         header_text: "Navegar"
@@ -70,5 +70,7 @@
                         lon: -48.45160647253775
                         Button:
                             on_release: print("Hello World")
+                    GpsBlinker:
+                        id: blinker
 
 # MapaPage2:

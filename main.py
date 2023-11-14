@@ -7,8 +7,9 @@ import requests
 # import traceback
 from kivymd.uix.menu import MDDropdownMenu
 from gpshelper import *
-from kivymd.uix.button import MDFlatButton
+# from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
+from linemaplayer import LineMapLayer   
 
 # Window.size = (360, 800) # tamanho da janela do aplicativo
 
@@ -42,6 +43,7 @@ class MainApp(MDApp):
         self.carregar_info_usuario()
         # carregar os obstaculos do banco de dados
         self.carregar_obstaculos()
+        # carrega a linha no mapa
 
     def carregar_info_usuario(self):
         try:
@@ -197,6 +199,10 @@ class MainApp(MDApp):
     def open_nav_drawer(self):
         self.root.get_screen("homepage").ids["nav_drawer"].set_state("open")
 
+    # Função para trocar de screen no BottomNavigation
+    def trocar_screen(self, nome_screen):
+        self.root.get_screen("homepage").ids["barra_navegacao"].current = nome_screen
+
     # mensagem de popup generica para ser usada em qualquer situacao com botoes de ok e cancelar
     def mostrar_alerta(self, titulo, texto):
         if not self.dialog:
@@ -206,9 +212,16 @@ class MainApp(MDApp):
             )
         self.dialog.open()
 
-    # funcao generica para usar o gps
-    def gps(self):
-        GpsHelper().run()
+    # funcao para desenhar a linha
+    def desenhar_linha(self, latitude1, longitude1, latitude2, longitude2):
+        minhas_coordenadas = [[latitude1, longitude1], [latitude2, longitude2]]
+        line_layer = LineMapLayer(coordinates=minhas_coordenadas, color=[1, 0, 0, 1])
+
+        mapa = self.root.get_screen("homepage").ids["mapapage2"].ids["mapview"]
+        mapa.lat = 51.046284
+        mapa.lon = 1.541179
+        mapa.zoom = 7             # Valores entre 0 e 19
+        mapa.add_layer(line_layer, mode="scatter")
     
     # Funcao para mudar de tela
     def mudar_tela(self, nome_tela):
