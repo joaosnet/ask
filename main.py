@@ -9,7 +9,8 @@ from kivymd.uix.menu import MDDropdownMenu
 from gpshelper import *
 # from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
-from linemaplayer import LineMapLayer   
+from linemaplayer import LineMapLayer
+from api_rotas import GraphHopperAPI   
 
 # Window.size = (360, 800) # tamanho da janela do aplicativo
 
@@ -212,16 +213,25 @@ class MainApp(MDApp):
             )
         self.dialog.open()
 
-    # funcao para desenhar a linha
-    def desenhar_linha(self, latitude1, longitude1, latitude2, longitude2):
-        minhas_coordenadas = [[latitude1, longitude1], [latitude2, longitude2]]
-        line_layer = LineMapLayer(coordinates=minhas_coordenadas, color=[1, 0, 0, 1])
+    # funcao para desenhar a rota no mapa
+    def rota(self, partida, destino):
+        # pegar as coordenadas de partida e destino
+        if partida == destino:
+            self.mostrar_alerta("Erro", "Partida e Destino não podem ser iguais")
+        else:
+            partida = partida
+            destino = destino
+            latitude1, longitude1 = partida.split(", ")
+            latitude2, longitude2 = destino.split(", ")
 
-        mapa = self.root.get_screen("homepage").ids["mapapage2"].ids["mapview"]
-        mapa.lat = 51.046284
-        mapa.lon = 1.541179
-        mapa.zoom = 7             # Valores entre 0 e 19
-        mapa.add_layer(line_layer, mode="scatter")
+            minhas_coordenadas = ([longitude1,latitude1], [longitude2,latitude2])
+
+            dic_rota = GraphHopperAPI().get_route(points=minhas_coordenadas)
+            print(dic_rota)
+            coordenadas_rota = dic_rota["paths"][0]["points"]["coordinates"]
+            line_layer = LineMapLayer(coordinates=coordenadas_rota, color=[1, 0, 0, 1])
+            mapa = self.root.get_screen("homepage").ids["mapapage2"].ids["mapview"]
+            mapa.add_layer(line_layer, mode="scatter")
     
     # Funcao para mudar de tela
     def mudar_tela(self, nome_tela):

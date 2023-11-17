@@ -58,6 +58,10 @@ class GpsHelper():
         gps_blinker2.lat = my_lat
         gps_blinker2.lon = my_lon
 
+        # Escrevendo a localizacao em Partida
+        Partida = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage2"].ids["Partida"]
+        Partida.text = str(my_lon) + ", " + str(my_lat)
+
         # Centraliza o mapa na posição atual do GPS
         if not self.has_centered_map:
             map = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["mapview"]

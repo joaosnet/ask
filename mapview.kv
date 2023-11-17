@@ -1,0 +1,21 @@
+<MapLayout>:
+    mapview: _mapview
+
+    MapView:
+        id: _mapview
+
+        MapMarker:                            # London
+            source: 'images/marker.png'       # png image 32x32
+            lat: 51.505807
+            lon: -0.128513
+
+        MapMarker:                            # Paris
+            source: 'images/marker.png'       # png image 32x32
+            lat: 48.85519
+            lon: 2.35021
+
+    MDFillRoundFlatButton:
+        text: 'Home'
+        pos_hint: {'right': 0.95, 'y': 0.05}
+        on_release:
+            root.mapview.center_on(51.505807, -0.128513)   # London

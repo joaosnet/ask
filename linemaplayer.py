@@ -1,20 +1,25 @@
-from kivy_garden.mapview import MapLayer
+from kivymd.app import MDApp
+from kivy.uix.screenmanager import Screen
+from kivy_garden.mapview import MapLayer, MapMarker
 from kivy.graphics import Color, Line
 from kivy.graphics.context_instructions import Translate, Scale, PushMatrix, PopMatrix
 from kivy_garden.mapview.utils import clamp
 from kivy_garden.mapview.constants import \
     (MIN_LONGITUDE, MAX_LONGITUDE, MIN_LATITUDE, MAX_LATITUDE)
 from math import radians, log, tan, cos, pi
+import random
+
 
 class LineMapLayer(MapLayer):
     """
-    Classe que representa uma camada de mapa que desenha uma linha entre dois pontos geográficos.
+    Classe que representa uma camada de mapa que desenha uma linha entre dois pontos.
 
-    :param coordinates: Lista de coordenadas geográficas dos pontos da linha.
-    :type coordinates: list
+    :param coordinates: Lista de coordenadas dos pontos que definem a linha.
+    :type coordinates: list[list[float, float]]
     :param color: Cor da linha no formato RGBA.
-    :type color: list
+    :type color: list[float]
     """
+
     def __init__(self, coordinates=[[0, 0], [0, 0]], color=[0, 0, 1, 1], **kwargs):
         super().__init__(**kwargs)
         self._coordinates = coordinates
@@ -29,20 +34,20 @@ class LineMapLayer(MapLayer):
     @property
     def coordinates(self):
         """
-        Retorna as coordenadas geográficas dos pontos da linha.
+        Retorna as coordenadas dos pontos que definem a linha.
 
-        :return: Lista de coordenadas geográficas dos pontos da linha.
-        :rtype: list
+        :return: Lista de coordenadas dos pontos que definem a linha.
+        :rtype: list[list[float, float]]
         """
         return self._coordinates
 
     @coordinates.setter
     def coordinates(self, coordinates):
         """
-        Define as coordenadas geográficas dos pontos da linha.
+        Define as coordenadas dos pontos que definem a linha.
 
-        :param coordinates: Lista de coordenadas geográficas dos pontos da linha.
-        :type coordinates: list
+        :param coordinates: Lista de coordenadas dos pontos que definem a linha.
+        :type coordinates: list[list[float, float]]
         """
         self._coordinates = coordinates
         self.invalidate_line_points()
@@ -51,10 +56,10 @@ class LineMapLayer(MapLayer):
     @property
     def line_points(self):
         """
-        Retorna os pontos da linha em coordenadas de tela.
+        Retorna os pontos que definem a linha.
 
-        :return: Lista de pontos da linha em coordenadas de tela.
-        :rtype: list
+        :return: Lista de pontos que definem a linha.
+        :rtype: list[tuple[float, float]]
         """
         if self._line_points is None:
             self.calc_line_points()
@@ -63,10 +68,10 @@ class LineMapLayer(MapLayer):
     @property
     def line_points_offset(self):
         """
-        Retorna o deslocamento dos pontos da linha em relação ao ponto (0, 0) da tela.
+        Retorna o deslocamento dos pontos que definem a linha.
 
-        :return: Deslocamento dos pontos da linha em relação ao ponto (0, 0) da tela.
-        :rtype: tuple
+        :return: Deslocamento dos pontos que definem a linha.
+        :rtype: tuple[float, float]
         """
         if self._line_points is None:
             self.calc_line_points()
@@ -74,7 +79,7 @@ class LineMapLayer(MapLayer):
 
     def calc_line_points(self):
         """
-        Calcula os pontos da linha em coordenadas de tela.
+        Calcula os pontos que definem a linha.
         """
         # Desloca todos os pontos pelas coordenadas do primeiro ponto,
         # para manter as coordenadas mais próximas de zero.
@@ -88,31 +93,31 @@ class LineMapLayer(MapLayer):
 
     def invalidate_line_points(self):
         """
-        Invalida os pontos da linha, forçando o recálculo na próxima vez que forem acessados.
+        Invalida os pontos que definem a linha.
         """
         self._line_points = None
         self._line_points_offset = (0, 0)
 
     def get_x(self, lon):
         """
-        Retorna a posição x na tela usando a projeção desta fonte de mapa.
+        Obtém a posição x no mapa usando a projeção desta fonte de mapa.
         (0, 0) está localizado no canto superior esquerdo.
 
         :param lon: Longitude do ponto.
         :type lon: float
-        :return: Posição x na tela.
+        :return: Posição x no mapa.
         :rtype: float
         """
         return clamp(lon, MIN_LONGITUDE, MAX_LONGITUDE) * self.ms / 360.0
 
     def get_y(self, lat):
         """
-        Retorna a posição y na tela usando a projeção desta fonte de mapa.
+        Obtém a posição y no mapa usando a projeção desta fonte de mapa.
         (0, 0) está localizado no canto superior esquerdo.
 
         :param lat: Latitude do ponto.
         :type lat: float
-        :return: Posição y na tela.
+        :return: Posição y no mapa.
         :rtype: float
         """
         lat = radians(clamp(-lat, MIN_LATITUDE, MAX_LATITUDE))
@@ -136,7 +141,7 @@ class LineMapLayer(MapLayer):
 
     def clear_and_redraw(self, *args):
         """
-        Limpa a linha antiga e desenha a nova linha.
+        Limpa a linha antiga e redesenha a linha.
         """
         with self.canvas:
             # Limpa a linha antiga
@@ -146,14 +151,14 @@ class LineMapLayer(MapLayer):
 
     def _draw_line(self, *args):
         """
-        Desenha a linha na tela.
+        Desenha a linha.
         """
         map_view = self.parent
         self.zoom = map_view.zoom
         self.lon = map_view.lon
         self.lat = map_view.lat
 
-        # Quando o zoom é alterado, devemos desfazer a transformação de dispersão atual
+        # Ao fazer zoom, devemos desfazer a transformação de dispersão atual
         # ou a animação a distorce
         scatter = map_view._scatter
         sx, sy, ss = scatter.x, scatter.y, scatter.scale
@@ -180,12 +185,63 @@ class LineMapLayer(MapLayer):
             # Aplica o que podemos fatorar da conversão de long, lat da fonte do mapa para x, y
             Translate(self.ms / 2, 0)
 
-            # Desloca pelos pontos da linha
-            # (que já foram deslocados para manter as coordenadas mais próximas de zero)
+            # Desloca pelo deslocamento dos pontos da linha
+            # (this keeps the points closer to the origin)
             Translate(*self.line_points_offset)
 
             Color(*self.color)
             Line(points=self.line_points, width=2)
 
-            # Restaura o contexto do espaço de coordenadas
+            # Retrieve the last saved coordinate space context
             PopMatrix()
+
+
+class MapLayout(Screen):
+    pass
+
+
+class MapViewApp(MDApp):
+    def on_start(self):
+        mapview = self.root.mapview
+
+        mapview.lat = 51.046284
+        mapview.lon = 1.541179
+        mapview.zoom = 7             # zoom values: 0 - 19
+
+        # You can import JSON data here or:
+        my_coordinates = [[51.505807, -0.128513], [51.126251, 1.327067],
+                          [50.959086, 1.827652], [48.85519, 2.35021]]
+
+        # Add routes
+        lml1 = LineMapLayer(coordinates=my_coordinates, color=[1, 0, 0, 1])
+        mapview.add_layer(lml1, mode="scatter")
+
+        my_coordinates = [my_coordinates[-1]]
+        for i in range(4600):
+            my_coordinates.append(gen_rand_point(my_coordinates[-1]))
+        lml2 = LineMapLayer(coordinates=my_coordinates, color=[0.5, 0, 1, 1])
+        mapview.add_layer(lml2, mode="scatter")
+
+        my_coordinates = [[51.505807, -0.128513], [48.85519, 2.35021]]
+        lml3 = LineMapLayer(coordinates=my_coordinates, color=[0, 0, 1, 1])
+        mapview.add_layer(lml3, mode="scatter")
+
+        # Add markers
+        marker = MapMarker(lat=51.126251, lon=1.327067, source='images/marker.png')
+        mapview.add_marker(marker)
+
+        marker = MapMarker(lat=50.959086, lon=1.827652, source='images/marker.png')
+        mapview.add_marker(marker)
+
+    def build(self):
+        return MapLayout()
+    
+def gen_rand_point(last_coordinate):
+    dx, dy = random.randint(-100, 100) / 10000.0, random.randint(0, 100) / 10000.0
+    c = (last_coordinate[0] + dx,
+         last_coordinate[1] + dy)
+    return c
+
+
+if __name__ == '__main__':
+    MapViewApp().run()
