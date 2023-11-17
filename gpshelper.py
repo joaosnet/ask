@@ -48,26 +48,22 @@ class GpsHelper():
         """
         Atualiza a posição do GpsBlinker com base na posição atual do GPS.
         """
-        my_lat = kwargs['lat']
-        my_lon = kwargs['lon']
+        self.my_lat = kwargs['lat']
+        self.my_lon = kwargs['lon']
         # Atualiza a posição do GpsBlinker
         gps_blinker = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["blinker"]
         gps_blinker2 = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage2"].ids["blinker"]
-        gps_blinker.lat = my_lat
-        gps_blinker.lon = my_lon
-        gps_blinker2.lat = my_lat
-        gps_blinker2.lon = my_lon
-
-        # Escrevendo a localizacao em Partida
-        Partida = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage2"].ids["Partida"]
-        Partida.text = str(my_lon) + ", " + str(my_lat)
+        gps_blinker.lat = self.my_lat
+        gps_blinker.lon = self.my_lon
+        gps_blinker2.lat = self.my_lat
+        gps_blinker2.lon = self.my_lon
 
         # Centraliza o mapa na posição atual do GPS
         if not self.has_centered_map:
             map = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["mapview"]
             map2 = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage2"].ids["mapview"]
-            map.center_on(my_lat, my_lon)
-            map2.center_on(my_lat, my_lon)
+            map.center_on(self.my_lat, self.my_lon)
+            map2.center_on(self.my_lat, self.my_lon)
             self.has_centered_map = True
 
 
@@ -79,6 +75,13 @@ class GpsHelper():
             pass
         else:
             self.open_gps_access_popup()
+
+    # funcao que retorna a latitude e longitude
+    def get_lat_lon(self):
+        """
+        Retorna a latitude e longitude da posição atual do GPS.
+        """
+        return self.my_lat, self.my_lon
 
     def open_gps_access_popup(self):
         """

@@ -30,6 +30,8 @@
                         icon_right_color: app.theme_cls.primary_color
                         pos_hint: {'center_x': 0.5,'center_y': 0.5}
                         size_hint_y: None
+                        on_focus: if self.focus: app.mostrar_localizacao_partida()
+
 
                     MDTextField:
                         id: Destino

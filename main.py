@@ -240,6 +240,16 @@ class MainApp(MDApp):
         except Exception as excecao:
             self.mostrar_alerta("Erro", "Não foi possível desenhar a rota, Nome do erro:" + str(excecao)+"\n"+"Resposta da API"+"\n"+str(self.dic_rota))
     
+    # Funcao para mostrar a localizacao do usuario na caixa de texto partida
+    def mostrar_localizacao_partida(self):
+        try:
+            # pegar a latitude e longitude do usuario
+            latitude, longitude = GpsHelper().get_lat_lon()
+            # colocar a latitude e longitude na caixa de texto partida
+            self.root.get_screen("homepage").ids["mapapage2"].ids["partida"].text = f"{latitude}, {longitude}"
+        except:
+            self.mostrar_alerta("Erro", "Não foi possível pegar a localização do usuário")
+
     # Funcao para mudar de tela
     def mudar_tela(self, nome_tela):
         # print(id_tela)

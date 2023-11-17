@@ -14,7 +14,7 @@ while True:
         os.system("git commit -m 'Atualizando'")
         os.system("git push")
         numero = "0.0.13"
-        os.system("gh release create v0.0.14 '/home/ubuntu/ask/bin/inclusiveway-0.1-arm64-v8a_armeabi-v7a-debug.apk'")
+        os.system("gh release create v0.0.1 '/home/ubuntu/ask/bin/inclusiveway-0.1-arm64-v8a_armeabi-v7a-debug.apk'")
         # interagindo com o terminal para colocar a realease no github
         
         '''
