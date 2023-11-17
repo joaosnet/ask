@@ -30,7 +30,7 @@ class GpsHelper():
                     from plyer import gps
                     gps.configure(on_location=self.update_blinker_position,
                                 on_status=self.on_auth_status)
-                    gps.start(minTime=1000, minDistance=0)
+                    gps.start(minTime=500, minDistance=0)
                 else:
                     print("Permissão de GPS negada")
             request_permissions([Permission.ACCESS_COARSE_LOCATION,
@@ -41,7 +41,7 @@ class GpsHelper():
             from plyer import gps
             gps.configure(on_location=self.update_blinker_position,
                           on_status=self.on_auth_status)
-            gps.start(minTime=1000, minDistance=0)
+            gps.start(minTime=500, minDistance=0)
 
 
     def update_blinker_position(self, *args, **kwargs):

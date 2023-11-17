@@ -25,6 +25,7 @@ class MainApp(MDApp):
         self.firebase = MyFirebase()
         self.visitas_app = 0
         self.dialog = None
+        self.gps = GpsHelper()
 
     def build(self):
         self.sm.add_widget(TutorialPage1(name='tutorialpage1'))
@@ -38,7 +39,7 @@ class MainApp(MDApp):
     
     def on_start(self):
         # carrega o gps
-        GpsHelper().run()
+        self.gps.run()
         # self.visitas_app += 1
         # carregar as informacoes do usuario
         self.carregar_info_usuario()
@@ -244,7 +245,7 @@ class MainApp(MDApp):
     def mostrar_localizacao_partida(self):
         try:
             # pegar a latitude e longitude do usuario
-            latitude, longitude = GpsHelper().get_lat_lon()
+            latitude, longitude = self.gps.get_lat_lon()
             # colocar a latitude e longitude na caixa de texto partida
             self.root.get_screen("homepage").ids["mapapage2"].ids["partida"].text = f"{latitude}, {longitude}"
         except Exception as excecao:
