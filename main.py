@@ -247,8 +247,8 @@ class MainApp(MDApp):
             latitude, longitude = GpsHelper().get_lat_lon()
             # colocar a latitude e longitude na caixa de texto partida
             self.root.get_screen("homepage").ids["mapapage2"].ids["partida"].text = f"{latitude}, {longitude}"
-        except:
-            self.mostrar_alerta("Erro", "Não foi possível pegar a localização do usuário")
+        except Exception as excecao:
+            self.mostrar_alerta("Erro", "Não foi possível pegar a localização do usuário\n"+"Nome do erro:" + str(excecao))
 
     # Funcao para mudar de tela
     def mudar_tela(self, nome_tela):
