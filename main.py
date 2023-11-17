@@ -4,7 +4,7 @@ from telas import *
 from botoes import *
 from myfirebase import MyFirebase
 import requests
-import traceback
+# import traceback
 from kivymd.uix.menu import MDDropdownMenu
 from gpshelper import *
 # from kivymd.uix.button import MDFlatButton
@@ -238,8 +238,6 @@ class MainApp(MDApp):
                 mapa = self.root.get_screen("homepage").ids["mapapage2"].ids["mapview"]
                 mapa.add_layer(line_layer, mode="scatter")
         except Exception as excecao:
-            print("Deu um erro ao desenhar a rota:", excecao)
-            traceback.print_exc()
             self.mostrar_alerta("Erro", "Não foi possível desenhar a rota, Nome do erro:" + str(excecao)+"\n"+"Resposta da API"+"\n"+str(self.dic_rota))
     
     # Funcao para mudar de tela
