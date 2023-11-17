@@ -49,6 +49,8 @@ class GraphHopperAPI:
 if __name__ == '__main__':
     gh = GraphHopperAPI().get_route(points=([-48.450860,-1.323304],[-48.451630,-1.473959]))
     from pprint import pprint as pp
+    pp(gh)
+    pp("------------------------------------------------------------------------------------------------------------------------")
     pp(gh["paths"][0]["points"]["coordinates"])
 
 
