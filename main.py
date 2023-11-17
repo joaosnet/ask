@@ -4,7 +4,7 @@ from telas import *
 from botoes import *
 from myfirebase import MyFirebase
 import requests
-# import traceback
+import traceback
 from kivymd.uix.menu import MDDropdownMenu
 from gpshelper import *
 # from kivymd.uix.button import MDFlatButton
@@ -216,22 +216,31 @@ class MainApp(MDApp):
     # funcao para desenhar a rota no mapa
     def rota(self, partida, destino):
         # pegar as coordenadas de partida e destino
-        if partida == destino:
-            self.mostrar_alerta("Erro", "Partida e Destino não podem ser iguais")
-        else:
-            partida = partida
-            destino = destino
-            latitude1, longitude1 = partida.split(", ")
-            latitude2, longitude2 = destino.split(", ")
+        try:
+            if partida == destino:
+                self.mostrar_alerta("Erro", "Partida e Destino não podem ser iguais")
+            else:
+                partida = partida
+                destino = destino
+                latitude1, longitude1 = partida.split(", ")
+                latitude2, longitude2 = destino.split(", ")
 
-            minhas_coordenadas = ([longitude1,latitude1], [longitude2,latitude2])
+                minhas_coordenadas = ([float(longitude1),float(latitude1)], [float(longitude2),float(latitude2)])
 
-            dic_rota = GraphHopperAPI().get_route(points=minhas_coordenadas)
-            print(dic_rota)
-            coordenadas_rota = dic_rota["paths"][0]["points"]["coordinates"]
-            line_layer = LineMapLayer(coordinates=coordenadas_rota, color=[1, 0, 0, 1])
-            mapa = self.root.get_screen("homepage").ids["mapapage2"].ids["mapview"]
-            mapa.add_layer(line_layer, mode="scatter")
+                dic_rota = GraphHopperAPI().get_route(points=minhas_coordenadas)
+                self.dic_rota = dic_rota
+                coordenadas_rota = dic_rota["paths"][0]["points"]["coordinates"]
+                # invertendo a ordem de lat e lon para lon e lat
+                for i in range(len(coordenadas_rota)):
+                    coordenadas_rota[i] = [coordenadas_rota[i][1], coordenadas_rota[i][0]]
+
+                line_layer = LineMapLayer(coordinates=coordenadas_rota, color=[1, 0, 0, 1])
+                mapa = self.root.get_screen("homepage").ids["mapapage2"].ids["mapview"]
+                mapa.add_layer(line_layer, mode="scatter")
+        except Exception as excecao:
+            print("Deu um erro ao desenhar a rota:", excecao)
+            traceback.print_exc()
+            self.mostrar_alerta("Erro", "Não foi possível desenhar a rota, Nome do erro:" + str(excecao)+"\n"+"Resposta da API"+"\n"+str(self.dic_rota))
     
     # Funcao para mudar de tela
     def mudar_tela(self, nome_tela):

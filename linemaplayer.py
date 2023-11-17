@@ -8,6 +8,7 @@ from kivy_garden.mapview.constants import \
     (MIN_LONGITUDE, MAX_LONGITUDE, MIN_LATITUDE, MAX_LATITUDE)
 from math import radians, log, tan, cos, pi
 import random
+from api_rotas import GraphHopperAPI
 
 
 class LineMapLayer(MapLayer):
@@ -204,34 +205,20 @@ class MapViewApp(MDApp):
     def on_start(self):
         mapview = self.root.mapview
 
-        mapview.lat = 51.046284
-        mapview.lon = 1.541179
-        mapview.zoom = 7             # zoom values: 0 - 19
+        mapview.lat = -1.473959
+        mapview.lon = -48.451630
+        mapview.zoom = 22            # zoom values: 0 - 19
 
-        # You can import JSON data here or:
-        my_coordinates = [[51.505807, -0.128513], [51.126251, 1.327067],
-                          [50.959086, 1.827652], [48.85519, 2.35021]]
+        gh = GraphHopperAPI().get_route(points=([-48.450860,-1.323304],[-48.451630,-1.473959]))
+
+        my_coordinates = gh["paths"][0]["points"]["coordinates"]
+        # invertendo a ordem de lat e lon para lon e lat
+        for i in range(len(my_coordinates)):
+            my_coordinates[i] = [my_coordinates[i][1], my_coordinates[i][0]]
 
         # Add routes
         lml1 = LineMapLayer(coordinates=my_coordinates, color=[1, 0, 0, 1])
         mapview.add_layer(lml1, mode="scatter")
-
-        my_coordinates = [my_coordinates[-1]]
-        for i in range(4600):
-            my_coordinates.append(gen_rand_point(my_coordinates[-1]))
-        lml2 = LineMapLayer(coordinates=my_coordinates, color=[0.5, 0, 1, 1])
-        mapview.add_layer(lml2, mode="scatter")
-
-        my_coordinates = [[51.505807, -0.128513], [48.85519, 2.35021]]
-        lml3 = LineMapLayer(coordinates=my_coordinates, color=[0, 0, 1, 1])
-        mapview.add_layer(lml3, mode="scatter")
-
-        # Add markers
-        marker = MapMarker(lat=51.126251, lon=1.327067, source='images/marker.png')
-        mapview.add_marker(marker)
-
-        marker = MapMarker(lat=50.959086, lon=1.827652, source='images/marker.png')
-        mapview.add_marker(marker)
 
     def build(self):
         return MapLayout()
