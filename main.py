@@ -9,7 +9,8 @@ from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
 from linemaplayer import LineMapLayer
 from api_rotas import GraphHopperAPI
-from pesquisa import *
+from pesquisa import SearchTextInput, Search_Select_Option
+from kivy.properties import ListProperty
 # import traceback   
 
 class MainApp(MDApp):
