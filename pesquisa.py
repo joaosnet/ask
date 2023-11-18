@@ -3,6 +3,7 @@ from kivymd.tools.hotreload.app import MDApp
 from kivymd.uix.list import OneLineAvatarIconListItem
 from kivymd.uix.textfield import MDTextField
 from kivy.lang import Builder
+from kivy.network.urlrequest import UrlRequest
 
 KV = '''
 
@@ -66,10 +67,13 @@ class Search_Select_Option(OneLineAvatarIconListItem):
 
 
 class SearchTextInput(MDTextField):
-    option_list = 'one1,two1,two2,three1,three2,three3,four1,four2,four3,four4,five1,five2,five3,five4,five5'.split(',')
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.option_list = []
 
     def on_text(self, instance, value):
         app = MDApp.get_running_app()
+        self.get_geocode(value)
         option_list = list(set(self.option_list + value[:value.rfind(' ')].split(' ')))
         val = value[value.rfind(' ') + 1:]
         if not val:
@@ -85,10 +89,27 @@ class SearchTextInput(MDTextField):
                         popped_suggest = option_list.pop(option_list.index(str(self.text + word)))
                         app.option_data.append(popped_suggest)
                 app.update_data(app.option_data)
-
         except IndexError:
-
             pass
+
+    def get_geocode(self, adress):
+
+        url = f"https://graphhopper.com/api/1/geocode?q={adress}&point=string&provider=nominatim&limit=5&locale=pt_BR&key=17e8fe9c-35aa-47cb-9c6b-3fbb62b7259b"
+
+        UrlRequest(url, on_success=self.success, on_failure=self.failure, on_error=self.error)
+    
+    def success(self, urlrequest, result):
+        print("Success")
+        self.option_list = [hit["name"] for hit in result["hits"]]
+        print(self.option_list)
+
+    def error(self, urlrequest, result):
+        print("error")
+        print(result)
+
+    def failure(self, urlrequest, result):
+        print("failure")
+        print(result)
 
 
 class HotReload(MDApp):

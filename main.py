@@ -14,6 +14,7 @@ from kivy.properties import ListProperty
 # import traceback   
 
 class MainApp(MDApp):
+    DEBUG = False
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -25,6 +26,7 @@ class MainApp(MDApp):
         self.visitas_app = 0
         self.dialog = None
         self.gps = GpsHelper()
+        self.rotas = GraphHopperAPI()
 
     def build(self):
         self.sm.add_widget(TutorialPage1(name='tutorialpage1'))

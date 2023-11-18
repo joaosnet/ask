@@ -1,5 +1,4 @@
 import requests
-
 class GraphHopperAPI:
     """
     Classe que representa a API do GraphHopper.
@@ -17,7 +16,7 @@ class GraphHopperAPI:
         """
         Inicializa a classe GraphHopperAPI com os atributos padrão.
         """
-        self.url = "https://graphhopper.com/api/1/route"
+        self.url = "https://graphhopper.com/api/1/"
         self.query = {"key": "17e8fe9c-35aa-47cb-9c6b-3fbb62b7259b"}
         self.headers = {"Content-Type": "application/json"}
 
@@ -41,16 +40,17 @@ class GraphHopperAPI:
             "calc_points": True,
             "points_encoded": False
         }
-        response = requests.post(self.url, json=payload, headers=self.headers, params=self.query)
+        response = requests.post(self.url + "route", json=payload, headers=self.headers, params=self.query)
         data = response.json()
         return data
     
+            
 # Exemplo de uso
 if __name__ == '__main__':
-    gh = GraphHopperAPI().get_route(points=([-48.450860,-1.323304],[-48.451630,-1.473959]))
+    rota = GraphHopperAPI().get_route(points=([-48.450860,-1.323304],[-48.451630,-1.473959]))
     from pprint import pprint as pp
-    pp(gh)
+    pp(rota)
     pp("------------------------------------------------------------------------------------------------------------------------")
-    pp(gh["paths"][0]["points"]["coordinates"])
+    pp(rota["paths"][0]["points"]["coordinates"])
 
 
