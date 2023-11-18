@@ -1,18 +1,16 @@
 from kivymd.app import MDApp
-# from kivy.core.window import Window
 from telas import *
 from botoes import *
 from myfirebase import MyFirebase
 import requests
-# import traceback
 from kivymd.uix.menu import MDDropdownMenu
 from gpshelper import *
-# from kivymd.uix.button import MDFlatButton
+from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
 from linemaplayer import LineMapLayer
-from api_rotas import GraphHopperAPI   
-
-# Window.size = (360, 800) # tamanho da janela do aplicativo
+from api_rotas import GraphHopperAPI
+from pesquisa import *
+# import traceback   
 
 class MainApp(MDApp):
 
@@ -45,7 +43,12 @@ class MainApp(MDApp):
         self.carregar_info_usuario()
         # carregar os obstaculos do banco de dados
         self.carregar_obstaculos()
-        # carrega a linha no mapa
+
+    rv_data = ListProperty()
+
+    def update_data(self, rv_data_list):
+        self.rv_data = [{'text': item} for item in rv_data_list]
+        print(self.rv_data, 'update')
 
     def carregar_info_usuario(self):
         try:
@@ -211,6 +214,11 @@ class MainApp(MDApp):
             self.dialog = MDDialog(
                 title=f"{titulo}",
                 text=f"{texto}",
+                buttons=[
+                    MDFlatButton(
+                        text="OK", text_color=self.theme_cls.primary_color, on_release= lambda _: self.dialog.dismiss()
+                    ),
+                ],
             )
         self.dialog.open()
 
@@ -220,6 +228,17 @@ class MainApp(MDApp):
         try:
             if partida == destino:
                 self.mostrar_alerta("Erro", "Partida e Destino não podem ser iguais")
+            elif partida == "" or destino == "":
+                partida = self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"]
+                destino = self.root.get_screen("homepage").ids["mapapage2"].ids["Destino"]
+
+                partida.error = True
+                partida.helper_text = "Informe seu local de Partida"
+                partida.helper_text_mode = "on_error"
+
+                destino.error = True
+                destino.helper_text = "Informe seu local de Destino"
+                destino.helper_text_mode = "on_error"
             else:
                 partida = partida
                 destino = destino
@@ -229,17 +248,19 @@ class MainApp(MDApp):
                 minhas_coordenadas = ([float(longitude1),float(latitude1)], [float(longitude2),float(latitude2)])
 
                 dic_rota = GraphHopperAPI().get_route(points=minhas_coordenadas)
-                self.dic_rota = dic_rota
+
                 coordenadas_rota = dic_rota["paths"][0]["points"]["coordinates"]
                 # invertendo a ordem de lat e lon para lon e lat
                 for i in range(len(coordenadas_rota)):
                     coordenadas_rota[i] = [coordenadas_rota[i][1], coordenadas_rota[i][0]]
-
                 line_layer = LineMapLayer(coordinates=coordenadas_rota, color=[1, 0, 0, 1])
                 mapa = self.root.get_screen("homepage").ids["mapapage2"].ids["mapview"]
                 mapa.add_layer(line_layer, mode="scatter")
-        except Exception as excecao:
-            self.mostrar_alerta("Erro", "Não foi possível desenhar a rota, Nome do erro:" + str(excecao)+"\n"+"Resposta da API"+"\n"+str(self.dic_rota))
+
+                #Voltando para o MDBackdropFrontLayer
+                self.root.get_screen("homepage").ids["mapapage2"].ids["backdrop"].open()
+        except:
+            self.mostrar_alerta("Erro", f"Não foi possível desenhar a rota\nVerifique se os campos de partida e destino estão preenchidos corretamente")
     
     # Funcao para mostrar a localizacao do usuario na caixa de texto partida
     def mostrar_localizacao_partida(self):
@@ -248,8 +269,9 @@ class MainApp(MDApp):
             latitude, longitude = self.gps.get_lat_lon()
             # colocar a latitude e longitude na caixa de texto partida
             self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"].text = f"{latitude}, {longitude}"
-        except Exception as excecao:
-            self.mostrar_alerta("Erro", "Não foi possível pegar a localização do usuário\n"+"Nome do erro:" + str(excecao))
+        except:
+            pass
+
 
     # Funcao para mudar de tela
     def mudar_tela(self, nome_tela):
