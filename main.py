@@ -247,7 +247,7 @@ class MainApp(MDApp):
             # pegar a latitude e longitude do usuario
             latitude, longitude = self.gps.get_lat_lon()
             # colocar a latitude e longitude na caixa de texto partida
-            self.root.get_screen("homepage").ids["mapapage2"].ids["partida"].text = f"{latitude}, {longitude}"
+            self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"].text = f"{latitude}, {longitude}"
         except Exception as excecao:
             self.mostrar_alerta("Erro", "Não foi possível pegar a localização do usuário\n"+"Nome do erro:" + str(excecao))
 
