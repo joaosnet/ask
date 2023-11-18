@@ -3,7 +3,7 @@
         id: backdrop
         back_layer_color: "#EDF1FF"
         # voltando para tela anterior da homepage
-        left_action_items: [['icones/Expand_left@3x.png', lambda x: app.rotas.get_geocode("UFPA")]]
+        left_action_items: [['icones/Expand_left@3x.png', lambda x: backdrop.open()]]
         close_icon: 'icones/Expand_left@3x.png'
         header: True
         header_text: "Navegar"
@@ -31,6 +31,7 @@
                         pos_hint: {'center_x': 0.5,'center_y': 0.5}
                         size_hint_y: None
                         on_focus: if self.focus: app.mostrar_localizacao_partida()
+                        
 
                     SearchTextInput:
                         id: Destino

@@ -69,7 +69,9 @@ class Search_Select_Option(OneLineAvatarIconListItem):
 class SearchTextInput(MDTextField):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.error = False
         self.option_list = []
+        
 
     def on_text(self, instance, value):
         app = MDApp.get_running_app()

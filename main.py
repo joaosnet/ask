@@ -234,14 +234,12 @@ class MainApp(MDApp):
             elif partida == "" or destino == "":
                 partida = self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"]
                 destino = self.root.get_screen("homepage").ids["mapapage2"].ids["Destino"]
-
+                
                 partida.error = True
                 partida.helper_text = "Informe seu local de Partida"
-                partida.helper_text_mode = "on_error"
 
                 destino.error = True
                 destino.helper_text = "Informe seu local de Destino"
-                destino.helper_text_mode = "on_error"
             else:
                 partida = partida
                 destino = destino
@@ -250,7 +248,7 @@ class MainApp(MDApp):
 
                 minhas_coordenadas = ([float(longitude1),float(latitude1)], [float(longitude2),float(latitude2)])
 
-                dic_rota = GraphHopperAPI().get_route(points=minhas_coordenadas)
+                dic_rota = self.rotas.get_route(points=minhas_coordenadas)
 
                 coordenadas_rota = dic_rota["paths"][0]["points"]["coordinates"]
                 # invertendo a ordem de lat e lon para lon e lat
