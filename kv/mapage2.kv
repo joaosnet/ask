@@ -20,7 +20,7 @@
                     size_hint_y: None
                     height: self.minimum_height
                     # Campos de pesquisa de origem e destino
-                    SearchTextInput:
+                    MDTextField:
                         id: Partida
                         # text: "-1.323304, -48.450860"
                         hint_text: "Partida"
@@ -35,7 +35,7 @@
 
                     SearchTextInput:
                         id: Destino
-                        text: "-1.473959, -48.451630"
+                        # text: "-1.473959, -48.451630"
                         hint_text: "Destino"
                         helper_text: "Informe seu destino"
                         helper_text_mode: "on_focus"
@@ -54,7 +54,7 @@
                             data:app.rv_data
                             RecycleBoxLayout:
                                 spacing: 15
-                                padding : 10
+                                padding : 0, 0, 0, 0
                                 default_size: None, None
                                 default_size_hint: 1, None
                                 size_hint_y: None
@@ -99,7 +99,7 @@
                         id: blinker
 
 <Search_Select_Option>:
-    on_release: print(self.text)
+    on_release: app.root.get_screen("homepage").ids["mapapage2"].ids["Destino"].text = self.secondary_text 
     IconRightWidget:
         icon: "arrow-top-left"
 

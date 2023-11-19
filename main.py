@@ -14,7 +14,7 @@ from kivy.properties import ListProperty
 # import traceback   
 
 class MainApp(MDApp):
-    DEBUG = False
+    DEBUG = True
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -50,8 +50,8 @@ class MainApp(MDApp):
     rv_data = ListProperty()
 
     def update_data(self, rv_data_list):
-        self.rv_data = [{'text': item} for item in rv_data_list]
-        print(self.rv_data, 'update')
+        self.rv_data = [{'text': item[0], "secondary_text": f"{item[1]['lat']}, {item[1]['lng']}"} for item in rv_data_list]
+        # print(self.rv_data, 'update')
 
     def carregar_info_usuario(self):
         try:
@@ -235,14 +235,14 @@ class MainApp(MDApp):
                 partida = self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"]
                 destino = self.root.get_screen("homepage").ids["mapapage2"].ids["Destino"]
                 
+                partida.helper_text_mode = "on_error"
+                partida.helper_text = "Não pode ser vazio"
                 partida.error = True
-                partida.helper_text = "Informe seu local de Partida"
 
+                destino.helper_text = "Não pode ser vazio"
+                destino.helper_text_mode = "on_error"
                 destino.error = True
-                destino.helper_text = "Informe seu local de Destino"
             else:
-                partida = partida
-                destino = destino
                 latitude1, longitude1 = partida.split(", ")
                 latitude2, longitude2 = destino.split(", ")
 
@@ -271,8 +271,10 @@ class MainApp(MDApp):
             # colocar a latitude e longitude na caixa de texto partida
             self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"].text = f"{latitude}, {longitude}"
         except:
-            pass
-
+                partida = self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"]
+                partida.helper_text_mode = "on_error"
+                partida.helper_text = "Não foi possível pegar sua localização"
+                partida.error = True    
 
     # Funcao para mudar de tela
     def mudar_tela(self, nome_tela):
