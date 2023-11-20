@@ -1,5 +1,5 @@
 from kivy.properties import ListProperty
-from kivymd.tools.hotreload.app import MDApp
+from kivymd.app import MDApp
 from kivymd.uix.list import TwoLineRightIconListItem
 from kivymd.uix.textfield import MDTextField
 from kivy.lang import Builder
@@ -9,7 +9,6 @@ from threading import Thread
 
 # Exemplo
 KV = '''
-
 Screen:
     BoxLayout:
         orientation: 'vertical'

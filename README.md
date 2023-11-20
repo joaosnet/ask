@@ -1,5 +1,11 @@
 # InclusiveWay - Aplicativo para Melhorar a Mobilidade de Pessoas com Deficiência
 
+![GitHub repo size](https://img.shields.io/github/repo-size/joaosnet/ask?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/joaosnet/ask?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/joaosnet/ask?style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/joaosnet/ask?style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/joaosnet/ask?style=for-the-badge)
+
 <img align="right" height="256" src="https://github.com/joaosnet/ask/blob/main/images/1_APP.png"/>
 
 ## Descrição do Projeto
@@ -16,13 +22,13 @@ O projeto InclusiveWay da organização ASK visa melhorar a mobilidade de pessoa
 
 * [Objetivos](#objetivos)
 
-* [Integrantes do Grupo](#integrantes-do-grupo)
+* [🤝 Colaboradores](#Colaboradores)
 
 * [Slides do Projeto](#slides-do-projeto)
 
-* [Como executar o Protótipo do Aplicativo](#como-executar-o-protótipo-do-aplicativo)
+* [☕ Usando o protótipo em python do InclusiveWay](#Usando_o_protótipo_em_python_do_InclusiveWay)
 
-* [Como Contribuir](#como-contribuir)
+* [📫 Contribuindo para InclusiveWay](#Contribuindo_para_InclusiveWay)
 
 * [Para construir uma versão no Buildozer](#para-construir-uma-versão-no-buildozer)
 
@@ -53,11 +59,40 @@ Melhorar a mobilidade de pessoas com deficiência visual no meio urbano.
 2. Oferecer informações sobre a condição das vias para traçar rotas ideais.
 3. Garantir acessibilidade completa por meio da compatibilidade com leitores de tela.
 
-## Integrantes do Grupo
+## 🤝 Colaboradores
 
 ![Integrantes](/images/integrantes.png)
 
 _Figure 1: Integrantes_
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/joaosnet" title="Perfil do Github do João Natividade">
+        <img src="https://avatars.githubusercontent.com/u/87316339?v=4" width="100px;" alt="Foto do João Natividade no GitHub"/><br>
+        <sub>
+          <b>João Natividade</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#" title="defina o titulo do link">
+        <img src="https://s2.glbimg.com/FUcw2usZfSTL6yCCGj3L3v3SpJ8=/smart/e.glbimg.com/og/ed/f/original/2019/04/25/zuckerberg_podcast.jpg" width="100px;" alt="Foto do Mark Zuckerberg"/><br>
+        <sub>
+          <b>Mark Zuckerberg</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#" title="defina o titulo do link">
+        <img src="https://miro.medium.com/max/360/0*1SkS3mSorArvY9kS.jpg" width="100px;" alt="Foto do Steve Jobs"/><br>
+        <sub>
+          <b>Steve Jobs</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
 
 ## Slides do Projeto
 
@@ -79,7 +114,7 @@ _Figure 3: Solução em 1 slide_
 
 _Figure 4: Protótipo em 1 slide_
 
-## Como executar o Protótipo do Aplicativo
+## ☕ Usando o protótipo em python do InclusiveWay
 
 ### No windows
 1. Instale o [anaconda](https://docs.anaconda.com/free/anaconda/install/windows.html)
@@ -119,7 +154,7 @@ pip install -r requirements_linux.txt
 python main.py
 ```
 
-## Como Contribuir
+## 📫 Contribuindo para InclusiveWay
 
 Se você deseja contribuir para o desenvolvimento do aplicativo, siga os passos abaixo:
 
