@@ -61,14 +61,10 @@ Melhorar a mobilidade de pessoas com deficiência visual no meio urbano.
 
 ## 🤝 Colaboradores
 
-![Integrantes](/images/integrantes.png)
-
-_Figure 1: Integrantes_
-
 <table>
   <tr>
     <td align="center">
-      <a href="https://github.com/joaosnet" title="Perfil do Github do João Natividade">
+      <a href="https://github.com/joaosnet" title="Gerente de Projetos Desenvolvedor Backend">
         <img src="https://avatars.githubusercontent.com/u/87316339?v=4" width="100px;" alt="Foto do João Natividade no GitHub"/><br>
         <sub>
           <b>João Natividade</b>
@@ -85,14 +81,31 @@ _Figure 1: Integrantes_
     </td>
     <td align="center">
       <a href="#" title="UI/UX Designer">
-        <img src="https://miro.medium.com/max/360/0*1SkS3mSorArvY9kS.jpg" width="100px;" alt="Foto da Andreza Vieira"/><br>
+        <img src="https://instagram.fbel1-1.fna.fbcdn.net/v/t51.2885-19/373413865_685167606813132_7130571256974862269_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fbel1-1.fna.fbcdn.net&_nc_cat=100&_nc_ohc=-NtTXh9fTrgAX8a1o9w&edm=ACWDqb8BAAAA&ccb=7-5&oh=00_AfCzhnv2Jx2ioCOx0yPV2K_08KW-JKR9opNrskSIHDIyIg&oe=6560334B&_nc_sid=ee9879" width="100px;" alt="Foto da Andreza Vieira"/><br>
         <sub>
           <b>Andreza Vieira</b>
         </sub>
       </a>
     </td>
+        <td align="center">
+      <a href="#" title="UX Designer Desenvolvedora Backend">
+        <img src="https://instagram.fbel1-1.fna.fbcdn.net/v/t51.2885-19/361771304_833908247939807_9019221283482484802_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fbel1-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=3QzOmdN5IJgAX-3DH59&edm=ACWDqb8BAAAA&ccb=7-5&oh=00_AfCdANs4lzWpoaEoAihOl_H-kYdiIQ3QYA4oGHJwyK29bg&oe=655F5B32&_nc_sid=ee9879" width="100px;" alt="Foto da Carla Silva"/><br>
+        <sub>
+          <b>Carla Silva</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#" title="UI Designer Especialista em Marketing">
+        <img src="https://instagram.fbel1-1.fna.fbcdn.net/v/t51.2885-19/300225876_600418448208671_8750170704882872093_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fbel1-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=vPMqdVMSlsQAX8ZyRc5&edm=ACWDqb8BAAAA&ccb=7-5&oh=00_AfBX2xpFXKaSbRKpKrM-pOCOjcBunH4pezgOZXbeX5XhGw&oe=656099CB&_nc_sid=ee9879" width="100px;" alt="Foto do José Soares"/><br>
+        <sub>
+          <b>José Soares</b>
+        </sub>
+      </a>
+    </td>
   </tr>
 </table>
+
 
 ## Slides do Projeto
 
