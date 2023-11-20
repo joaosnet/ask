@@ -22,7 +22,7 @@ O projeto InclusiveWay da organização ASK visa melhorar a mobilidade de pessoa
 
 * [Objetivos](#objetivos)
 
-* [🤝 Colaboradores](#Colaboradores)
+* [🤝 Colaboradores](#-colaboradores)
 
 * [Slides do Projeto](#slides-do-projeto)
 
