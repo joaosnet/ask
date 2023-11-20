@@ -22,13 +22,13 @@ O projeto InclusiveWay da organização ASK visa melhorar a mobilidade de pessoa
 
 * [Objetivos](#objetivos)
 
-* [🤝 Colaboradores](#_colaboradores)
+* [🤝 Colaboradores](#-colaboradores)
 
 * [Slides do Projeto](#slides-do-projeto)
 
-* [☕ Usando o protótipo em python do InclusiveWay](#_usando_o_protótipo_em_python_do_InclusiveWay)
+* [☕ Usando o protótipo em python do InclusiveWay](#-usando-o-protótipo-em-python-do-inclusiveWay)
 
-* [📫 Contribuindo para InclusiveWay](#_contribuindo_para_InclusiveWay)
+* [📫 Contribuindo para InclusiveWay](#-contribuindo-para-inclusiveWay)
 
 * [Para construir uma versão no Buildozer](#para-construir-uma-versão-no-buildozer)
 
