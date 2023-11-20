@@ -76,18 +76,18 @@ _Figure 1: Integrantes_
       </a>
     </td>
     <td align="center">
-      <a href="#" title="defina o titulo do link">
-        <img src="https://s2.glbimg.com/FUcw2usZfSTL6yCCGj3L3v3SpJ8=/smart/e.glbimg.com/og/ed/f/original/2019/04/25/zuckerberg_podcast.jpg" width="100px;" alt="Foto do Mark Zuckerberg"/><br>
+      <a href="#" title="QA Tester Analista de Mercado">
+        <img src="https://instagram.fbel1-1.fna.fbcdn.net/v/t51.2885-19/274501676_537691970910933_7250418063848294931_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fbel1-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=ACApVBikdNoAX_Nd-z2&edm=ACWDqb8BAAAA&ccb=7-5&oh=00_AfDqicJsk8zjq8bXqvL38hbjF8K83bzzIqWNVcpTFrIBoQ&oe=65605C0E&_nc_sid=ee9879" width="100px;" alt="Foto do Alydson Lustoza"/><br>
         <sub>
-          <b>Mark Zuckerberg</b>
+          <b>Alydson Lustoza</b>
         </sub>
       </a>
     </td>
     <td align="center">
-      <a href="#" title="defina o titulo do link">
-        <img src="https://miro.medium.com/max/360/0*1SkS3mSorArvY9kS.jpg" width="100px;" alt="Foto do Steve Jobs"/><br>
+      <a href="#" title="UI/UX Designer">
+        <img src="https://miro.medium.com/max/360/0*1SkS3mSorArvY9kS.jpg" width="100px;" alt="Foto da Andreza Vieira"/><br>
         <sub>
-          <b>Steve Jobs</b>
+          <b>Andreza Vieira</b>
         </sub>
       </a>
     </td>
