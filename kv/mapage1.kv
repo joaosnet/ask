@@ -13,7 +13,7 @@
                 self.zoom = 2 if self.zoom < 2 else self.zoom
             GpsBlinker:
                 id: blinker
-                      
+
         # Botao de configuração
         MDIconButton:
             pos_hint: {'center_x': 0.1,'center_y': 0.93}
@@ -23,9 +23,11 @@
 
         MDFloatingActionButtonSpeedDial:
             pos_hint: {'center_x': 0.70,'center_y': 0.1}
+            size_hint: None, None
             data: {'Perigoso': 'close-octagon', 'Atenção': 'alert-circle', 'Temporário': 'clock-fast'}
             root_button_anim: True
             hint_animation: True
+            border_radius: [0, 0, 0, 0]
 
         MDLabel:
             id: erro

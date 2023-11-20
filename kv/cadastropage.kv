@@ -55,6 +55,30 @@
                 radius: [5, 5, 5, 5]
                 size_hint_y: None
 
+            MDLabel:
+                text: 'Informe seu tipo de deficiência'
+                font_size: '12sp'
+                # TEXTO DE COR PRETA
+                color: 0, 0, 0, 1
+                halign: 'left'
+
+            # Caixa de texto que contem uma Lista de tipos de deficiência
+            MDTextField:
+                id: tipo_deficiencia
+                mode: "fill"
+                hint_text: 'Tipo de Deficiência'
+                helper_text: 'Selecione o tipo de deficiência que você possui'
+                helper_text_mode: 'on_focus'
+                icon_right: 'arrow-down-drop-circle-outline'
+                # cores
+                icon_right_color: app.theme_cls.primary_color
+                fill_color_normal: "#EDF1FF"
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                size_hint_y: None
+                radius: [5, 5, 5, 5]
+                # Lista de tipos de deficiência do MenuTipoDeficiencia
+                on_focus: if self.focus: app.menu.open()                
+
             # Campo para informar o email do usuário
             MDLabel:
                 text: 'Informe seu email'
@@ -126,7 +150,7 @@
                 # tamanho do botao
                 size_hint: 1, "1.2dp"
                 # quando clicado confirma a senha e faz o cadastro, quando não, mostra uma mensagem de erro nos campos senha e confirmação de senha
-                on_release: app.firebase.confirmar_senha(nome.text, email.text, senha_sem_confirmacao.ids.text_field.text, senha_de_confirmacao.ids.text_field.text)
+                on_release: app.firebase.confirmar_senha(nome.text, tipo_deficiencia.text, email.text, senha_sem_confirmacao.ids.text_field.text, senha_de_confirmacao.ids.text_field.text)
                 size_hint_y: None
 
             # Divisão horizontal

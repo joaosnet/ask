@@ -10,9 +10,9 @@ class MyFirebase():
     API_KEY = "AIzaSyCL5SzpjM8b1VlO6XSwniNFplITXo99Xmo"
 
     # quando clicado confirma a senha e faz o cadastro, quando não, mostra uma mensagem de erro nos campos senha e confirmação de senha
-    def confirmar_senha(self, nome, email, senha, confirmacao_senha):
+    def confirmar_senha(self, nome, deficiencia, email, senha, confirmacao_senha):
         if senha == confirmacao_senha:
-            self.criar_conta(nome, email, senha)
+            self.criar_conta(nome, deficiencia, email, senha)
         else:
             meu_aplicativo = MDApp.get_running_app()
             pagina_cadastro = meu_aplicativo.root.get_screen("cadastropage")
@@ -21,7 +21,7 @@ class MyFirebase():
             pagina_cadastro.ids["senha_de_confirmacao"].ids["text_field"].helper_text = "As senhas não coincidem"
             pagina_cadastro.ids["senha_de_confirmacao"].ids["text_field"].error = True
 
-    def criar_conta(self, nome, email, senha):
+    def criar_conta(self, nome, deficiencia, email, senha):
         """
         Cria uma nova conta de usuário no Firebase Authentication.
 
@@ -64,7 +64,7 @@ class MyFirebase():
 
             data = date.today().strftime('%d/%m/%Y')
 
-            info_usuario = f'{{"foto_de_perfil": "foto1.png", "nome": "{nome}", "data_criacao_de_conta": "{data}", "deficiencia": "", "id": "{id}", "telefone": "", "localizacao":""}}'
+            info_usuario = f'{{"foto_de_perfil": "foto1.png", "nome": "{nome}", "data_criacao_de_conta": "{data}", "deficiencia": "{deficiencia}", "id": "{id}", "telefone": "", "localizacao":""}}'
             
             requests.patch(link, data=info_usuario)
             
