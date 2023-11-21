@@ -190,14 +190,14 @@ class MyFirebase():
                 f.write("")
 
     # Função para fazer alterações no perfil do usuario
-    def alterar_perfil(self, foto_de_perfil, nome, deficiencia, telefone, localizacao):
+    def alterar_perfil(self, nome, deficiencia, telefone, localizacao):
         # verificando se algum campo conteve alteração
-        if foto_de_perfil != "" and nome != "" and deficiencia != "" and telefone != "" and localizacao != "":
+        if nome != "" and deficiencia != "" and telefone != "" and localizacao != "":
             meu_aplicativo = MDApp.get_running_app()
             id_token = meu_aplicativo.id_token
             local_id = meu_aplicativo.local_id
             link = f"https://inclusiveway-ask-default-rtdb.firebaseio.com/{local_id}.json?auth={id_token}"
-            info = f'{{"foto_de_perfil":"{foto_de_perfil}", "nome": "{nome}", "deficiencia": "{deficiencia}", "telefone": "{telefone}", "localizacao": "{localizacao}"}}'
+            info = f'{{"nome": "{nome}", "deficiencia": "{deficiencia}", "telefone": "{telefone}", "localizacao": "{localizacao}"}}'
             requisicao = requests.patch(link, data=info)
             requisicao_dic = requisicao.json()
             # atualizar as informações do usuario na homepage

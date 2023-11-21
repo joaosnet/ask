@@ -1,0 +1,24 @@
+<FotoPerfilPage>:
+    MDScrollView: 
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: 20, 20, 20, 20
+            spacing: 10
+            size_hint_y: None
+            height: self.minimum_height
+            # Botão de Voltar (icones/Expand_left@3x.png)
+            MDIconButton:
+                pos_hint: {'center_x': 0.1,'center_y': 0.93}
+                icon: 'icones/Expand_left@3x.png'
+                icon_size: "45sp"
+                on_release: app.mudar_tela('homepage')
+                size_hint_y: None
+
+            MDGridLayout:
+                id: lista_fotos_perfil
+                cols: 3
+                size_hint_y: None # esse none é para que o tamanho da lista seja definido pelo tamanho dos widgets
+                spacing: 5, 5
+                height: self.minimum_height # esse minimum_height é para que a lista tenha o tamanho minimo para caber todos os widgets
+                row_default_height: "90dp" # altura de cada widget
+                row_force_default: True # força a altura definida acima

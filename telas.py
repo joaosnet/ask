@@ -34,3 +34,6 @@ class TutorialPage3(Screen): # classe da tela TodasVendasPage
 
 class LoginPage(Screen): # classe da tela LoginPage
     pass
+
+class FotoPerfilPage(Screen): # classe da tela FotoPerfilPage
+    pass

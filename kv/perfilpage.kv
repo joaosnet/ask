@@ -22,25 +22,13 @@
                 pos_hint: {'center_x': 0.5,'center_y': 0.5}
                 size_hint: None, None
 
-            # Caixa para escrever o nome da foto de perfil
-            MDTextField:
-                id: nome_foto_perfil
-                mode: "fill"
-                hint_text: "Nome da foto de perfil"
-                helper_text_mode: "on_focus"
-                icon_left: "account"
-                icon_left_color: app.theme_cls.primary_color
-                fill_color_normal: "#EDF1FF"
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                radius: [5, 5, 5, 5]
-                size_hint_y: None
-            # Botão de Texto "Mudar foto de perfil"
             MDFlatButton:
                 text: "[color=#8C52FF]Mudar foto de perfil[/color]"
                 font_size: '16sp'
                 markup: True
                 pos_hint: {"center_x": .5, "center_y": .5}
                 size_hint_y: None
+                on_release: app.mudar_tela('fotoperfilpage')
 
             # Id do Usuário
             MDLabel:
@@ -141,7 +129,7 @@
                 font_size: '16sp'
                 markup: True
                 pos_hint: {"center_x": .5, "center_y": .5}
-                on_release: app.firebase.alterar_perfil(nome_foto_perfil.text, nome.text, tipo_deficiencia.text, telefone.text, localizacao.text)
+                on_release: app.firebase.alterar_perfil(nome.text, tipo_deficiencia.text, telefone.text, localizacao.text)
                 size_hint_y: None
             # Mensagem
             MDLabel:

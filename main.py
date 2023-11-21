@@ -11,14 +11,20 @@ from linemaplayer import LineMapLayer
 from api_rotas import GraphHopperAPI
 from pesquisa import SearchTextInput, Search_Select_Option
 from kivy.properties import ListProperty
+import os
+from functools import partial
 # import traceback   
 
 class MainApp(MDApp):
+    """
+    Classe principal da aplicação.
+    """
+
     DEBUG = True
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        #Carregando arquivos kv
+        # Carregando arquivos kv
         self.load_all_kv_files(self.directory)
         # Gerenciador de Telas
         self.sm = MDScreenManager()
@@ -29,6 +35,9 @@ class MainApp(MDApp):
         self.rotas = GraphHopperAPI()
 
     def build(self):
+        """
+        Constrói a interface da aplicação.
+        """
         self.sm.add_widget(TutorialPage1(name='tutorialpage1'))
         self.sm.add_widget(TutorialPage2(name='tutorialpage2'))
         self.sm.add_widget(TutorialPage3(name='tutorialpage3'))
@@ -36,30 +45,47 @@ class MainApp(MDApp):
         self.sm.add_widget(CadastroPage(name='cadastropage'))
         self.sm.add_widget(LoginPage(name='loginpage'))
         self.sm.add_widget(HomePage(name='homepage'))
+        self.sm.add_widget(FotoPerfilPage(name='fotoperfilpage'))
         return self.sm
     
     def on_start(self):
-        # carrega o gps
+        """
+        Executado quando a aplicação é iniciada.
+        """
+        # Carregar as fotos de perfil
+        arquivos = os.listdir("icones/fotos_perfil")
+        pagina_fotoperfil = self.root.get_screen("fotoperfilpage")
+        lista_fotos = pagina_fotoperfil.ids["lista_fotos_perfil"]
+        for foto in arquivos:
+            image = ImageButton(source=f"icones/fotos_perfil/{foto}", on_release=partial(self.mudar_foto_perfil, foto))
+            lista_fotos.add_widget(image)
+        # Carrega o GPS
         self.gps.run()
         # self.visitas_app += 1
-        # carregar as informacoes do usuario
+        # Carregar as informações do usuário
         self.carregar_info_usuario()
-        # carregar os obstaculos do banco de dados
+        # Carregar os obstáculos do banco de dados
         self.carregar_obstaculos()
 
     rv_data = ListProperty()
 
     def update_data(self, rv_data_list):
+        """
+        Atualiza os dados da lista de exibição.
+        """
         self.rv_data = [{'text': item[0], "secondary_text": f"{item[1]['lat']}, {item[1]['lng']}"} for item in rv_data_list]
         # print(self.rv_data, 'update')
 
     def carregar_info_usuario(self):
+        """
+        Carrega as informações do usuário.
+        """
         try:
             try:
-                # carrengado o email e senha do arquivo usuario.txt
+                # Carregando o email e senha do arquivo usuario.txt
                 with open("usuario.txt", "r") as arquivo:
                     email, senha = arquivo.read().splitlines()
-                # escrevendo nos campos de email e senha
+                # Escrevendo nos campos de email e senha
                 pagina_login = self.root.get_screen("loginpage")
                 pagina_login.ids["email"].text = email
                 pagina_login.ids["senha"].ids["text_field"].text = senha
@@ -75,68 +101,66 @@ class MainApp(MDApp):
             local_id, id_token = self.firebase.trocar_token(refresh_token)
             self.local_id = local_id
             self.id_token = id_token
-            # pegar informacoes do usuario
+            # Pegar informações do usuário
             link = f"https://inclusiveway-ask-default-rtdb.firebaseio.com/{self.local_id}.json?auth={self.id_token}"
             requisicao = requests.get(link)
             requisicao_dic = requisicao.json()
             # pp(requisicao_dic)
 
-            # preencher foto de perfil
+            # Preencher foto de perfil
             avatar = requisicao_dic["foto_de_perfil"]
             self.avatar = avatar
             foto_perfil = self.root.get_screen("homepage").ids["perfilpage"].ids["foto_perfil"]
-            foto_perfil.source = f"icones/user/{avatar}"
-            nome_foto_perfil =  self.root.get_screen("homepage").ids["perfilpage"].ids["nome_foto_perfil"]
-            nome_foto_perfil.text = avatar
+            foto_perfil.source = f"icones/fotos_perfil/{avatar}"
 
-            # preencher o ID Unico do usuario
+            # Preencher o ID Único do usuário
             id = requisicao_dic["id"]
             self.id = id
             self.root.get_screen("homepage").ids["perfilpage"].ids["id_usuario"].text = f'Seu ID Único é {id}'
 
-            # preencher o nome do usuario
+            # Preencher o nome do usuário
             nome = requisicao_dic["nome"]
             self.nome = nome
             self.root.get_screen("homepage").ids["perfilpage"].ids["nome"].text = nome
 
-            # preencher o email do usuario, porém não tem email no banco de dados do usuário só no authenticatior do google
+            # Preencher o email do usuário, porém não tem email no banco de dados do usuário só no authenticatior do google
             email = "Sem email no banco de dados"
             self.email = email
             self.root.get_screen("homepage").ids["perfilpage"].ids["email"].text = email
 
-            # preencher o telefone do usuario
+            # Preencher o telefone do usuário
             telefone = requisicao_dic["telefone"]
             self.telefone = telefone
             self.root.get_screen("homepage").ids["perfilpage"].ids["telefone"].text = telefone
 
-            # preencher a localizacao do usuario
+            # Preencher a localização do usuário
             localizacao = requisicao_dic["localizacao"]
             self.localizacao = localizacao
             self.root.get_screen("homepage").ids["perfilpage"].ids["localizacao"].text = localizacao
 
-            # preencher a data de cadastro do usuario
+            # Preencher a data de cadastro do usuário
             data_cadastro = requisicao_dic["data_criacao_de_conta"]
             self.data_cadastro = data_cadastro
             self.root.get_screen("homepage").ids["perfilpage"].ids["data_cadastro"].text = f"Data de Cadastro: {str(data_cadastro)}"
 
-            # preencher o tipo de deficiencia do usuario
+            # Preencher o tipo de deficiência do usuário
             tipo_deficiencia = requisicao_dic["deficiencia"]
             self.tipo_deficiencia = tipo_deficiencia
             self.root.get_screen("homepage").ids["perfilpage"].ids["tipo_deficiencia"].text = tipo_deficiencia
 
-            # Quando preenchidas as informacoes, mudar para a homepage
+            # Quando preenchidas as informações, mudar para a homepage
             self.mudar_tela("homepage")
         except:
-        # # se nao tiver o arquivo de refresh token ou ocorrer outro erro, mudar para a tela de login e mostrar a excecao se for o segundo acesso do usuario ao app
+        # # Se não tiver o arquivo de refresh token ou ocorrer outro erro, mudar para a tela de login e mostrar a exceção se for o segundo acesso do usuário ao app
         # except Exception as excecao:
         #     print("Deu um erro ao carregar as informações do Usuário:", excecao)
         #     traceback.print_exc()
 
             try:
-                # carrengado o email e senha do arquivo usuario.txt
+                # Carregando o email e senha do arquivo usuario.txt
                 with open("usuario.txt", "r") as arquivo:
                     email, senha = arquivo.read().splitlines()
-                # escrevendo nos campos de email e senha
+                # Escrevendo nos campos de email e senha
                 pagina_login = self.root.get_screen("loginpage")
                 pagina_login.ids["email"].text = email
                 pagina_login.ids["senha"].ids["text_field"].text = senha
@@ -149,15 +173,17 @@ class MainApp(MDApp):
             #     print("Deu um erro ao carregar o email e senha do arquivo usuario.txt:", excecao)
             #     traceback.print_exc()
 
-            # se for a primeira vez entrando no app redirecionar para pagina de tutorialpage1
+            # Se for a primeira vez entrando no app redirecionar para página de tutorialpage1
             if self.visitas_app == 0:
-                # se for a segunda vez entrando no app redirecionar para pagina de startpage
+                # Se for a segunda vez entrando no app redirecionar para página de startpage
                 self.mudar_tela("tutorialpage1")
             else:
                 self.mudar_tela("loginpage")
 
-    # Funcao para carregar os obstaculos do banco de dados
     def carregar_obstaculos(self):
+        """
+        Carrega os obstáculos do banco de dados.
+        """
         self.menu_items = [
             {
                 "text": "Não Possuo",
@@ -198,21 +224,29 @@ class MainApp(MDApp):
             width_mult=4,
         )
         
-    # Funcao para abrir o menu do tipo de deficiencia
     def menu_callback(self, text_item):
+        """
+        Callback para o menu do tipo de deficiência.
+        """
         self.root.get_screen("homepage").ids["perfilpage"].ids["tipo_deficiencia"].text = text_item
         self.menu.dismiss()
 
-    # Funcao para abrir a nav_drawer da homepage
     def open_nav_drawer(self):
+        """
+        Abre a nav_drawer da homepage.
+        """
         self.root.get_screen("homepage").ids["nav_drawer"].set_state("open")
 
-    # Função para trocar de screen no BottomNavigation
     def trocar_screen(self, nome_screen):
+        """
+        Troca a tela no BottomNavigation.
+        """
         self.root.get_screen("homepage").ids["barra_navegacao"].current = nome_screen
 
-    # mensagem de popup generica para ser usada em qualquer situacao com botoes de ok e cancelar
     def mostrar_alerta(self, titulo, texto):
+        """
+        Mostra um alerta genérico com botões de OK e Cancelar.
+        """
         if not self.dialog:
             self.dialog = MDDialog(
                 title=f"{titulo}",
@@ -225,9 +259,11 @@ class MainApp(MDApp):
             )
         self.dialog.open()
 
-    # funcao para desenhar a rota no mapa
     def rota(self, partida, destino):
-        # pegar as coordenadas de partida e destino
+        """
+        Desenha a rota no mapa.
+        """
+        # Pegar as coordenadas de partida e destino
         try:
             if partida == destino:
                 self.mostrar_alerta("Erro", "Partida e Destino não podem ser iguais")
@@ -251,7 +287,7 @@ class MainApp(MDApp):
                 dic_rota = self.rotas.get_route(points=minhas_coordenadas)
 
                 coordenadas_rota = dic_rota["paths"][0]["points"]["coordinates"]
-                # invertendo a ordem de lat e lon para lon e lat
+                # Invertendo a ordem de lat e lon para lon e lat
                 for i in range(len(coordenadas_rota)):
                     coordenadas_rota[i] = [coordenadas_rota[i][1], coordenadas_rota[i][0]]
                 line_layer = LineMapLayer(coordinates=coordenadas_rota, color=[1, 0, 0, 1])
@@ -275,6 +311,16 @@ class MainApp(MDApp):
                 partida.helper_text_mode = "on_error"
                 partida.helper_text = "Não foi possível pegar sua localização"
                 partida.error = True    
+
+    def mudar_foto_perfil(self, foto, *args):
+        foto_perfil = self.root.get_screen("homepage").ids["perfilpage"].ids["foto_perfil"]
+        foto_perfil.source = f"icones/fotos_perfil/{foto}"
+
+        link = f"https://inclusiveway-ask-default-rtdb.firebaseio.com/{self.local_id}.json?auth={self.id_token}"
+        info = f'{{"foto_de_perfil": "{foto}"}}'
+        requisicao = requests.patch(link, data = info)
+
+        self.mudar_tela("homepage")
 
     # Funcao para mudar de tela
     def mudar_tela(self, nome_tela):
