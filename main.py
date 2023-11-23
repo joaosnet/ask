@@ -311,7 +311,7 @@ class MainApp(MDApp):
             self.root.get_screen("homepage").ids["perfilpage"].ids["localizacao"].text = local
             link = f"https://inclusiveway-ask-default-rtdb.firebaseio.com/{self.local_id}.json?auth={self.id_token}"
             info = f'{{"local": "{local}"}}'
-            UrlRequest(link, data = info)
+            UrlRequest(link, req_body = info, method='post')
 
         except:
                 partida = self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"]
@@ -328,6 +328,12 @@ class MainApp(MDApp):
         requisicao = requests.patch(link, data = info)
 
         self.mudar_tela("homepage")
+
+    def centralizar_mapa(self):
+        try: 
+            self.root.get_screen("homepage").ids["mapapage1"].ids["mapview"].center_on(self.gps.get_lat_lon())
+        except: 
+            self.gps.open_gps_access_popup()    
 
     # Funcao para mudar de tela
     def mudar_tela(self, nome_tela):
