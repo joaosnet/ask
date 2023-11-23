@@ -13,6 +13,7 @@ from pesquisa import SearchTextInput, Search_Select_Option
 from kivy.properties import ListProperty
 import os
 from functools import partial
+from kivy.network.urlrequest import UrlRequest
 # import traceback   
 
 class MainApp(MDApp):
@@ -304,8 +305,14 @@ class MainApp(MDApp):
         try:
             # pegar a latitude e longitude do usuario
             latitude, longitude = self.gps.get_lat_lon()
+            local = f"{latitude}, {longitude}"
             # colocar a latitude e longitude na caixa de texto partida
-            self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"].text = f"{latitude}, {longitude}"
+            self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"].text = local
+            self.root.get_screen("homepage").ids["perfilpage"].ids["localizacao"].text = local
+            link = f"https://inclusiveway-ask-default-rtdb.firebaseio.com/{self.local_id}.json?auth={self.id_token}"
+            info = f'{{"local": "{local}"}}'
+            UrlRequest(link, data = info)
+
         except:
                 partida = self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"]
                 partida.helper_text_mode = "on_error"
