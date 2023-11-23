@@ -96,7 +96,7 @@
                     pos_hint: {"center_x": .5, "center_y": .5}
                     # se esquecer a senha, vai mostrar um texto de erro no campo da senha
                     on_release: 
-                        app.mostrar_alerta('Esqueci minha senha', 'Faz outra conta ai, meu filho!')
+                        app.firebase.trocar_senha(email.text)
             
             MDBoxLayout:
                 orientation: 'horizontal'
@@ -133,6 +133,15 @@
                     size_hint: 154, 1
                     on_release: app.firebase.fazer_login(email.text, senha.ids.text_field.text)
                     size_hint_y: None
+            MDLabel:
+                id: mensagem
+                text: ''
+                font_size: '16sp'
+                # TEXTO DE COR PRETA
+                color: 0, 0, 0, 1
+                halign: 'center'
+                size_hint_y: None
+                markup: True
 
             # MDBoxLayout:
             #     orientation: 'horizontal'

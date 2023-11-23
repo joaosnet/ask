@@ -130,7 +130,9 @@
                 font_size: '16sp'
                 markup: True
                 pos_hint: {"center_x": .5, "center_y": .5}
-                on_release: app.firebase.alterar_perfil(nome.text, tipo_deficiencia.text, telefone.text, localizacao.text)
+                on_release: 
+                    app.firebase.alterar_perfil(nome.text, tipo_deficiencia.text, telefone.text, localizacao.text)
+                    app.firebase.atualizar_email(email.text)
                 size_hint_y: None
             # Mensagem
             MDLabel:

@@ -1,7 +1,9 @@
 import requests
 from kivymd.app import MDApp
 from datetime import date
-
+from threading import Thread
+import json
+from threading import Thread
 class MyFirebase():
     """
     Classe que gerencia a comunicação com o Firebase Authentication e Realtime Database.
@@ -198,8 +200,7 @@ class MyFirebase():
             local_id = meu_aplicativo.local_id
             link = f"https://inclusiveway-ask-default-rtdb.firebaseio.com/{local_id}.json?auth={id_token}"
             info = f'{{"nome": "{nome}", "deficiencia": "{deficiencia}", "telefone": "{telefone}", "localizacao": "{localizacao}"}}'
-            requisicao = requests.patch(link, data=info)
-            requisicao_dic = requisicao.json()
+            Thread(target=requests.patch, args=(link,), kwargs={"data": info}).start()
             # atualizar as informações do usuario na homepage
             meu_aplicativo.carregar_info_usuario()
             # escrevendo uma mensagem na tela
@@ -210,3 +211,27 @@ class MyFirebase():
             meu_aplicativo = MDApp.get_running_app()
             pagina_perfil = meu_aplicativo.root.get_screen("homepage").ids["perfilpage"]
             pagina_perfil.ids["mensagem"].text = "Nenhuma alteração foi feita, pois algum campo está vazio"
+
+    def trocar_senha(self , email) :
+            try:
+                link = f"https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key={self.API_KEY}"
+                info = f'{{"requestType": "PASSWORD_RESET", "email": "{email}"}}'
+                Thread(target=requests.patch, args=(link,), kwargs={"data": info}).start()
+                MDApp.get_running_app().root.get_screen("loginpage").ids["mensagem"].text = "[b]Por favor, verifique seu e-mail.[/b]"
+            except:
+                MDApp.get_running_app().root.get_screen("loginpage").ids["mensagem"].text = "[b][color=#FF0000]Coloque um e-mail cadastrado corretamente!.[/color][/b]"
+
+    def atualizar_email(self, email):
+        url = f'https://identitytoolkit.googleapis.com/v1/accounts:update?key={self.API_KEY}'
+
+        with open("refresh_token.txt", "r") as arquivo:
+            refresh_token = arquivo.read()
+        local_id, id_token = self.trocar_token(refresh_token)
+
+        info = {
+            'idToken': id_token,
+            'email': email,
+            'returnSecureToken': True
+        }
+        headers = {'Content-Type': 'application/json'}
+        requests.post(url, data = json.dumps(info), headers=headers)

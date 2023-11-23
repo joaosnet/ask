@@ -15,6 +15,7 @@ import os
 from functools import partial
 from kivy.network.urlrequest import UrlRequest
 from threading import Thread
+import json
 # import traceback   
 
 class MainApp(MDApp):
@@ -126,7 +127,12 @@ class MainApp(MDApp):
             self.root.get_screen("homepage").ids["perfilpage"].ids["nome"].text = nome
 
             # Preencher o email do usuário, porém não tem email no banco de dados do usuário só no authenticatior do google
-            email = "Sem email no banco de dados"
+            url = f'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCL5SzpjM8b1VlO6XSwniNFplITXo99Xmo'
+            headers = {'Content-Type': 'application/json'}
+            data = {'idToken': id_token}
+            response = requests.post(url, headers=headers, data=json.dumps(data))
+            response_data = response.json()
+            email = response_data['users'][0]['email']
             self.email = email
             self.root.get_screen("homepage").ids["perfilpage"].ids["email"].text = email
 
