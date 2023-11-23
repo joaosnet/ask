@@ -1,19 +1,18 @@
 import redis
 
-client = redis.Redis.from_url('redis://3.88.32.1:6379')
-print(client.ping())
+# client = redis.Redis.from_url('redis://3.88.32.1:6379')
+# print(client.ping())
 
-print(client.get('x'))
+# print(client.get('x'))
 
-print(client.get_encoder())
-# from redis.cluster import RedisCluster
-# rc = RedisCluster(host='inwaydb2.shrvtq.ng.0001.use1.cache.amazonaws.com', port=6379)
+# print(client.get_encoder())
 
-# print(rc.get_nodes())
-# [[host=127.0.0.1,port=16379,name=127.0.0.1:16379,server_type=primary,redis_connection=Redis<ConnectionPool<Connection<host=127.0.0.1,port=16379,db=0>>>], ...
+rc = redis.Redis.from_url('redis://waywaydb2.shrvtq.ng.0001.use1.cache.amazonaws.com:6379')
 
-# rc.set('foo', 'bar')
+print(rc.ping())
+
+rc.set('foo', 'bar')
 # True
 
-# rc.get('foo')
+print(rc.get('foo'))
 # b'bar'
