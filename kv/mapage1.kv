@@ -14,12 +14,6 @@
             GpsBlinker:
                 id: blinker
 
-        # Botao de configuração
-        MDIconButton:
-            pos_hint: {'center_x': 0.1,'center_y': 0.93}
-            icon: 'icones/configuracoes.png'
-            icon_size: "40sp"
-            on_release: app.open_nav_drawer()
 
         MDFloatingActionButtonSpeedDial:
             pos_hint: {'center_x': 0.70,'center_y': 0.1}
@@ -28,6 +22,23 @@
             root_button_anim: True
             hint_animation: True
             border_radius: [0, 0, 0, 0]
+            rotation_root_button: True
+
+        # Botao de configuração
+        MDIconButton:
+            pos_hint: {'center_x': 0.1,'center_y': 0.93}
+            icon: 'icones/configuracoes.png'
+            icon_size: "40sp"
+            on_release: app.open_nav_drawer()
+
+        MDIconButton:
+            id: recentralisar
+            icon: "crosshairs-gps"
+            pos_hint: {'center_x': 0.95,'center_y': 0.93}
+            user_font_size: "30sp"
+            on_release: 
+                try: app.root.get_screen("homepage").ids["mapapage1"].ids["mapview"].center_on(app.gpshelper().get_lat_lon())
+                except: app.gps.open_gps_access_popup()        
 
         MDLabel:
             id: erro

@@ -30,7 +30,7 @@ class GpsHelper():
                     from plyer import gps
                     gps.configure(on_location=self.update_blinker_position,
                                 on_status=self.on_auth_status)
-                    gps.start(minTime=500, minDistance=0)
+                    gps.start(minTime=100, minDistance=1)
                 else:
                     print("Permissão de GPS negada")
             request_permissions([Permission.ACCESS_COARSE_LOCATION,
@@ -88,6 +88,4 @@ class GpsHelper():
         Exibe um popup de erro informando que o acesso ao GPS precisa ser habilitado.
         """
         dialog = MDDialog(title="Erro no GPS", text="Você precisa habilitar o acesso ao GPS para o aplicativo funcionar corretamente")
-        dialog.size_hint = [.8, .8]
-        dialog.pos_hint = {'center_x': .5, 'center_y': .5}
         dialog.open()
