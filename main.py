@@ -14,6 +14,7 @@ from kivy.properties import ListProperty
 import os
 from functools import partial
 from kivy.network.urlrequest import UrlRequest
+from threading import Thread
 # import traceback   
 
 class MainApp(MDApp):
@@ -311,7 +312,7 @@ class MainApp(MDApp):
             self.root.get_screen("homepage").ids["perfilpage"].ids["localizacao"].text = local
             link = f"https://inclusiveway-ask-default-rtdb.firebaseio.com/{self.local_id}.json?auth={self.id_token}"
             info = f'{{"local": "{local}"}}'
-            UrlRequest(link, info, "PATCH")
+            Thread(target=requests.patch, args=(link,), kwargs={"data": info}).start()
 
         except:
                 partida = self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"]
