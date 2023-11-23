@@ -38,7 +38,7 @@ O projeto InclusiveWay da organização ASK visa melhorar a mobilidade de pessoa
 
 
 ## Telas do Aplicativo
-![Telas](/icones/Telas.png)
+![Telas](/images/Telas.gif)
 
 _Telas_
 
