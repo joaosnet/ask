@@ -59,6 +59,20 @@ Melhorar a mobilidade de pessoas com deficiência visual no meio urbano.
 2. Oferecer informações sobre a condição das vias para traçar rotas ideais.
 3. Garantir acessibilidade completa por meio da compatibilidade com leitores de tela.
 
+### Ajustes e melhorias
+
+O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
+
+- [x] Front-end
+- [x] Banco de Dados de Usuários
+- [x] Back-end Validar Dados
+- [x] OpenStreetMap
+- [1/2] Back-end Para Calcular Rotas
+- [ ] Banco de Dados dos Obstáculos
+- [ ] Funções de Acessibilidade
+- [ ] Gatilhos para Novos Obstáculos
+
+
 ## 🤝 Colaboradores
 
 <table>
