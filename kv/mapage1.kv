@@ -1,6 +1,5 @@
 <MapaPage1>:
     MDFloatLayout:
-
         # Visualização do Mapa
         MapView:
             id: mapview
@@ -13,16 +12,6 @@
                 self.zoom = 2 if self.zoom < 2 else self.zoom
             GpsBlinker:
                 id: blinker
-
-
-        MDFloatingActionButtonSpeedDial:
-            pos_hint: {'center_x': 0.70,'center_y': 0.1}
-            size_hint: None, None
-            data: {'Perigoso': 'close-octagon', 'Atenção': 'alert-circle', 'Temporário': 'clock-fast'}
-            root_button_anim: True
-            hint_animation: True
-            border_radius: [0, 0, 0, 0]
-            rotation_root_button: True
 
         # Botao de configuração
         MDIconButton:
@@ -45,5 +34,16 @@
             font_style: 'H5'
             theme_text_color: 'Custom'
             text_color: 0, 0, 0, 1
+
+        MDFloatingActionButtonSpeedDial:
+            data: app.tipos_obstaculos
+            bg_color_root_button: "#8C52FF"
+            root_button_anim: True
+            hint_animation: True
+            border_radius: [0, 0, 0, 0]
+            rotation_root_button: True
+            right_pad: False
+            right_pad_value: "10dp"
+            
 
 # MapaPage1:

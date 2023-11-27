@@ -171,7 +171,7 @@ class SearchTextInput(MDTextField):
         print("failure")
         print(result)
 
-class HotReload(MDApp):
+class MainApp(MDApp):
     """
     Classe principal para o aplicativo HotReload.
     """
@@ -201,4 +201,4 @@ class HotReload(MDApp):
         return Builder.load_string(KV)
 
 if __name__ == "__main__":
-    HotReload().run() 
+    MainApp().run() 

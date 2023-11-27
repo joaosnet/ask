@@ -16,17 +16,37 @@ from functools import partial
 from kivy.network.urlrequest import UrlRequest
 from threading import Thread
 import json
-# import traceback   
+import certifi
+from datetime import datetime
+import traceback   
+
+os.environ["SSL_CERT_FILE"] = certifi.where()
 
 class MainApp(MDApp):
     """
     Classe principal da aplicação.
     """
-
     DEBUG = True
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.tipos_obstaculos = {
+            'Perigoso': [
+                'close-octagon',
+                "bg_color_stack_button", "red",
+                "on_release", lambda x: self.adicionar_obstaculo("Perigoso"),
+                "stack_buttons", 
+                    "on_bg_hint_color", "red",
+            ],
+            'Atenção': [
+                'alert-circle',
+                "on_release", lambda x: self.adicionar_obstaculo("Atenção")
+            ],
+            'Temporário': [
+                'clock-fast',
+                "on_release", lambda x: self.adicionar_obstaculo("Temporário")
+            ],
+        }
         # Carregando arquivos kv
         self.load_all_kv_files(self.directory)
         # Gerenciador de Telas
@@ -342,8 +362,32 @@ class MainApp(MDApp):
             self.root.get_screen("homepage").ids["mapapage1"].ids["mapview"].center_on(lat, lon)
             self.root.get_screen("homepage").ids["mapapage2"].ids["mapview"].center_on(lat, lon)
         except: 
-            self.gps.open_gps_access_popup()    
+            self.gps.open_gps_access_popup()
 
+    def adicionar_obstaculo(self, texto):
+        try:
+            # pegando a localizacao atual do usuario
+            lat, lon = self.gps.get_lat_lon()
+            # pegando a data atual
+            data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+            print(data)
+            # pegando o nome do usuario
+            nome = self.nome
+            # definindo a velocidade da pista de acordo com o tipo de obstaculo
+            if texto == 'Perigoso':
+                speed = 0.1
+            elif texto == 'Atenção':
+                speed = 0.5
+            elif texto == 'Temporário':
+                speed = 0.7
+
+            # adicionando o obstaculo no mapa
+            mapa = self.root.get_screen("homepage").ids["mapapage1"].ids["mapview"]
+            
+        except Exception as e:
+            tb = traceback.format_exc()
+            self.mostrar_alerta("Erro", f"Não foi possível adicionar o obstáculo\n{e}\n{tb}")
+            
     # Funcao para mudar de tela
     def mudar_tela(self, nome_tela):
         # print(id_tela)
