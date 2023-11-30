@@ -18,7 +18,8 @@ from threading import Thread
 import json
 import certifi
 from datetime import datetime
-import traceback   
+import traceback
+import redis
 
 os.environ["SSL_CERT_FILE"] = certifi.where()
 
@@ -33,10 +34,7 @@ class MainApp(MDApp):
         self.tipos_obstaculos = {
             'Perigoso': [
                 'close-octagon',
-                "bg_color_stack_button", "red",
                 "on_release", lambda x: self.adicionar_obstaculo("Perigoso"),
-                "stack_buttons", 
-                    "on_bg_hint_color", "red",
             ],
             'Atenção': [
                 'alert-circle',
@@ -89,6 +87,9 @@ class MainApp(MDApp):
         self.carregar_info_usuario()
         # Carregar os obstáculos do banco de dados
         self.carregar_obstaculos()
+
+        self.menu_cadastro = self.create_menu(self.root.get_screen("cadastropage").ids["tipo_deficiencia"])
+        self.menu_perfil = self.create_menu(self.root.get_screen("homepage").ids["perfilpage"].ids["tipo_deficiencia"])
 
     rv_data = ListProperty()
 
@@ -208,56 +209,32 @@ class MainApp(MDApp):
             else:
                 self.mudar_tela("loginpage")
 
-    def carregar_obstaculos(self):
-        """
-        Carrega os obstáculos do banco de dados.
-        """
-        self.menu_items = [
+    def create_menu(self, caller):
+        self.menu = MDDropdownMenu(
+            caller=caller,
+            position="center",
+            width=self.root.width,
+
+        )
+
+        menu_items = [
             {
-                "text": "Não Possuo",
+                "text": tipo,
                 "viewclass": "OneLineListItem",
-                "on_release": lambda x="Nao Possuo": self.menu_callback(x),
-            },
-            {
-                "text": "Visual",
-                "viewclass": "OneLineListItem",
-                "on_release": lambda x="Visual": self.menu_callback(x),
-            }, 
-            {
-                "text": "Auditiva",
-                "viewclass": "OneLineListItem",
-                "on_release": lambda x="Auditiva": self.menu_callback(x),
-            },
-            {
-                "text": "Física",
-                "viewclass": "OneLineListItem",
-                "on_release": lambda x="Fisica": self.menu_callback(x),
-            },
-            {
-                "text": "Intelectual",
-                "viewclass": "OneLineListItem",
-                "on_release": lambda x="Intelectual": self.menu_callback(x),
-            },
-            {
-                "text": "Múltipla",
-                "viewclass": "OneLineListItem",
-                "on_release": lambda x="Multipla": self.menu_callback(x),
-            },
+                "on_release": lambda x=tipo, menu=self.menu: self.menu_callback(x, menu, caller),
+            }
+            for tipo in ["Não Possuo", "Visual", "Auditiva", "Física", "Intelectual", "Múltipla"]
         ]
 
-        self.menu = MDDropdownMenu(
-            caller=self.root.get_screen("homepage").ids["perfilpage"].ids["tipo_deficiencia"],
-            items=self.menu_items,
-            position="bottom",
-            width_mult=4,
-        )
-        
-    def menu_callback(self, text_item):
+        self.menu.items = menu_items
+        return self.menu
+
+    def menu_callback(self, text_item, menu, caller):
         """
         Callback para o menu do tipo de deficiência.
         """
-        self.root.get_screen("homepage").ids["perfilpage"].ids["tipo_deficiencia"].text = text_item
-        self.menu.dismiss()
+        caller.text = text_item
+        menu.dismiss()
 
     def open_nav_drawer(self):
         """
@@ -326,7 +303,6 @@ class MainApp(MDApp):
                 self.root.get_screen("homepage").ids["mapapage2"].ids["backdrop"].open()
         except:
             self.mostrar_alerta("Erro", f"Não foi possível desenhar a rota\nVerifique se os campos de partida e destino estão preenchidos corretamente")
-    
     # Funcao para mostrar a localizacao do usuario na caixa de texto partida
     def mostrar_localizacao_partida(self):
         try:
@@ -363,31 +339,6 @@ class MainApp(MDApp):
             self.root.get_screen("homepage").ids["mapapage2"].ids["mapview"].center_on(lat, lon)
         except: 
             self.gps.open_gps_access_popup()
-
-    def adicionar_obstaculo(self, texto):
-        try:
-            # pegando a localizacao atual do usuario
-            lat, lon = self.gps.get_lat_lon()
-            # pegando a data atual
-            data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-            print(data)
-            # pegando o nome do usuario
-            nome = self.nome
-            # definindo a velocidade da pista de acordo com o tipo de obstaculo
-            if texto == 'Perigoso':
-                speed = 0.1
-            elif texto == 'Atenção':
-                speed = 0.5
-            elif texto == 'Temporário':
-                speed = 0.7
-
-            # adicionando o obstaculo no mapa
-            mapa = self.root.get_screen("homepage").ids["mapapage1"].ids["mapview"]
-            
-        except Exception as e:
-            tb = traceback.format_exc()
-            self.mostrar_alerta("Erro", f"Não foi possível adicionar o obstáculo\n{e}\n{tb}")
-            
     # Funcao para mudar de tela
     def mudar_tela(self, nome_tela):
         # print(id_tela)
