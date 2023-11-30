@@ -1,6 +1,7 @@
 import redis
 from datetime import datetime
 import traceback    # Para mostrar o erro no console
+from hot_reload import HotReload
 
 class RedisManager:
     def __init__(self, url):
@@ -45,3 +46,4 @@ if __name__ == '__main__':
     manager.adicionar_obstaculo('Atenção', lat, lon, nome)
     manager.adicionar_obstaculo('Temporário', lat, lon, nome)
     manager.carregar_obstaculos()
+    # HotReload().run()
