@@ -6,6 +6,8 @@ from kivy.lang import Builder
 from kivy.network.urlrequest import UrlRequest
 from pprint import pprint as pp
 from threading import Thread
+import googlemaps
+from googlemaps import Client
 
 # Exemplo
 KV = '''
@@ -90,6 +92,7 @@ class SearchTextInput(MDTextField):
         super().__init__(**kwargs)
         self.error = False
         self.option_list = []
+        self.gmaps = googlemaps.Client(key='AIzaSyByHk869nvu37_MA5_44SPNMryK0W3BbHE')
 
     def on_text(self, instance, value):
         """
@@ -104,35 +107,25 @@ class SearchTextInput(MDTextField):
         """
         Thread(target=self.get_geocode, args=(value,)).start()
 
-    def get_geocode(self, adress):
+    def get_geocode(self, address):
         """
-        Obtém as coordenadas geográficas de um endereço usando a API do GraphHopper.
+        Obtém as coordenadas geográficas de um endereço usando a API do Google Maps.
 
         Args:
-            adress (str): O endereço a ser pesquisado.
+            address (str): O endereço a ser pesquisado.
 
         Returns:
             None
         """
-        # trocando espaços por +
-        adress = adress.replace(" ", "+")
+        geocode_result = self.gmaps.geocode(address, region='br')
 
-        url = f"https://graphhopper.com/api/1/geocode?q={adress}&point=string&provider=nominatim&limit=30&locale=en&key=17e8fe9c-35aa-47cb-9c6b-3fbb62b7259b"
+        # pp(geocode_result)
 
-        UrlRequest(url, on_success=self.success, on_failure=self.failure, on_error=self.error)
-
-    def success(self, urlrequest, result):
-        """
-        Função de retorno de chamada para o caso de sucesso da solicitação da API.
-
-        Args:
-            urlrequest: A solicitação da API.
-            result: O resultado da solicitação da API.
-
-        Returns:
-            None
-        """
-        self.option_list = [(hit["name"], hit["point"]) for hit in result["hits"]]
+        self.option_list = []
+        for result in geocode_result:
+            location = result['geometry']['location']
+            formatted_address = result['formatted_address']
+            self.option_list.append((formatted_address, location))
 
         # Obter a instância do aplicativo em execução
         app = MDApp.get_running_app()
@@ -142,34 +135,6 @@ class SearchTextInput(MDTextField):
 
         # Atualizar a lista de sugestões na interface do usuário
         app.update_data(app.option_data)
-
-    def error(self, urlrequest, result):
-        """
-        Função de retorno de chamada para o caso de erro na solicitação da API.
-
-        Args:
-            urlrequest: A solicitação da API.
-            result: O resultado da solicitação da API.
-
-        Returns:
-            None
-        """
-        print("error")
-        print(result)
-
-    def failure(self, urlrequest, result):
-        """
-        Função de retorno de chamada para o caso de falha na solicitação da API.
-
-        Args:
-            urlrequest: A solicitação da API.
-            result: O resultado da solicitação da API.
-
-        Returns:
-            None
-        """
-        print("failure")
-        print(result)
 
 class MainApp(MDApp):
     """

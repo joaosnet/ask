@@ -15,6 +15,24 @@ class HotReload(App, MDApp):
     AUTORELOADER_PATHS = [
         (os.getcwd(), {'recursive': True}),
     ]
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.tipos_obstaculos = {
+            'Perigoso': [
+                'close-octagon',
+                "on_release", lambda x: self.adicionar_obstaculo("Perigoso"),
+            ],
+            'Atenção': [
+                'alert-circle',
+                "on_release", lambda x: self.adicionar_obstaculo("Atenção")
+            ],
+            'Temporário': [
+                'clock-fast',
+                "on_release", lambda x: self.adicionar_obstaculo("Temporário")
+            ],
+        }    
+
     def build_app(self):
         return Builder.load_file('kv\mapage1.kv')
     

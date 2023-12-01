@@ -20,6 +20,7 @@ import certifi
 from datetime import datetime
 import traceback
 import redis
+from mapa import AccessibleMapView, AccessibleMarketMarker, LocationPopupMenu
 
 os.environ["SSL_CERT_FILE"] = certifi.where()
 
@@ -86,7 +87,7 @@ class MainApp(MDApp):
         # Carregar as informações do usuário
         self.carregar_info_usuario()
         # Carregar os obstáculos do banco de dados
-        self.carregar_obstaculos()
+        # self.carregar_obstaculos()
 
         self.menu_cadastro = self.create_menu(self.root.get_screen("cadastropage").ids["tipo_deficiencia"])
         self.menu_perfil = self.create_menu(self.root.get_screen("homepage").ids["perfilpage"].ids["tipo_deficiencia"])
@@ -344,5 +345,20 @@ class MainApp(MDApp):
         # print(id_tela)
         gerenciador_telas = self.root
         gerenciador_telas.current = nome_tela
-    
+
+    def adicionar_obstaculo(self, texto):
+        try:
+            lat, lon = self.gps.get_lat_lon()
+            data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+            if texto == 'Perigoso':
+                speed = 0.1
+            elif texto == 'Atenção':
+                speed = 0.5
+            elif texto == 'Temporário':
+                speed = 0.7
+            self.rc.set(f'{lat},{lon}', f'{texto},{speed},{data},{self.nome}')
+        except Exception as e:
+            tb = traceback.format_exc()
+            self.mostrar_alerta("Erro", f"Não foi possível adicionar o obstáculo\n{e}\n{tb}")
+
 MainApp().run()

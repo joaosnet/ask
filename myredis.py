@@ -1,7 +1,21 @@
+# Biblitecas do HotReload
+from kaki.app import App
+from kivymd.app import MDApp
+from kivy.lang import Builder
+from botoes import *
+from telas import *
+from gpshelper import GpsHelper
+from gpsblinker import GpsBlinker
+from pesquisa import Search_Select_Option, SearchTextInput
+from kivy_garden.mapview import MapView
+from kivymd.uix.menu import MDDropdownMenu
+import os
+from mapa import AccessibleMapView
+# Bibliotecas do RedisManager
 import redis
 from datetime import datetime
 import traceback    # Para mostrar o erro no console
-from hot_reload import HotReload
+from pprint import pprint as pp
 
 class RedisManager:
     def __init__(self, url):
@@ -18,8 +32,9 @@ class RedisManager:
             obstaculos = [[obstaculo[0], {'lat': obstaculo[1], 'lng': obstaculo[2]}] for obstaculo in obstaculos]
             self.update_data(obstaculos)
         except Exception as excecao:
-            print("Deu um erro ao carregar os obstáculos do banco de dados:", excecao)
-            traceback.print_exc()
+            tb = traceback.format_exc()
+            pp("O erro de carregar obstaculo está aqui: ", excecao)
+            pp("O traceback está aqui: ", tb)
 
     def adicionar_obstaculo(self, texto, lat, lon, nome):
         try:
@@ -33,17 +48,36 @@ class RedisManager:
             self.rc.set(f'{lat},{lon}', f'{texto},{speed},{data},{nome}')
         except Exception as e:
             tb = traceback.format_exc()
-            self.mostrar_alerta("Erro", f"Não foi possível adicionar o obstáculo\n{e}\n{tb}")
+            pp("O erro de adicionar obstaculo está aqui:", e)
+            pp("O traceback está aqui:", tb)
+
+class HotReload(App, MDApp):
+    DEBUG = True
+    AUTORELOADER_PATHS = [
+        (os.getcwd(), {'recursive': True}),
+    ]
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.redis = RedisManager('redis://wayway-001.shrvtq.0001.use1.cache.amazonaws.com:6379')
+        self.tipos_obstaculos = {
+            'Perigoso': [
+                'close-octagon',
+                "on_release", lambda x: self.redis.adicionar_obstaculo("Perigoso", -23.5629, -46.6544, 'Rua do Matão'),
+            ],
+            'Atenção': [
+                'alert-circle',
+                "on_release", lambda x: self.redis.adicionar_obstaculo("Atenção", -23.5629, -46.6544, 'Rua do Matão')
+            ],
+            'Temporário': [
+                'clock-fast',
+                "on_release", lambda x: self.redis.adicionar_obstaculo("Temporário", -23.5629, -46.6544, 'Rua do Matão')
+            ],
+        }    
+
+    def build_app(self):
+        return Builder.load_file('kv\mapage1.kv')            
 
 # Uso
 if __name__ == '__main__':
-    lat = -23.5629
-    lon = -46.6544
-    nome = 'Rua do Matão'
-    manager = RedisManager('redis://wayway-001.shrvtq.0001.use1.cache.amazonaws.com:6379')
-    manager.carregar_obstaculos()
-    manager.adicionar_obstaculo('Perigoso', lat, lon, nome)
-    manager.adicionar_obstaculo('Atenção', lat, lon, nome)
-    manager.adicionar_obstaculo('Temporário', lat, lon, nome)
-    manager.carregar_obstaculos()
-    # HotReload().run()
+    HotReload().run()
