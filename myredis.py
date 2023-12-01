@@ -23,7 +23,7 @@ class RedisManager:
 
     def carregar_obstaculos(self):
         """
-        Carrega os obstáculos do banco de dados do redis.
+        Carrega os obstáculos do banco de dados do redis no mapa.
         """
         try:
             obstaculos = self.rc.keys()
@@ -31,6 +31,7 @@ class RedisManager:
             obstaculos = [obstaculo.split(',') for obstaculo in obstaculos]
             obstaculos = [[obstaculo[0], {'lat': obstaculo[1], 'lng': obstaculo[2]}] for obstaculo in obstaculos]
             self.update_data(obstaculos)
+
         except Exception as excecao:
             tb = traceback.format_exc()
             pp("O erro de carregar obstaculo está aqui: ", excecao)
@@ -45,7 +46,7 @@ class RedisManager:
                 speed = 0.5
             elif texto == 'Temporário':
                 speed = 0.7
-            self.rc.set(f'{lat},{lon}', f'{texto},{speed},{data},{nome}')
+            self.rc.geoadd(f"{texto}", [lon, lat, f'{speed},{data},{nome}'])
         except Exception as e:
             tb = traceback.format_exc()
             pp("O erro de adicionar obstaculo está aqui:", e)
@@ -59,19 +60,19 @@ class HotReload(App, MDApp):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.redis = RedisManager('redis://wayway-001.shrvtq.0001.use1.cache.amazonaws.com:6379')
+        self.rc = RedisManager('redis://44.221.222.136:6379')
         self.tipos_obstaculos = {
             'Perigoso': [
                 'close-octagon',
-                "on_release", lambda x: self.redis.adicionar_obstaculo("Perigoso", -23.5629, -46.6544, 'Rua do Matão'),
+                "on_release", lambda x: self.rc.adicionar_obstaculo("Perigoso", -23.5629, -46.6544, 'Rua do Matão'),
             ],
             'Atenção': [
                 'alert-circle',
-                "on_release", lambda x: self.redis.adicionar_obstaculo("Atenção", -23.5629, -46.6544, 'Rua do Matão')
+                "on_release", lambda x: self.rc.adicionar_obstaculo("Atenção", -23.4234, -46.6544, 'Rua do Matão')
             ],
             'Temporário': [
                 'clock-fast',
-                "on_release", lambda x: self.redis.adicionar_obstaculo("Temporário", -23.5629, -46.6544, 'Rua do Matão')
+                "on_release", lambda x: self.rc.adicionar_obstaculo("Temporário", -23.32, -46.6544, 'Rua do Matão')
             ],
         }    
 

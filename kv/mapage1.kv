@@ -10,6 +10,10 @@
             double_tap_zoom: True
             on_zoom:
                 self.zoom = 2 if self.zoom < 2 else self.zoom
+            on_lat:
+                self.start_getting_markets_in_fov()
+            on_lon:
+                self.start_getting_markets_in_fov()
             GpsBlinker:
                 id: blinker
 
@@ -27,14 +31,7 @@
             user_font_size: "30sp"
             on_release: app.centralizar_mapa()
 
-        MDLabel:
-            id: erro
-            text: ''
-            pos_hint: {'center_x': 0.7,'center_y': 0.5}
-            font_style: 'H5'
-            theme_text_color: 'Custom'
-            text_color: 0, 0, 0, 1
-
+        # Botão de adicionar obstáculo
         MDFloatingActionButtonSpeedDial:
             data: app.tipos_obstaculos
             bg_color_root_button: "#8C52FF"
@@ -46,5 +43,13 @@
             rotation_root_button: True
             right_pad: False
             right_pad_value: "10dp"
+
+        MDLabel:
+            id: erro
+            text: ''
+            pos_hint: {'center_x': 0.7,'center_y': 0.5}
+            font_style: 'H5'
+            theme_text_color: 'Custom'
+            text_color: 0, 0, 0, 1
             
 MapaPage1:

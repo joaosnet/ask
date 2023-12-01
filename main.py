@@ -35,15 +35,15 @@ class MainApp(MDApp):
         self.tipos_obstaculos = {
             'Perigoso': [
                 'close-octagon',
-                "on_release", lambda x: self.adicionar_obstaculo("Perigoso"),
+                "on_release", lambda x: self.adicionar_obstaculo("Perigoso", self.lat, self.lon, self.nome),
             ],
             'Atenção': [
                 'alert-circle',
-                "on_release", lambda x: self.adicionar_obstaculo("Atenção")
+                "on_release", lambda x: self.adicionar_obstaculo("Atenção", self.lat, self.lon, self.nome)
             ],
             'Temporário': [
                 'clock-fast',
-                "on_release", lambda x: self.adicionar_obstaculo("Temporário")
+                "on_release", lambda x: self.adicionar_obstaculo("Temporário", self.lat, self.lon, self.nome)
             ],
         }
         # Carregando arquivos kv
@@ -51,6 +51,7 @@ class MainApp(MDApp):
         # Gerenciador de Telas
         self.sm = MDScreenManager()
         self.firebase = MyFirebase()
+        self.rc = redis.Redis.from_url('redis://44.221.222.136:6379')
         self.visitas_app = 0
         self.dialog = None
         self.gps = GpsHelper()
@@ -83,6 +84,16 @@ class MainApp(MDApp):
             lista_fotos.add_widget(image)
         # Carrega o GPS
         self.gps.run()
+        # pegar a latitude e longitude do usuario
+        try:
+            try:
+                self.lat, self.lon = self.gps.get_lat_lon()
+            except:
+                # usando o centro do mapa
+                self.lat = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["mapview"].lat
+                self.lon = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["mapview"].lon
+        except:
+            self.lat, self.lon = 0, 0
         # self.visitas_app += 1
         # Carregar as informações do usuário
         self.carregar_info_usuario()
@@ -308,8 +319,16 @@ class MainApp(MDApp):
     def mostrar_localizacao_partida(self):
         try:
             # pegar a latitude e longitude do usuario
-            latitude, longitude = self.gps.get_lat_lon()
-            local = f"{latitude}, {longitude}"
+            try:
+                try:
+                    self.lat, self.lon = self.gps.get_lat_lon()
+                except:
+                    # usando o centro do mapa
+                    self.lat = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["mapview"].lat
+                    self.lon = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["mapview"].lon
+            except:
+                self.lat, self.lon = 0, 0
+            local = f"{self.lat}, {self.lon}"
             # colocar a latitude e longitude na caixa de texto partida
             self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"].text = local
             self.root.get_screen("homepage").ids["perfilpage"].ids["localizacao"].text = local
@@ -346,9 +365,8 @@ class MainApp(MDApp):
         gerenciador_telas = self.root
         gerenciador_telas.current = nome_tela
 
-    def adicionar_obstaculo(self, texto):
+    def adicionar_obstaculo(self, texto, lat, lon, nome):
         try:
-            lat, lon = self.gps.get_lat_lon()
             data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             if texto == 'Perigoso':
                 speed = 0.1
@@ -356,7 +374,7 @@ class MainApp(MDApp):
                 speed = 0.5
             elif texto == 'Temporário':
                 speed = 0.7
-            self.rc.set(f'{lat},{lon}', f'{texto},{speed},{data},{self.nome}')
+            self.rc.geoadd(f"{texto}", [lon, lat, f'{speed},{data},{nome}'])
         except Exception as e:
             tb = traceback.format_exc()
             self.mostrar_alerta("Erro", f"Não foi possível adicionar o obstáculo\n{e}\n{tb}")
