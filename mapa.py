@@ -10,7 +10,7 @@ from kivymd.uix.button import MDFlatButton
 
 class AccessibleMapView(MapView):
     getting_markets_timer = None
-    market_names = []
+    informacoes = []
 
     def start_getting_markets_in_fov(self):
         """
@@ -42,7 +42,8 @@ class AccessibleMapView(MapView):
             latitude = self.lat
             # Atualiza o raio para um valor baseado no nível de zoom do mapa
             # Este é apenas um exemplo, você pode querer ajustar o cálculo para se adequar às suas necessidades
-            radius = 5 * (1 / self.zoom)
+            radius = 1000 * (2 / self.zoom)
+            pp(radius)
             tipos = ["Perigoso", "Atenção", "Temporário"]
             for tipo in tipos:
                 obstaculos = rc.georadius(
@@ -54,9 +55,12 @@ class AccessibleMapView(MapView):
                 )
                 obstaculos = [[tipo, obstaculo, app.rc.geopos(tipo, obstaculo)[0]] for obstaculo in obstaculos]
                 # pp(obstaculos)
+                # print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
                 for obstaculo in obstaculos:
-                    name = obstaculo[0]
-                    if name in self.market_names:
+                    tipo, info, coords = obstaculo
+                    # pp(coords)
+                    # pp(self.informacoes)
+                    if info in self.informacoes:
                         continue
                     else:
                         self.add_accessible_market(obstaculo)
@@ -72,12 +76,14 @@ class AccessibleMapView(MapView):
         Este método cria um marcador de mercado acessível com base nas coordenadas fornecidas.
         Em seguida, o marcador é adicionado ao mapa e o nome do mercado é armazenado para controle.
         """
+        # pp(market)
+        # print("----------------------------")
         tipo, name, coords = market
-        lon, lat= coords
+        lon, lat = coords
         marker = AccessibleMarketMarker(lat=lat, lon=lon)
         marker.market_data = market
         self.add_widget(marker)
-        self.market_names.append(name)
+        self.informacoes.append(coords)
 
 class AccessibleMarketMarker(MapMarkerPopup):
     # Implementar funcionalidades específicas para um MarketMarker acessível

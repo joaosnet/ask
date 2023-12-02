@@ -1,84 +1,32 @@
-# Biblitecas do HotReload
-from kaki.app import App
-from kivymd.app import MDApp
-from kivy.lang import Builder
-from botoes import *
-from telas import *
-from gpshelper import GpsHelper
-from gpsblinker import GpsBlinker
-from pesquisa import Search_Select_Option, SearchTextInput
-from kivy_garden.mapview import MapView
-from kivymd.uix.menu import MDDropdownMenu
-import os
-from mapa import AccessibleMapView
-# Bibliotecas do RedisManager
+# essa classe deve ter funcoes para o o gerenciamento do banco de dados redis
 import redis
-from datetime import datetime
-import traceback    # Para mostrar o erro no console
 from pprint import pprint as pp
 
-class RedisManager:
-    def __init__(self, url):
-        self.rc = redis.Redis.from_url(url)
+# iniciar o banco de dados redis
+class MyRedis():
+    def __init__(self):
+        self.rc = redis.Redis.from_url('redis://44.221.222.136:6379')
+        self.longitude = 0
+        self.latitude = 0
+        self.radius = 10000
+        self.unit = "km"
+        self.tipos = ["Perigoso", "Atenção", "Temporário"]
+        self.obstaculos = []
 
-    def carregar_obstaculos(self):
-        """
-        Carrega os obstáculos do banco de dados do redis no mapa.
-        """
-        try:
-            obstaculos = self.rc.keys()
-            obstaculos = [obstaculo.decode() for obstaculo in obstaculos]
-            obstaculos = [obstaculo.split(',') for obstaculo in obstaculos]
-            obstaculos = [[obstaculo[0], {'lat': obstaculo[1], 'lng': obstaculo[2]}] for obstaculo in obstaculos]
-            self.update_data(obstaculos)
-
-        except Exception as excecao:
-            tb = traceback.format_exc()
-            pp("O erro de carregar obstaculo está aqui: ", excecao)
-            pp("O traceback está aqui: ", tb)
-
-    def adicionar_obstaculo(self, texto, lat, lon, nome):
-        try:
-            data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-            if texto == 'Perigoso':
-                speed = 0.1
-            elif texto == 'Atenção':
-                speed = 0.5
-            elif texto == 'Temporário':
-                speed = 0.7
-            self.rc.geoadd(f"{texto}", [lon, lat, f'{speed},{data},{nome}'])
-        except Exception as e:
-            tb = traceback.format_exc()
-            pp("O erro de adicionar obstaculo está aqui:", e)
-            pp("O traceback está aqui:", tb)
-
-class HotReload(App, MDApp):
-    DEBUG = True
-    AUTORELOADER_PATHS = [
-        (os.getcwd(), {'recursive': True}),
-    ]
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.rc = RedisManager('redis://44.221.222.136:6379')
-        self.tipos_obstaculos = {
-            'Perigoso': [
-                'close-octagon',
-                "on_release", lambda x: self.rc.adicionar_obstaculo("Perigoso", -23.5629, -46.6544, 'Rua do Matão'),
-            ],
-            'Atenção': [
-                'alert-circle',
-                "on_release", lambda x: self.rc.adicionar_obstaculo("Atenção", -23.4234, -46.6544, 'Rua do Matão')
-            ],
-            'Temporário': [
-                'clock-fast',
-                "on_release", lambda x: self.rc.adicionar_obstaculo("Temporário", -23.32, -46.6544, 'Rua do Matão')
-            ],
-        }    
-
-    def build_app(self):
-        return Builder.load_file('kv\mapage1.kv')            
-
-# Uso
-if __name__ == '__main__':
-    HotReload().run()
+    # Procurar por todos os obstaculos no banco de dados
+    def get_obstaculos(self):
+        for tipo in self.tipos:
+            obstaculos = self.rc.georadius(
+                name=tipo,
+                longitude=self.longitude,
+                latitude=self.latitude,
+                radius=self.radius,
+                unit=self.unit,
+            )
+            obstaculos = [[tipo, obstaculo, self.rc.geopos(tipo, obstaculo)[0]] for obstaculo in obstaculos]
+            self.obstaculos.append(obstaculos)
+        return self.obstaculos
+    
+# Exemplos de uso:
+if __name__ == "__main__":
+    pp(MyRedis().get_obstaculos())
