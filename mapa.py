@@ -44,7 +44,7 @@ class AccessibleMapView(MapView):
             # Atualiza o raio para um valor baseado no nível de zoom do mapa
             # Este é apenas um exemplo, você pode querer ajustar o cálculo para se adequar às suas necessidades
             radius = 10000 * (1 / self.zoom)
-            pp(radius)
+            # pp(radius)
             tipos = ["Perigoso", "Atenção", "Temporário"]
             for tipo in tipos:
                 obstaculos = rc.georadius(
