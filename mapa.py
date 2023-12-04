@@ -103,20 +103,24 @@ class LocationPopupMenu(MDDialog):
     def __init__(self, market_data):
         super().__init__()
 
+        # Extrai os dados do mercado
+        tipo, informacoes, coords = market_data
+        
+        # como as informacoes estao b'0.1,04/12/2023 11:08:58,Neto'
+        # precisamos converter formatar separadamente em variaveis
+        informacoes = informacoes.decode('utf-8')
+        informacoes = informacoes.split(',')
+
+        lat, lon = coords
+
         # Define o título e o texto do diálogo
-        titulo = self.name
-        texto = f"Tipo: {self.tipo}\nCoordenadas: {self.coords}"
+        titulo = f"Informações do Obstáculo"
+        texto = f"Tipo: {tipo}\nCoordenadas: {lat}, {lon}\nNome do Usuário que adicionou o obstaculo: {informacoes[2]}\nData da adição: {informacoes[1]}\nVelocidade da Pista: {informacoes[0]}"
 
         # Cria e abre o diálogo
         self.title = titulo
         self.text = texto
-        self.buttons = [
-            MDFlatButton(
-                text="OK", text_color=self.theme_cls.primary_color, on_release= lambda _: self.dismiss()
-            ),
-        ]
         self.open()
-
 
 
 
