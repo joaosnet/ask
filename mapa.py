@@ -7,6 +7,7 @@ import traceback
 import redis
 from pprint import pprint as pp
 from kivymd.uix.button import MDFlatButton
+from kivy.properties import StringProperty
 
 class AccessibleMapView(MapView):
     getting_markets_timer = None
@@ -42,7 +43,7 @@ class AccessibleMapView(MapView):
             latitude = self.lat
             # Atualiza o raio para um valor baseado no nível de zoom do mapa
             # Este é apenas um exemplo, você pode querer ajustar o cálculo para se adequar às suas necessidades
-            radius = 1000 * (2 / self.zoom)
+            radius = 10000 * (1 / self.zoom)
             pp(radius)
             tipos = ["Perigoso", "Atenção", "Temporário"]
             for tipo in tipos:
@@ -80,37 +81,27 @@ class AccessibleMapView(MapView):
         # print("----------------------------")
         tipo, name, coords = market
         lon, lat = coords
-        marker = AccessibleMarketMarker(lat=lat, lon=lon)
+        marker = AccessibleMarketMarker(lat=lat, lon=lon, tipo=tipo)
         marker.market_data = market
         self.add_widget(marker)
         self.informacoes.append(coords)
 
 class AccessibleMarketMarker(MapMarkerPopup):
-    # Implementar funcionalidades específicas para um MarketMarker acessível
-    source = "icones/Marker.png"
+    tipo = StringProperty()
     market_data = []
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.source = f"icones/{self.tipo}.png"
+        self.size = (50, 50)
+
     def on_release(self):
-        # Open up the LocationPopupMenu
         menu = LocationPopupMenu(self.market_data)
-        # menu.size_hint = [.8, .9]
         menu.open()
 
 class LocationPopupMenu(MDDialog):
     def __init__(self, market_data):
         super().__init__()
-
-        # Set all of the fields of market data
-        headers = "tipo,name,coords"
-        headers = headers.split(',')
-
-        for i in range(len(headers)):
-            attribute_name = headers[i]
-            attribute_value = market_data[i]
-            # Decodifica o nome se ele for uma string codificada em bytes
-            if attribute_name == 'name' and isinstance(attribute_value, bytes):
-                attribute_value = attribute_value.decode('utf-8')
-            setattr(self, attribute_name, attribute_value)
 
         # Define o título e o texto do diálogo
         titulo = self.name

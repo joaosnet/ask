@@ -6,9 +6,9 @@ from pprint import pprint as pp
 class MyRedis():
     def __init__(self):
         self.rc = redis.Redis.from_url('redis://44.221.222.136:6379')
-        self.longitude = 0
-        self.latitude = 0
-        self.radius = 10000
+        self.longitude = -48.45160647253775
+        self.latitude = -1.474081251977831
+        self.radius = 100000
         self.unit = "km"
         self.tipos = ["Perigoso", "Atenção", "Temporário"]
         self.obstaculos = []
