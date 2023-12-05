@@ -32,17 +32,17 @@
             on_release: app.centralizar_mapa()
 
         # Botão de adicionar obstáculo
-        MDFloatingActionButtonSpeedDial:
+        ObstaculoButton:
             data: app.tipos_obstaculos
-            bg_color_root_button: "#8C52FF"
-            bg_color_stack_button: "#8C52FF"
-            bg_hint_color: "#8C52FF"
             root_button_anim: True
             hint_animation: True
             border_radius: [0, 0, 0, 0]
             rotation_root_button: True
             right_pad: False
             right_pad_value: "10dp"
+            bg_color_root_button: "#8C52FF"
+            bg_color_stack_button: "#8C52FF"
+            bg_hint_color: "#8C52FF"
 
         MDLabel:
             id: erro
