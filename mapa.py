@@ -5,7 +5,7 @@ from kivy_garden.mapview import MapMarkerPopup
 from kivymd.uix.dialog import MDDialog
 import traceback
 import redis
-from pprint import pprint as pp
+# from pprint import pprint as pp
 from kivymd.uix.button import MDFlatButton
 from kivy.properties import StringProperty
 
@@ -36,9 +36,7 @@ class AccessibleMapView(MapView):
         Os obstáculos obtidos são impressos no console e adicionados ao mapa como marcadores acessíveis.
         """
         try:
-            app = MDApp.get_running_app()
             # Atualiza a longitude e a latitude para a localização atual do mapa
-            rc =  redis.Redis.from_url('redis://44.221.222.136:6379')
             longitude = self.lon
             latitude = self.lat
             # Atualiza o raio para um valor baseado no nível de zoom do mapa
@@ -46,8 +44,9 @@ class AccessibleMapView(MapView):
             radius = 10000 * (1 / self.zoom)
             # pp(radius)
             tipos = ["Perigoso", "Atenção", "Temporário"]
+            app = MDApp.get_running_app()
             for tipo in tipos:
-                obstaculos = rc.georadius(
+                obstaculos = app.rc.georadius(
                     name=tipo,
                     longitude=longitude,
                     latitude=latitude,
@@ -92,7 +91,12 @@ class AccessibleMarketMarker(MapMarkerPopup):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.source = f"icones/{self.tipo}.png"
+        if self.tipo == "Perigoso":
+            self.source = f"icones/perigoso.png"
+        elif self.tipo == "Atenção":
+            self.source = f"icones/atencao.png"
+        else:
+            self.source = f"icones/temporario.png"
         self.size = (50, 50)
 
     def on_release(self):

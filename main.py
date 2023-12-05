@@ -51,7 +51,6 @@ class MainApp(MDApp):
         # Gerenciador de Telas
         self.sm = MDScreenManager()
         self.firebase = MyFirebase()
-        self.rc = redis.Redis.from_url('redis://44.221.222.136:6379')
         self.visitas_app = 0
         self.dialog = None
         self.gps = GpsHelper()
@@ -86,18 +85,14 @@ class MainApp(MDApp):
         self.gps.run()
         # pegar a latitude e longitude do usuario
         try:
-            try:
-                self.lat, self.lon = self.gps.get_lat_lon()
-            except:
-                # usando o centro do mapa
-                self.lat = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["mapview"].lat
-                self.lon = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["mapview"].lon
+            self.lat, self.lon = self.gps.get_lat_lon()
         except:
             self.lat, self.lon = 0, 0
         # self.visitas_app += 1
         # Carregar as informações do usuário
         self.carregar_info_usuario()
         # Carregar os obstáculos do banco de dados
+        self.rc =  redis.Redis.from_url('redis://44.221.222.136:6379')
         # self.carregar_obstaculos()
 
         self.menu_cadastro = self.create_menu(self.root.get_screen("cadastropage").ids["tipo_deficiencia"])
@@ -319,15 +314,7 @@ class MainApp(MDApp):
     def mostrar_localizacao_partida(self):
         try:
             # pegar a latitude e longitude do usuario
-            try:
-                try:
-                    self.lat, self.lon = self.gps.get_lat_lon()
-                except:
-                    # usando o centro do mapa
-                    self.lat = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["mapview"].lat
-                    self.lon = MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["mapview"].lon
-            except:
-                self.lat, self.lon = 0, 0
+            self.lat, self.lon = self.gps.get_lat_lon()
             local = f"{self.lat}, {self.lon}"
             # colocar a latitude e longitude na caixa de texto partida
             self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"].text = local
