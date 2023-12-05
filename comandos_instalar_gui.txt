@@ -13,3 +13,15 @@ sudo ufw allow from any to any port 3389 proto tcp
 sudo add-apt-repository ppa:gnome3-team/gnome3
 sudo apt-get install gnome-shell ubuntu-gnome-desktop
 Verificar a liberação graficamente na Amazon EC2 e testar!
+
+sudo dpkg-reconfigure gdm3
+
+sudo dpkg-reconfigure lightdm
+sudo dpkg-reconfigure sddm
+sudo dpkg-reconfigure lxdm
+
+sudo systemctl status xrdp
+
+sudo systemctl start xrdp
+
+sudo systemctl restart xrdp
