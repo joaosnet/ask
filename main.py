@@ -35,15 +35,15 @@ class MainApp(MDApp):
         self.tipos_obstaculos = {
             'Perigoso': [
                 'close-octagon',
-                "on_release", lambda x: self.adicionar_obstaculo("Perigoso", self.lat, self.lon, self.nome),
+                "on_release", lambda x: self.adicionar_obstaculo("Perigoso", self.nome),
             ],
             'Atenção': [
                 'alert-circle',
-                "on_release", lambda x: self.adicionar_obstaculo("Atenção", self.lat, self.lon, self.nome)
+                "on_release", lambda x: self.adicionar_obstaculo("Atenção", self.nome)
             ],
             'Temporário': [
                 'clock-fast',
-                "on_release", lambda x: self.adicionar_obstaculo("Temporário", self.lat, self.lon, self.nome)
+                "on_release", lambda x: self.adicionar_obstaculo("Temporário", self.nome)
             ],
         }
         # Carregando arquivos kv
@@ -83,11 +83,6 @@ class MainApp(MDApp):
             lista_fotos.add_widget(image)
         # Carrega o GPS
         self.gps.run()
-        # pegar a latitude e longitude do usuario
-        try:
-            self.lat, self.lon = self.gps.get_lat_lon()
-        except:
-            self.lat, self.lon = 0, 0
         # self.visitas_app += 1
         # Carregar as informações do usuário
         self.carregar_info_usuario()
@@ -352,8 +347,9 @@ class MainApp(MDApp):
         gerenciador_telas = self.root
         gerenciador_telas.current = nome_tela
 
-    def adicionar_obstaculo(self, texto, lat, lon, nome):
+    def adicionar_obstaculo(self, texto, nome):
         try:
+            lat, lon = self.gps.get_lat_lon()
             data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             if texto == 'Perigoso':
                 speed = 0.1

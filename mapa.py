@@ -61,8 +61,10 @@ class AccessibleMapView(MapView):
                     # pp(coords)
                     # pp(self.informacoes)
                     if info in self.informacoes:
+                        print("nao carregou")
                         continue
                     else:
+                        print("carregou")
                         self.add_accessible_market(obstaculo)
         except Exception as excecao:
             tb = traceback.format_exc()
