@@ -214,7 +214,7 @@ class MainApp(MDApp):
     def create_menu(self, caller):
         self.menu = MDDropdownMenu(
             caller=caller,
-            position="center",
+            position="bottom",
             width=self.root.width,
 
         )
