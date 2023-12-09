@@ -9,7 +9,11 @@ class ClickableTextFieldRound(MDRelativeLayout):
     text = StringProperty()
     hint_text = StringProperty()
 
-class TextoMenu(MDRelativeLayout):
+class TextoMenu1(MDRelativeLayout):
+    text = StringProperty()
+    hint_text = StringProperty()
+
+class TextoMenu2(MDRelativeLayout):
     text = StringProperty()
     hint_text = StringProperty()
 
