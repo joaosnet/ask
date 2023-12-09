@@ -9,6 +9,10 @@ class ClickableTextFieldRound(MDRelativeLayout):
     text = StringProperty()
     hint_text = StringProperty()
 
+class TextoMenu(MDRelativeLayout):
+    text = StringProperty()
+    hint_text = StringProperty()
+
 class ImageButton(ButtonBehavior, Image):
     pass
 
