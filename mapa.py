@@ -68,7 +68,7 @@ class AccessibleMapView(MapView):
                             # faz mais uma adicao para garantir que o obstaculo foi adicionado, se o contador for par
                             if contador % 2 == 0:
                                 self.add_accessible_market(obstaculo)
-                            contador += 1
+                                contador += 1
                             continue
                         else:
                             print("Carregando obstaculo")
