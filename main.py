@@ -216,7 +216,6 @@ class MainApp(MDApp):
             caller=caller,
             position="center",
             width=self.root.width,
-
         )
 
         menu_items = [
