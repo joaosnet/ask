@@ -65,8 +65,8 @@ class GraphHopperAPI:
                 unit="m",
             )
             obstaculos_redis = [[tipo, obstaculo, app.rc.geopos(tipo, obstaculo)[0]] for obstaculo in obstaculos_redis]
+            print(obstaculos_redis)
             if obstaculos_redis != []:
-                print(obstaculos_redis)
                 # Inicializa o dicionário obstaculos com o modelo
                 obstaculos = {
                     "speed": [

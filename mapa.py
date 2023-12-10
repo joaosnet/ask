@@ -56,16 +56,23 @@ class AccessibleMapView(MapView):
                 obstaculos = [[tipo, obstaculo, app.rc.geopos(tipo, obstaculo)[0]] for obstaculo in obstaculos]
                 # pp(obstaculos)
                 # print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-                for obstaculo in obstaculos:
-                    tipo, info, coords = obstaculo
-                    # pp(coords)
-                    # pp(self.informacoes)
-                    if info in self.informacoes:
-                        print("O obstaculo já foi carregado")
-                        continue
-                    else:
-                        print("Carregando obstaculo")
-                        self.add_accessible_market(obstaculo)
+                # Se tiver algum obstaculo no caminho adiciona
+                if obstaculos != []:
+                    for obstaculo in obstaculos:
+                        tipo, info, coords = obstaculo
+                        # pp(coords)
+                        # pp(self.informacoes)
+                        contador = 0
+                        if info in self.informacoes:
+                            print("O obstaculo já foi carregado")
+                            # faz mais uma adicao para garantir que o obstaculo foi adicionado, se o contador for par
+                            if contador % 2 == 0:
+                                self.add_accessible_market(obstaculo)
+                            contador += 1
+                            continue
+                        else:
+                            print("Carregando obstaculo")
+                            self.add_accessible_market(obstaculo)
         except Exception as excecao:
             tb = traceback.format_exc()
             print("O erro de carregar obstaculo está aqui: ", excecao)
