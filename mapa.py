@@ -41,7 +41,7 @@ class AccessibleMapView(MapView):
             latitude = self.lat
             # Atualiza o raio para um valor baseado no nível de zoom do mapa
             # Este é apenas um exemplo, você pode querer ajustar o cálculo para se adequar às suas necessidades
-            radius = 10000 * (1 / self.zoom)
+            radius = 500
             # pp(radius)
             tipos = ["Perigoso", "Atenção", "Temporário"]
             app = MDApp.get_running_app()
@@ -51,7 +51,7 @@ class AccessibleMapView(MapView):
                     longitude=longitude,
                     latitude=latitude,
                     radius=radius,
-                    unit="km",
+                    unit="m",
                 )
                 obstaculos = [[tipo, obstaculo, app.rc.geopos(tipo, obstaculo)[0]] for obstaculo in obstaculos]
                 # pp(obstaculos)

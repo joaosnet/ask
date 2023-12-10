@@ -49,7 +49,7 @@ class GraphHopperAPI:
         # latitude = self.lat
         # Atualiza o raio para um valor baseado no nível de zoom do mapa
         # Este é apenas um exemplo, você pode querer ajustar o cálculo para se adequar às suas necessidades
-        radius = 10000 * (1 / mapa.zoom)
+        radius = 500
         # pp(radius)
         tipos = ["Perigoso", "Atenção", "Temporário"]
         # Define o tamanho do quadrado (em graus)
@@ -61,8 +61,8 @@ class GraphHopperAPI:
                 name=tipo,
                 longitude=longitude,
                 latitude=latitude,
-                radius=self.radius,
-                unit="km",
+                radius=radius,
+                unit="m",
             )
             obstaculos_redis = [[tipo, obstaculo, app.rc.geopos(tipo, obstaculo)[0]] for obstaculo in obstaculos_redis]
             if obstaculos_redis != []:

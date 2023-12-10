@@ -77,24 +77,40 @@
             MDFloatLayout:
                 md_bg_color: "#EDF1FF"
                 # Visualização do Mapa
-                MapView:
+                # MapView:
+                #     id: mapview
+                #     pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                #     # localização do mapa em tempo real
+                #     lat: -1.474081251977831
+                #     lon: -48.45160647253775
+                #     zoom: 1000
+                #     # Verifica a localização atual quando o mapa é carregado
+                #     # on_lat:
+                #     #     print(self.lat)
+                #     # on_lon:
+                #     #     print(self.lon)
+                #     MapMarkerPopup:
+                #         source: 'icones/Marker.png'
+                #         lat: -1.474081251977831
+                #         lon: -48.45160647253775
+                #         Button:
+                #             on_release: print("Hello World")
+                #     GpsBlinker:
+                #         id: blinker
+                # Visualização do Mapa acessivel
+                AccessibleMapView:
                     id: mapview
-                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
                     # localização do mapa em tempo real
                     lat: -1.474081251977831
                     lon: -48.45160647253775
-                    zoom: 1000
-                    # Verifica a localização atual quando o mapa é carregado
-                    # on_lat:
-                    #     print(self.lat)
-                    # on_lon:
-                    #     print(self.lon)
-                    MapMarkerPopup:
-                        source: 'icones/Marker.png'
-                        lat: -1.474081251977831
-                        lon: -48.45160647253775
-                        Button:
-                            on_release: print("Hello World")
+                    zoom: 5
+                    double_tap_zoom: True
+                    on_zoom:
+                        self.zoom = 2 if self.zoom < 2 else self.zoom
+                    on_lat:
+                        self.start_getting_markets_in_fov()
+                    on_lon:
+                        self.start_getting_markets_in_fov()
                     GpsBlinker:
                         id: blinker
                 MDIconButton:
@@ -105,7 +121,8 @@
                     on_release: app.centralizar_mapa()
 
 <Search_Select_Option>:
-    on_release: app.root.get_screen("homepage").ids["mapapage2"].ids["Destino"].text = self.secondary_text 
+    on_release: app.root.get_screen("homepage").ids["mapapage2"].ids["Destino"].text = "{}:{}".format(self.text,self.secondary_text)
+
     IconRightWidget:
         icon: "arrow-top-left"
 

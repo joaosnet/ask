@@ -286,8 +286,14 @@ class MainApp(MDApp):
                 destino.helper_text_mode = "on_error"
                 destino.error = True
             else:
-                latitude1, longitude1 = partida.split(", ")
-                latitude2, longitude2 = destino.split(", ")
+                if partida == "Minha Localização atual":
+                    latitude1, longitude1 = self.gps.get_lat_lon()
+                else:
+                    latitude1, longitude1 = partida.split(", ")
+
+                destino = destino.split(":")
+
+                latitude2, longitude2 = destino[1].split(", ")
 
                 minhas_coordenadas = ([float(longitude1),float(latitude1)], [float(longitude2),float(latitude2)])
 
@@ -312,7 +318,7 @@ class MainApp(MDApp):
             self.lat, self.lon = self.gps.get_lat_lon()
             local = f"{self.lat}, {self.lon}"
             # colocar a latitude e longitude na caixa de texto partida
-            self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"].text = local
+            self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"].text = "Minha Localização atual"
             self.root.get_screen("homepage").ids["perfilpage"].ids["localizacao"].text = local
             link = f"https://inclusiveway-ask-default-rtdb.firebaseio.com/{self.local_id}.json?auth={self.id_token}"
             info = f'{{"localizacao": "{local}"}}'
