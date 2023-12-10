@@ -61,10 +61,10 @@ class AccessibleMapView(MapView):
                     # pp(coords)
                     # pp(self.informacoes)
                     if info in self.informacoes:
-                        print("nao carregou")
+                        print("O obstaculo já foi carregado")
                         continue
                     else:
-                        print("carregou")
+                        print("Carregando obstaculo")
                         self.add_accessible_market(obstaculo)
         except Exception as excecao:
             tb = traceback.format_exc()
@@ -80,12 +80,12 @@ class AccessibleMapView(MapView):
         """
         # pp(market)
         # print("----------------------------")
-        tipo, name, coords = market
+        tipo, info, coords = market
         lon, lat = coords
         marker = AccessibleMarketMarker(lat=lat, lon=lon, tipo=tipo)
         marker.market_data = market
         self.add_widget(marker)
-        self.informacoes.append(coords)
+        self.informacoes.append(info)
 
 class AccessibleMarketMarker(MapMarkerPopup):
     tipo = StringProperty()

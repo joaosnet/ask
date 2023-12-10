@@ -292,7 +292,7 @@ class MainApp(MDApp):
 
                 destino = destino.split(":")
 
-                latitude2, longitude2 = destino[1].split(", ")
+                latitude2, longitude2 = destino[0].split(", ")
 
                 minhas_coordenadas = ([float(longitude1),float(latitude1)], [float(longitude2),float(latitude2)])
 

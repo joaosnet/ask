@@ -122,7 +122,7 @@
                     on_release: app.centralizar_mapa()
 
 <Search_Select_Option>:
-    on_release: app.root.get_screen("homepage").ids["mapapage2"].ids["Destino"].text = "{}:{}".format(self.text,self.secondary_text)
+    on_release: app.root.get_screen("homepage").ids["mapapage2"].ids["Destino"].text = "{}:{}".format(self.secondary_text,self.text)
 
     IconRightWidget:
         icon: "arrow-top-left"
