@@ -225,7 +225,7 @@ class MainApp(MDApp):
                 "viewclass": "OneLineListItem",
                 "on_release": lambda x=tipo, menu=self.menu: self.menu_callback(x, menu, caller),
             }
-            for tipo in ["Não Possuo", "Visual", "Auditiva", "Física", "Intelectual", "Múltipla"]
+            for tipo in ["Nao Possuo", "Visual", "Auditiva", "Fisica", "Intelectual", "Multipla"]
         ]
 
         self.menu.items = menu_items

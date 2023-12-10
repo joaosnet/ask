@@ -100,10 +100,11 @@
                 # Visualização do Mapa acessivel
                 AccessibleMapView:
                     id: mapview
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
                     # localização do mapa em tempo real
                     lat: -1.474081251977831
                     lon: -48.45160647253775
-                    zoom: 5
+                    zoom: 1000
                     double_tap_zoom: True
                     on_zoom:
                         self.zoom = 2 if self.zoom < 2 else self.zoom
