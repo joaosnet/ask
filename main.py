@@ -367,7 +367,7 @@ class MainApp(MDApp):
                 speed = 0.7
             self.rc.geoadd(f"{texto}", [lon, lat, f'{speed},{data},{nome}'])
             MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["mapview"].get_accessible_markets_in_fov()
-        except Exception as e:
+        except Exception as e: 
             tb = traceback.format_exc()
             self.mostrar_alerta("Erro", f"Não foi possível adicionar o obstáculo\n{e}\n{tb}")
 
