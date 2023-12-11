@@ -41,7 +41,7 @@ class AccessibleMapView(MapView):
             latitude = self.lat
             # Atualiza o raio para um valor baseado no nível de zoom do mapa
             # Este é apenas um exemplo, você pode querer ajustar o cálculo para se adequar às suas necessidades
-            radius = 10000 * (1 / self.zoom)
+            radius = 500
             # pp(radius)
             tipos = ["Perigoso", "Atenção", "Temporário"]
             app = MDApp.get_running_app()
@@ -51,21 +51,25 @@ class AccessibleMapView(MapView):
                     longitude=longitude,
                     latitude=latitude,
                     radius=radius,
-                    unit="km",
+                    unit="m",
                 )
                 obstaculos = [[tipo, obstaculo, app.rc.geopos(tipo, obstaculo)[0]] for obstaculo in obstaculos]
                 # pp(obstaculos)
                 # print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-                for obstaculo in obstaculos:
-                    tipo, info, coords = obstaculo
-                    # pp(coords)
-                    # pp(self.informacoes)
-                    if info in self.informacoes:
-                        print("nao carregou")
-                        continue
-                    else:
-                        print("carregou")
-                        self.add_accessible_market(obstaculo)
+                # Se tiver algum obstaculo no caminho adiciona
+                if obstaculos != []:
+                    for obstaculo in obstaculos:
+                        tipo, info, coords = obstaculo
+                        # pp(coords)
+                        # pp(self.informacoes)
+                        contador = 0
+                        if info in self.informacoes:
+                            print("O obstaculo já foi carregado")
+                            continue
+                        else:
+                            print("Carregando obstaculo")
+                            self.add_accessible_market(obstaculo)
+                            self.add_accessible_market(obstaculo)
         except Exception as excecao:
             tb = traceback.format_exc()
             print("O erro de carregar obstaculo está aqui: ", excecao)
@@ -80,12 +84,12 @@ class AccessibleMapView(MapView):
         """
         # pp(market)
         # print("----------------------------")
-        tipo, name, coords = market
+        tipo, info, coords = market
         lon, lat = coords
         marker = AccessibleMarketMarker(lat=lat, lon=lon, tipo=tipo)
         marker.market_data = market
         self.add_widget(marker)
-        self.informacoes.append(coords)
+        self.informacoes.append(info)
 
 class AccessibleMarketMarker(MapMarkerPopup):
     tipo = StringProperty()
@@ -99,7 +103,7 @@ class AccessibleMarketMarker(MapMarkerPopup):
             self.source = f"icones/atencao.png"
         else:
             self.source = f"icones/temporario.png"
-        self.size = (50, 50)
+        self.size = (80, 80)
 
     def on_release(self):
         menu = LocationPopupMenu(self.market_data)
@@ -128,5 +132,16 @@ class LocationPopupMenu(MDDialog):
         self.text = texto
         self.open()
 
+class carregando(MDDialog):
+    def __init__(self):
+        super().__init__()
+
+        # Define o título e o texto do diálogo
+        titulo = f"Carregando Obstáculos"
+
+        # Cria e abre o diálogo
+        self.title = titulo
+        # self.Image: source: "icones\Gps.png"
+        self.open()
 
 

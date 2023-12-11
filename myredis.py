@@ -5,7 +5,7 @@ from pprint import pprint as pp
 # iniciar o banco de dados redis
 class MyRedis():
     def __init__(self):
-        self.rc = redis.Redis.from_url('redis://44.221.222.136:6379')
+        self.rc = redis.Redis.from_url('redis://44.221.222.136:6379', password='inclusivewaydb1019')
         self.longitude = -48.45160647253775
         self.latitude = -1.474081251977831
         self.radius = 100000

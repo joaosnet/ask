@@ -87,7 +87,7 @@ class MainApp(MDApp):
         # Carregar as informações do usuário
         self.carregar_info_usuario()
         # Carregar os obstáculos do banco de dados
-        self.rc =  redis.Redis.from_url('redis://44.221.222.136:6379')
+        self.rc =  redis.Redis.from_url('redis://44.221.222.136:6379', password='inclusivewaydb1019')
         # self.carregar_obstaculos()
 
         self.menu_cadastro = self.create_menu(self.root.get_screen("cadastropage").ids["tipo_deficiencia"])
@@ -216,7 +216,6 @@ class MainApp(MDApp):
             caller=caller,
             position="center",
             width=self.root.width,
-
         )
 
         menu_items = [
@@ -225,7 +224,7 @@ class MainApp(MDApp):
                 "viewclass": "OneLineListItem",
                 "on_release": lambda x=tipo, menu=self.menu: self.menu_callback(x, menu, caller),
             }
-            for tipo in ["Não Possuo", "Visual", "Auditiva", "Física", "Intelectual", "Múltipla"]
+            for tipo in ["Nao Possuo", "Visual", "Auditiva", "Fisica", "Intelectual", "Multipla"]
         ]
 
         self.menu.items = menu_items
@@ -286,8 +285,14 @@ class MainApp(MDApp):
                 destino.helper_text_mode = "on_error"
                 destino.error = True
             else:
-                latitude1, longitude1 = partida.split(", ")
-                latitude2, longitude2 = destino.split(", ")
+                if partida == "Minha Localização atual":
+                    latitude1, longitude1 = self.gps.get_lat_lon()
+                else:
+                    latitude1, longitude1 = partida.split(", ")
+
+                destino = destino.split(":")
+
+                latitude2, longitude2 = destino[0].split(", ")
 
                 minhas_coordenadas = ([float(longitude1),float(latitude1)], [float(longitude2),float(latitude2)])
 
@@ -312,7 +317,7 @@ class MainApp(MDApp):
             self.lat, self.lon = self.gps.get_lat_lon()
             local = f"{self.lat}, {self.lon}"
             # colocar a latitude e longitude na caixa de texto partida
-            self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"].text = local
+            self.root.get_screen("homepage").ids["mapapage2"].ids["Partida"].text = "Minha Localização atual"
             self.root.get_screen("homepage").ids["perfilpage"].ids["localizacao"].text = local
             link = f"https://inclusiveway-ask-default-rtdb.firebaseio.com/{self.local_id}.json?auth={self.id_token}"
             info = f'{{"localizacao": "{local}"}}'
@@ -362,7 +367,7 @@ class MainApp(MDApp):
                 speed = 0.7
             self.rc.geoadd(f"{texto}", [lon, lat, f'{speed},{data},{nome}'])
             MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["mapview"].get_accessible_markets_in_fov()
-        except Exception as e:
+        except Exception as e: 
             tb = traceback.format_exc()
             self.mostrar_alerta("Erro", f"Não foi possível adicionar o obstáculo\n{e}\n{tb}")
 

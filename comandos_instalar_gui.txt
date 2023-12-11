@@ -25,3 +25,17 @@ sudo systemctl status xrdp
 sudo systemctl start xrdp
 
 sudo systemctl restart xrdp
+
+--------------------
+
+sudo apt-get update -y
+sudo apt-get install lxde -y
+sudo apt-get install xrdp -y
+sudo passwd ubuntu
+
+sudo apt-get --purge remove
+
+sudo adpkg -i nomedopacote --list
+
+intalando o docker
+https://kinsta.com/pt/blog/instalacao-docker-no-ubuntu/

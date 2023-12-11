@@ -67,6 +67,12 @@
                 radius: [5, 5, 5, 5]
                 size_hint_y: None
 
+            # Caixa de texto que contem uma Lista de tipos de deficiência
+            TextoMenu2:
+                id: tipo_deficiencia
+                mode: "fill"
+                hint_text: 'Tipo de Deficiência'
+
             # Campo de texto com Email
             MDTextField:
                 id: email
@@ -105,25 +111,6 @@
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                 radius: [5, 5, 5, 5]
                 size_hint_y: None
-            
-            # Caixa de texto que contem uma Lista de tipos de deficiência
-            MDTextField:
-                id: tipo_deficiencia
-                mode: "fill"
-                hint_text: 'Tipo de Deficiência'
-                helper_text: 'Selecione o tipo de deficiência que você possui'
-                helper_text_mode: 'on_focus'
-                icon_right: 'arrow-down-drop-circle-outline'
-                # cores
-                icon_right_color: app.theme_cls.primary_color
-                fill_color_normal: "#EDF1FF"
-                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                size_hint_y: None
-                radius: [5, 5, 5, 5]
-                # Lista de tipos de deficiência do MenuTipoDeficiencia
-                on_focus: if self.focus: app.menu_perfil.open()
-                readonly: True
-
 
             # Botão de Texto "Editar suas informações" em roxo
             MDFlatButton:
@@ -156,5 +143,32 @@
                 md_bg_color: "#8C52FF"
                 on_release: app.firebase.logout()
                 size_hint_y: None  
-          
+
+<TextoMenu2>:
+    size_hint_y: None
+    height: text_field.height
+
+    MDTextField:    
+        id: text_field
+        text: root.text
+        mode: "fill"
+        hint_text: root.hint_text
+        helper_text: 'Selecione o tipo de deficiência que você possui'
+        helper_text_mode: 'on_focus'
+        fill_color_normal: "#EDF1FF"
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        size_hint_y: None
+        radius: [5, 5, 5, 5]
+        readonly: True             
+
+    MDIconButton:
+        icon: "arrow-down-drop-circle-outline"
+        pos_hint: {"center_y": .5}
+        pos: text_field.width - self.width - dp(5), 0
+        theme_text_color: "Hint"
+        on_release:
+            self.icon = "arrow-up-drop-circle-outline" if self.icon == "arrow-down-drop-circle-outline" else "arrow-down-drop-circle-outline"
+            app.menu_perfil.open()
+        size_hint_y: None
+
 # PerfilPage:          
