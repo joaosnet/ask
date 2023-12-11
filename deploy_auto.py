@@ -16,11 +16,10 @@ while True:
         numero = "0.0.13"
         os.system("gh release create v0.0.1 '/home/ubuntu/ask/bin/inclusiveway-0.1-arm64-v8a_armeabi-v7a-debug.apk'")
         # interagindo com o terminal para colocar a realease no github
-        
         '''
-        ? Title (optional) v0.0.8
-        ? Release notes Leave blank
-        ? Is this a prerelease? Yes
-        ? Submit? Publish release
+        ? Title (optional) v0.0.8 = escrever v0.0.8 + enter
+        ? Release notes Leave blank = seta para cima + enter
+        ? Is this a prerelease? Yes = escrever yes + enter
+        ? Submit? Publish release = enter
         '''
         break

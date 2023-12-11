@@ -65,11 +65,15 @@ class AccessibleMapView(MapView):
                         contador = 0
                         if info in self.informacoes:
                             print("O obstaculo já foi carregado")
+                            if contador == 0:
+                                self.add_accessible_market(obstaculo)
+                                contador += 1
                             continue
                         else:
                             print("Carregando obstaculo")
                             self.add_accessible_market(obstaculo)
-                            self.add_accessible_market(obstaculo)
+                            if contador == 1:
+                                contador -= 1
         except Exception as excecao:
             tb = traceback.format_exc()
             print("O erro de carregar obstaculo está aqui: ", excecao)
@@ -103,7 +107,7 @@ class AccessibleMarketMarker(MapMarkerPopup):
             self.source = f"icones/atencao.png"
         else:
             self.source = f"icones/temporario.png"
-        self.size = (80, 80)
+        self.size = (100, 100)
 
     def on_release(self):
         menu = LocationPopupMenu(self.market_data)
