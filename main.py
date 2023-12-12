@@ -273,7 +273,8 @@ class MainApp(MDApp):
         # Remover a rota anterior
         try:
             mapa = self.root.get_screen("homepage").ids["mapapage2"].ids["mapview"]
-            mapa.remove_layer(mapa.children[0])
+            if "linemaplayer.LineMapLayer" in mapa.children[0].__str__():
+                mapa.remove_layer(mapa.children[0])
         except:
             pass
         # Pegar as coordenadas de partida e destino
