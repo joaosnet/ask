@@ -148,3 +148,4 @@ if __name__ == '__main__':
         pp(rota)
 
 
+    # http://localhost:8989/api/1/route?point=-1.323304,-48.450860&point=-1.473959,-48.451630&profile=car&locale=pt_BR&calc_points=false

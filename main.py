@@ -309,8 +309,9 @@ class MainApp(MDApp):
 
                 #Voltando para o MDBackdropFrontLayer
                 self.root.get_screen("homepage").ids["mapapage2"].ids["backdrop"].open()
-        except:
-            self.mostrar_alerta("Erro", f"Não foi possível desenhar a rota\nVerifique se os campos de partida e destino estão preenchidos corretamente")
+        except Exception as e:
+            tb = traceback.format_exc()
+            self.mostrar_alerta("Erro", f"Não foi possível desenhar a rota\n{e}\n{tb}")
     # Funcao para mostrar a localizacao do usuario na caixa de texto partida
     def mostrar_localizacao_partida(self):
         try:
