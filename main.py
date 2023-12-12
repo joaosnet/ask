@@ -55,6 +55,7 @@ class MainApp(MDApp):
         self.dialog = None
         self.gps = GpsHelper()
         self.rotas = GraphHopperAPI()
+        self.rc =  redis.Redis.from_url('redis://44.221.222.136:6379', password='inclusivewaydb1019')
 
     def build(self):
         """
@@ -87,7 +88,7 @@ class MainApp(MDApp):
         # Carregar as informações do usuário
         self.carregar_info_usuario()
         # Carregar os obstáculos do banco de dados
-        self.rc =  redis.Redis.from_url('redis://44.221.222.136:6379', password='inclusivewaydb1019')
+        # self.rc = self.redis
         # self.carregar_obstaculos()
 
         self.menu_cadastro = self.create_menu(self.root.get_screen("cadastropage").ids["tipo_deficiencia"])
