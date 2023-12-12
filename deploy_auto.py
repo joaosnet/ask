@@ -23,3 +23,6 @@ while True:
         ? Submit? Publish release = enter
         '''
         break
+
+# wget https://repo1.maven.org/maven2/com/graphhopper/graphhopper-web/8.0/graphhopper-web-8.0.jar https://raw.githubusercontent.com/graphhopper/graphhopper/8.x/config-example.yml https://download.geofabrik.de/south-america/brazil/norte-latest.osm.pbf
+# java -D"dw.graphhopper.datareader.file=norte-latest.osm.pbf" -jar graphhopper*.jar server config-example.yml

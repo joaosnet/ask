@@ -18,8 +18,8 @@ class GraphHopperAPI:
         """
         Inicializa a classe GraphHopperAPI com os atributos padrão.
         """
-        self.url = "https://graphhopper.com/api/1/"
-        self.query = {"key": "17e8fe9c-35aa-47cb-9c6b-3fbb62b7259b"}
+        self.url = "http://44.221.118.71:8989/"
+        #self.query = {"key": "17e8fe9c-35aa-47cb-9c6b-3fbb62b7259b"}
         self.headers = {"Content-Type": "application/json"}
         # self.rc = redis.Redis.from_url('redis://44.221.222.136:6379', password='inclusivewaydb1019')
         # self.lon = -48.45160647253775
@@ -45,15 +45,15 @@ class GraphHopperAPI:
         mapa = app.root.get_screen("homepage").ids["mapapage2"].ids["mapview"]
         longitude = mapa.lon
         latitude = mapa.lat
-        # longitude = self.lon
-        # latitude = self.lat
+        #longitude = self.lon
+        #latitude = self.lat
         # Atualiza o raio para um valor baseado no nível de zoom do mapa
         # Este é apenas um exemplo, você pode querer ajustar o cálculo para se adequar às suas necessidades
         radius = 500
         # pp(radius)
         tipos = ["Perigoso", "Atenção", "Temporário"]
         # Define o tamanho do quadrado (em graus)
-        tamanho_quadrado = 0.01  # Ajuste este valor conforme necessário
+        tamanho_quadrado = 0.0000001  # Ajuste este valor conforme necessário
 
         for tipo in tipos:
             # Busca os obstáculos do tipo atual no banco de dados Redis
@@ -65,8 +65,8 @@ class GraphHopperAPI:
                 unit="m",
             )
             obstaculos_redis = [[tipo, obstaculo, app.rc.geopos(tipo, obstaculo)[0]] for obstaculo in obstaculos_redis]
-            print(obstaculos_redis)
-            if obstaculos_redis != []:
+            # print(obstaculos_redis)
+            if obstaculos_redis != [[], [], []]:
                 # Inicializa o dicionário obstaculos com o modelo
                 obstaculos = {
                     "speed": [
@@ -113,8 +113,8 @@ class GraphHopperAPI:
                 # montando a payload da requisicao  
                 payload = {
                     "points": points,
-                    "details": ["road_class","surface"],
-                    "vehicle": vehicle,
+                    #"details": ["road_class","surface"],
+                    "profile": vehicle,
                     "locale": "pt_BR",
                     "instructions": True,
                     "calc_points": True,
@@ -125,16 +125,17 @@ class GraphHopperAPI:
             else:
                 payload = {
                     "points": points,
-                    "details": ["road_class","surface"],
-                    "vehicle": vehicle,
+                    # "details": ["road_class","surface"],
+                    "profile": vehicle,
                     "locale": "pt_BR",
                     "instructions": True,
                     "calc_points": True,
                     "points_encoded": False,
                 }
 
-        response = requests.post(self.url + "route", json=payload, headers=self.headers, params=self.query)
+        response = requests.post(self.url + "route", json=payload, headers=self.headers)
         data = response.json()
+        print(data)
         return data
     
             
@@ -148,4 +149,4 @@ if __name__ == '__main__':
         pp(rota)
 
 
-    # http://localhost:8989/api/1/route?point=-1.323304,-48.450860&point=-1.473959,-48.451630&profile=car&locale=pt_BR&calc_points=false
+    # http:/http://44.221.118.71:8989/route?point=-1.323304,-48.450860&point=-1.473959,-48.451630&profile=car&locale=pt_BR&calc_points=false&cu
