@@ -270,6 +270,12 @@ class MainApp(MDApp):
         """
         Desenha a rota no mapa.
         """
+        # Remover a rota anterior
+        try:
+            mapa = self.root.get_screen("homepage").ids["mapapage2"].ids["mapview"]
+            mapa.remove_layer(mapa.children[0])
+        except:
+            pass
         # Pegar as coordenadas de partida e destino
         try:
             if partida == destino:
