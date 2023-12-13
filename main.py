@@ -316,9 +316,8 @@ class MainApp(MDApp):
 
                 #Voltando para o MDBackdropFrontLayer
                 self.root.get_screen("homepage").ids["mapapage2"].ids["backdrop"].open()
-        except Exception as e:
-            tb = traceback.format_exc()
-            self.mostrar_alerta("Erro", f"Não foi possível desenhar a rota\n{e}\n{tb}")
+        except:
+            self.mostrar_alerta("Erro", f"Não foi possível desenhar a rota\nVerifique se tem muitos obstáculos no caminho\n")
     # Funcao para mostrar a localizacao do usuario na caixa de texto partida
     def mostrar_localizacao_partida(self):
         try:
@@ -369,11 +368,11 @@ class MainApp(MDApp):
                 lat, lon = self.root.get_screen("homepage").ids["mapapage1"].ids["mapview"].center
             data = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
             if texto == 'Perigoso':
-                speed = 0.1
+                speed = 0
             elif texto == 'Atenção':
-                speed = 0.5
+                speed = 0.2
             elif texto == 'Temporário':
-                speed = 0.7
+                speed = 0.5
             self.rc.geoadd(f"{texto}", [lon, lat, f'{speed},{data},{nome}'])
             MDApp.get_running_app().root.get_screen("homepage").ids["mapapage1"].ids["mapview"].get_accessible_markets_in_fov()
         except Exception as e: 

@@ -1,6 +1,7 @@
 import requests
 from kivymd.app import MDApp
 import redis
+from pprint import pprint as pp
 class GraphHopperAPI:
     """
     Classe que representa a API do GraphHopper.
@@ -45,16 +46,29 @@ class GraphHopperAPI:
         mapa = app.root.get_screen("homepage").ids["mapapage2"].ids["mapview"]
         longitude = mapa.lon
         latitude = mapa.lat
-        #longitude = self.lon
-        #latitude = self.lat
+        # longitude = self.lon
+        # latitude = self.lat
         # Atualiza o raio para um valor baseado no nível de zoom do mapa
         # Este é apenas um exemplo, você pode querer ajustar o cálculo para se adequar às suas necessidades
         radius = 500
         # pp(radius)
         tipos = ["Perigoso", "Atenção", "Temporário"]
         # Define o tamanho do quadrado (em graus)
-        tamanho_quadrado = 0.0000001  # Ajuste este valor conforme necessário
+        tamanho_quadrado = 0.000025  # Ajuste este valor conforme necessário
 
+        # Inicializa o dicionário obstaculos com o modelo
+        obstaculos = {
+            "distance_influence": 15,
+            "priority": [
+
+            ],
+            "speed": [
+            ],
+            "areas": {
+                "type": "FeatureCollection",
+                "features": []
+            }
+        }        
         for tipo in tipos:
             # Busca os obstáculos do tipo atual no banco de dados Redis
             obstaculos_redis = app.rc.georadius(
@@ -66,18 +80,14 @@ class GraphHopperAPI:
             )
             obstaculos_redis = [[tipo, obstaculo, app.rc.geopos(tipo, obstaculo)[0]] for obstaculo in obstaculos_redis]
             # print(obstaculos_redis)
-            if obstaculos_redis != [[], [], []]:
-                # Inicializa o dicionário obstaculos com o modelo
-                obstaculos = {
-                    "speed": [
-                    ],
-                    "areas": {
-                        "type": "FeatureCollection",
-                        "features": []
-                    }
-                }
+            if True:
+                # print('-----------------------')
+                # print(obstaculos_redis)
+                # print("-----------------------")
                 # Adiciona os obstáculos ao dicionário
                 for i, obstaculo in enumerate(obstaculos_redis):
+                    # print(obstaculo)
+                    # print('---------')
                     # Calcula as coordenadas do quadrado
                     tipo, informacoes, coords = obstaculo
                     lon, lat = coords
@@ -95,12 +105,6 @@ class GraphHopperAPI:
                         [lon - tamanho_quadrado, lat + tamanho_quadrado],
                         [lon - tamanho_quadrado, lat - tamanho_quadrado],  # Fecha o polígono
                     ]
-                    # Adiciona a velocidade da pista ao dicionário de obstáculos
-                    obstaculos["speed"].append({
-                        "if": "in_" + nome_custom,
-                        "multiply_by": speed_multiplier
-                    })
-
                     # Adiciona o quadrado à lista de "features"
                     obstaculos["areas"]["features"].append({
                         "type": "Feature",
@@ -110,10 +114,17 @@ class GraphHopperAPI:
                             "coordinates": [quadrado]
                         }
                     })
-                # montando a payload da requisicao  
+
+                    # Adiciona a velocidade da pista ao dicionário de obstáculos
+                    obstaculos["priority"].append({
+                        "if": "in_" + nome_custom,
+                        "multiply_by": speed_multiplier
+                    })
+
+                    # montando a payload da requisicao  
                 payload = {
                     "points": points,
-                    #"details": ["road_class","surface"],
+                    # "details": ["road_class","surface"],
                     "profile": vehicle,
                     "locale": "pt_BR",
                     "instructions": True,
@@ -135,7 +146,7 @@ class GraphHopperAPI:
 
         response = requests.post(self.url + "route", json=payload, headers=self.headers)
         data = response.json()
-        print(data)
+        pp(payload)
         return data
     
             

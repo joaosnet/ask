@@ -37,8 +37,13 @@ class AccessibleMapView(MapView):
         """
         try:
             # Atualiza a longitude e a latitude para a localização atual do mapa
-            longitude = self.lon
-            latitude = self.lat
+            try:
+                lat, lon = self.gps.get_lat_lon()
+                longitude = lon
+                latitude = lat
+            except:
+                longitude = self.lat
+                latitude = self.lon
             # Atualiza o raio para um valor baseado no nível de zoom do mapa
             # Este é apenas um exemplo, você pode querer ajustar o cálculo para se adequar às suas necessidades
             radius = 500
