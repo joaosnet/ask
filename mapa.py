@@ -36,20 +36,16 @@ class AccessibleMapView(MapView):
         Os obstáculos obtidos são impressos no console e adicionados ao mapa como marcadores acessíveis.
         """
         try:
+            app = MDApp.get_running_app()
             # Atualiza a longitude e a latitude para a localização atual do mapa
-            try:
-                lat, lon = self.gps.get_lat_lon()
-                longitude = lon
-                latitude = lat
-            except:
-                longitude = self.lat
-                latitude = self.lon
+            lat, lon = app.gps.get_lat_lon()
+            longitude = lon
+            latitude = lat
             # Atualiza o raio para um valor baseado no nível de zoom do mapa
             # Este é apenas um exemplo, você pode querer ajustar o cálculo para se adequar às suas necessidades
             radius = 500
             # pp(radius)
             tipos = ["Perigoso", "Atenção", "Temporário"]
-            app = MDApp.get_running_app()
             for tipo in tipos:
                 obstaculos = app.rc.georadius(
                     name=tipo,
