@@ -4,12 +4,13 @@ from datetime import date
 from threading import Thread
 import json
 from threading import Thread
+from segredos import API_KEY
 class MyFirebase():
     """
     Classe que gerencia a comunicação com o Firebase Authentication e Realtime Database.
     """
 
-    API_KEY = "AIzaSyCL5SzpjM8b1VlO6XSwniNFplITXo99Xmo"
+    
 
     # quando clicado confirma a senha e faz o cadastro, quando não, mostra uma mensagem de erro nos campos senha e confirmação de senha
     def confirmar_senha(self, nome, deficiencia, email, senha, confirmacao_senha):

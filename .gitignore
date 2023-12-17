@@ -164,7 +164,13 @@ cython_debug/
 #.idea/
 
 desktop.ini
+
 nohup.out
+
 script
+
 refresh_token.txt
+
 usuario.txt
+
+segredos.py

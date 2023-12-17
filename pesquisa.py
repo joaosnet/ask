@@ -8,6 +8,7 @@ from pprint import pprint as pp
 from threading import Thread
 import googlemaps
 from googlemaps import Client
+from segredos import API_GEO
 
 # Exemplo
 KV = '''
@@ -92,7 +93,7 @@ class SearchTextInput(MDTextField):
         super().__init__(**kwargs)
         self.error = False
         self.option_list = []
-        self.gmaps = googlemaps.Client(key='AIzaSyByHk869nvu37_MA5_44SPNMryK0W3BbHE')
+        self.gmaps = googlemaps.Client(key=API_GEO)
 
     def on_text(self, instance, value):
         """

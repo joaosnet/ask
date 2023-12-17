@@ -21,6 +21,7 @@ from datetime import datetime
 import traceback
 import redis
 from mapa import AccessibleMapView, AccessibleMarketMarker, LocationPopupMenu
+from segredos import API_KEY, PASSWORD
 
 os.environ["SSL_CERT_FILE"] = certifi.where()
 
@@ -55,7 +56,7 @@ class MainApp(MDApp):
         self.dialog = None
         self.gps = GpsHelper()
         self.rotas = GraphHopperAPI()
-        self.rc =  redis.Redis.from_url('redis://44.221.222.136:6379', password='inclusivewaydb1019')
+        self.rc =  redis.Redis.from_url('redis://44.221.222.136:6379', password=PASSWORD)
 
     def build(self):
         """
@@ -151,7 +152,7 @@ class MainApp(MDApp):
             self.root.get_screen("homepage").ids["perfilpage"].ids["nome"].text = nome
 
             # Preencher o email do usuário, porém não tem email no banco de dados do usuário só no authenticatior do google
-            url = f'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCL5SzpjM8b1VlO6XSwniNFplITXo99Xmo'
+            url = f'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key={API_KEY}'
             headers = {'Content-Type': 'application/json'}
             data = {'idToken': id_token}
             response = requests.post(url, headers=headers, data=json.dumps(data))

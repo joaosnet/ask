@@ -2,6 +2,7 @@ import requests
 from kivymd.app import MDApp
 import redis
 from pprint import pprint as pp
+# from segredos import API_GRAPH, API_GEO, PASSWORD
 class GraphHopperAPI:
     """
     Classe que representa a API do GraphHopper.
@@ -20,9 +21,9 @@ class GraphHopperAPI:
         Inicializa a classe GraphHopperAPI com os atributos padrão.
         """
         self.url = "http://44.221.118.71:8989/"
-        #self.query = {"key": "17e8fe9c-35aa-47cb-9c6b-3fbb62b7259b"}
+        #self.query = {"key": "API_GRAPH"}
         self.headers = {"Content-Type": "application/json"}
-        # self.rc = redis.Redis.from_url('redis://44.221.222.136:6379', password='inclusivewaydb1019')
+        # self.rc = redis.Redis.from_url('redis://44.221.222.136:6379', password=PASSWORD)
         # self.lon = -48.45160647253775
         # self.lat = -1.474081251977831
         # self.radius = 100000
