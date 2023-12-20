@@ -73,8 +73,8 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [x] Banco de Dados de Usuários
 - [x] Back-end Validar Dados
 - [x] OpenStreetMap
-- [1/2] Back-end Para Calcular Rotas
-- [ ] Banco de Dados dos Obstáculos
+- [x] Back-end Para Calcular Rotas
+- [x] Banco de Dados dos Obstáculos
 - [ ] Funções de Acessibilidade
 - [ ] Gatilhos para Novos Obstáculos
 
