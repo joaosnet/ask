@@ -77,18 +77,10 @@ The project is still under development, and the next updates will focus on the f
 - [x] User Database
 - [x] Back-end Data Validation
 - [x] OpenStreetMap
-<<<<<<< HEAD
 - [x] Back-end for Route Calculation
 - [x] Obstacle Database
 - [ ] Accessibility Features
 - [ ] Triggers for New Obstacles
-=======
-- [x] Back-end Para Calcular Rotas
-- [x] Banco de Dados dos Obstáculos
-- [ ] Funções de Acessibilidade
-- [ ] Gatilhos para Novos Obstáculos
->>>>>>> 6ae663ff88fb92e08863fade719393a253e43fab
-
 
 ## 🤝 Contributors
 
