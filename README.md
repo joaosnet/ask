@@ -152,6 +152,97 @@ _Figure 4: Prototype in 1 slide_
 
 ## ☕ Using the InclusiveWay Python Prototype
 
-### On Windows
-1. Install [Anaconda](https://docs.anaconda.com/free/anaconda/install/windows.html)
-2. Create a virtual environment
+### No windows
+1. Instale o [anaconda](https://docs.anaconda.com/free/anaconda/install/windows.html)
+2. Crie um ambiente virtual
+```bash
+conda create -n ask python=3.10
+```
+3. Ative o ambiente virtual
+```bash
+conda activate ask
+```
+4. Instale as dependências
+```bash
+pip install -r requirements_windows.txt
+```
+5. Execute o aplicativo
+```bash
+python main.py
+```
+
+### No Linux
+1. Instale o [anaconda](https://www.digitalocean.com/community/tutorials/how-to-install-the-anaconda-python-distribution-on-ubuntu-20-04-pt)
+2. Crie um ambiente virtual
+```bash
+conda create -n ask python=3.10
+```
+3. Ative o ambiente virtual
+```bash
+conda activate ask
+```
+4. Instale as dependências
+```bash
+pip install -r requirements_linux.txt
+```
+5. Execute o aplicativo
+```bash
+python main.py
+```
+
+## 📫 Contribuindo para InclusiveWay
+
+Se você deseja contribuir para o desenvolvimento do aplicativo, siga os passos abaixo:
+
+1. Faça um fork do repositório
+2. Clone o fork para o seu ambiente local
+3. Crie uma branch para suas alterações (`git checkout -b nome-da-sua-branch`)
+4. Faça commit das suas alterações (`git commit -m 'Descrição das alterações'`)
+5. Faça push para a branch (`git push origin nome-da-sua-branch`)
+6. Abra um pull request no repositório original
+
+## Para construir uma versão no Buildozer
+- Modifique o arquivo (`buildozer.spec`)
+### Para ver o erros e fazer uma criar uma versão.apk
+```bash
+buildozer android debug deploy run logcat
+```
+
+### Para ver os erros e o log em .txt
+```bash
+buildozer android debug deploy run logcat > log.txt
+```
+### Para construir apenas o arquivo .apk
+```bash
+buildozer -v android debug
+buildozer android logcat > log.txt
+```
+
+### Sempre limpar o buildozer antes de fazer uma nova build
+```bash
+buildozer -v android clean
+```
+
+## Para colocar em segundo plano no linux
+```bash
+nohup buildozer -v android debug > log.txt &
+```
+### Para ver o log
+```bash
+tail -f log.txt
+```
+
+## Para atualizar o git
+### Fazendo alterações no git
+```bash
+git pull
+git add .
+git commit -m "Atualizando"
+git push
+```
+### Adicionando uma nova realease apenas do arquivo .apk gerado pelo buildozer no github
+```bash
+gh release create 0.0.1 '/home/ubuntu/ask/bin/inclusiveway-0.1-arm64-v8a_armeabi-v7a-debug.apk'
+```
+
+
